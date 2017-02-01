@@ -1,0 +1,6 @@
+c:\users\administrator\documents\visual studio 2015\Projects\ConsolePNGConv\ConsolePNGConv\bin\Debug\ConsolePNGConv.exe.config
+c:\users\administrator\documents\visual studio 2015\Projects\ConsolePNGConv\ConsolePNGConv\bin\Debug\ConsolePNGConv.exe
+c:\users\administrator\documents\visual studio 2015\Projects\ConsolePNGConv\ConsolePNGConv\bin\Debug\ConsolePNGConv.pdb
+c:\users\administrator\documents\visual studio 2015\Projects\ConsolePNGConv\ConsolePNGConv\obj\Debug\ConsolePNGConv.exe
+c:\users\administrator\documents\visual studio 2015\Projects\ConsolePNGConv\ConsolePNGConv\obj\Debug\ConsolePNGConv.pdb
+C:\Users\Administrator\Documents\Visual Studio 2015\Projects\ConsolePNGConv\ConsolePNGConv\obj\Debug\ConsolePNGConv.csprojResolveAssemblyReference.cache
