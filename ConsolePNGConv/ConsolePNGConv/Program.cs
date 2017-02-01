@@ -78,7 +78,7 @@ namespace ConsolePNGConv
             }
             o = Limit;
             times += 1;
-            if (Tilewidth > 8)
+           if (Tilewidth > 8)
             {
                 for (int g = 0; g < (Tilewidth / 8); g++)
                 {
@@ -119,108 +119,43 @@ namespace ConsolePNGConv
                     times += 1;
                 }
             }
-            /*if (Back == 1)
+            for (mors = o; (mors % 4) != 0; mors++);
+            int morn = (mors / 8) * 2;
+            if (((Tilewidth % 8) == 5) || ((Tilewidth % 8) == 6))
             {
-                for (int i = Limit; i < Tileheight; i++)
+                for (int g = 0; g < 3; g++)
                 {
-                    Modiheight += 1;
-                    for (int k = 0; k < 8; k++)
-                    {
-                        TempTiles.Add(new List<Byte>());
-                        if ( k >= Tilewidth)
-                        {
-                            for (int j = 0; j < 32; j++)
-                                TempTiles[((i + more + (Limit * (times-1))) * 8) + k].Add(0);
-                        }
-                        else {
-                            for (int j = 0; j < 32; j++)
-                                TempTiles[((i + more + (Limit * (times - 1))) * 8) + k].Add(Tile[(i * Tilewidth) + k, j]);
-                        }
+                    for (int i = 0; i < morn; i++)
+                {
+                            for (int k = 0; k < 2; k++)
+                                TempTiles[((i + more + (g*morn)+ (Limit * (times - 1))) * 8) + k + 6] = TempTiles[((i+(morn*3) +  more + (Limit * (times-1))) * 8) +(g*2)+ k];
                     }
                 }
-                if (Tilewidth > 4)
+                Modiheight -= morn;
+            }
+            else if (((Tilewidth % 8) == 3) || ((Tilewidth % 8) == 4))
+            {
+                for (int i = 0; i < mors / 2; i++)
                 {
-                    mors = more;
-                    while ((o % 4) != 0)
+                    for (int k = 0; k < 4; k++)
                     {
-                        Modiheight += 1;
-                        for (int k = 0; k < 8; k++)
-                        {
-                            TempTiles.Add(new List<Byte>());
-                            for (int j = 0; j < 32; j++)
-                                TempTiles[((o + mors + (Limit * (times))) * 8) + k].Add(0);
-                        }
-                        more += 1;
-                        o++;
+                        TempTiles[((i + more + (Limit * (times-1))) * 8) + k+4]=TempTiles[((i + (mors/2) + more + (Limit * (times-1))) * 8) + k];
                     }
                 }
-                if ((Tileheight % 2) != 0)
-                    more += 1;
-                o = Tileheight-Limit;
-                if (Tilewidth > 8)
+                Modiheight -= mors/2;
+            }
+            else if (((Tilewidth % 8) == 2)||((Tilewidth%8)==1))
+            {
+                for (int g = 0; g < 3; g++)
                 {
-                    for (int g = 0; g < (Tilewidth / 8); g++)
+                    for (int i = 0; i < morn; i++)
                     {
-                        if (((Tilewidth % 8) <= 4) && (g == ((Tilewidth / 8) - 1)))
-                        {
-                            for (int i = 0; i < (Tileheight-Limit); i++)
-                            {
-                                for (int k = 0; k < 4; k++)
-                                {
-                                    if ((8 * (g + 1) + k) >= Tilewidth)
-                                    {
-                                        for (int j = 0; j < 32; j++)
-                                            TempTiles[((i +mores+ (Limit * Ftimes)) * 8) + k + 4][j] = 0;
-                                    }
-                                    else {
-                                        for (int j = 0; j < 32; j++)
-                                            TempTiles[((i + mores+(Limit * Ftimes)) * 8) + k + 4][j] = Tile[((Limit+i) * Tilewidth) + 8 * (g + 1) + k, j];
-                                    }
-                                }
-                            }
-                        }
-                        else {
-                            for (int i = Limit; i < Tileheight; i++)
-                            {
-                                Modiheight += 1;
-                                for (int k = 0; k < 8; k++)
-                                {
-                                    TempTiles.Add(new List<Byte>());
-                                    if ((8 * (g + 1) + k) >= Tilewidth)
-                                    {
-                                        for (int j = 0; j < 32; j++)
-                                            TempTiles[((i+more+(Limit * (times))) * 8) + k].Add(0);
-                                    }
-                                    else {
-                                        for (int j = 0; j < 32; j++)
-                                            TempTiles[((i+ more+(Limit * (times))) * 8) + k].Add(Tile[(i * Tilewidth) + 8 * (g + 1) + k, j]);
-                                    }
-                                }
-                            }
-                            times += 1;
-                            if (Tilewidth > 4)
-                            {
-                                mors = more;
-                                while ((o % 4) != 0)
-                                {
-                                    Modiheight += 1;
-                                    for (int k = 0; k < 8; k++)
-                                    {
-                                        TempTiles.Add(new List<Byte>());
-                                        for (int j = 0; j < 32; j++)
-                                            TempTiles[((o + mors + (Limit * (times))) * 8) + k].Add(0);
-                                    }
-                                    more += 1;
-                                    o++;
-                                }
-                            }
-                            if ((Tileheight % 2) != 0)
-                                more += 1;
-                            o = Tileheight - Limit;
-                        }
+                        for (int k = 0; k < 2; k++)
+                            TempTiles[((i + more + (Limit * (times - 1))) * 8) + (g*2) + k + 2] = TempTiles[((i + (morn * (g+1)) + more + (Limit * (times - 1))) * 8) + k];
                     }
                 }
-            }*/
+                Modiheight -= (morn*3);
+            }
             Limit = TempTiles.Count();
             Byte[,] Newtiles=new Byte[Limit, 32];
             for (int i = 0; i < Limit; i++) {
