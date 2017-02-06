@@ -4,3 +4,9 @@ c:\users\administrator\documents\visual studio 2015\Projects\ConsolePNGConv\Cons
 c:\users\administrator\documents\visual studio 2015\Projects\ConsolePNGConv\ConsolePNGConv\obj\Debug\ConsolePNGConv.exe
 c:\users\administrator\documents\visual studio 2015\Projects\ConsolePNGConv\ConsolePNGConv\obj\Debug\ConsolePNGConv.pdb
 C:\Users\Administrator\Documents\Visual Studio 2015\Projects\ConsolePNGConv\ConsolePNGConv\obj\Debug\ConsolePNGConv.csprojResolveAssemblyReference.cache
+C:\Users\Lorenzo Carletti\Desktop\Console\ConsolePNGConv\ConsolePNGConv\bin\Debug\ConsolePNGConv.exe.config
+C:\Users\Lorenzo Carletti\Desktop\Console\ConsolePNGConv\ConsolePNGConv\obj\Debug\ConsolePNGConv.exe
+C:\Users\Lorenzo Carletti\Desktop\Console\ConsolePNGConv\ConsolePNGConv\obj\Debug\ConsolePNGConv.pdb
+C:\Users\Lorenzo Carletti\Desktop\Console\ConsolePNGConv\ConsolePNGConv\bin\Debug\ConsolePNGConv.exe
+C:\Users\Lorenzo Carletti\Desktop\Console\ConsolePNGConv\ConsolePNGConv\bin\Debug\ConsolePNGConv.pdb
+C:\Users\Lorenzo Carletti\Desktop\Console\ConsolePNGConv\ConsolePNGConv\obj\Debug\ConsolePNGConv.csprojResolveAssemblyReference.cache

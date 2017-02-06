@@ -5,7 +5,173 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using System.IO;
-//Still in coding. 01: 80AECC5 9F64128 02: Phase 1: 80ADB55 9F61D08 Phase 2: 80ADA9D 9F61D10 
+//Still in coding. 01: 80AECC5 9F64128 02: Phase 1: 80ADB55 9F61D08 Phase 2: 80ADA9D 9F61D10
+namespace GBA
+{
+    class LZ77
+    {
+        public static int Decompress(byte[] data, int address, out byte[] output)
+        {
+            output = null;
+            int start = address;
+
+            if (data[address++] != 0x10) return -1; // Check for LZ77 signature
+
+            // Read the block length
+            int length = data[address++];
+            length += (data[address++] << 8);
+            length += (data[address++] << 16);
+            output = new byte[length];
+
+            int bPos = 0;
+            while (bPos < length)
+            {
+                byte ch = data[address++];
+                for (int i = 0; i < 8; i++)
+                {
+                    switch ((ch >> (7 - i)) & 1)
+                    {
+                        case 0:
+
+                            // Direct copy
+                            if (bPos >= length) break;
+                            output[bPos++] = data[address++];
+                            break;
+
+                        case 1:
+
+                            // Compression magic
+                            int t = (data[address++] << 8);
+                            t += data[address++];
+                            int n = ((t >> 12) & 0xF) + 3;    // Number of bytes to copy
+                            int o = (t & 0xFFF);
+
+                            // Copy n bytes from bPos-o to the output
+                            for (int j = 0; j < n; j++)
+                            {
+                                if (bPos >= length) break;
+                                output[bPos] = output[bPos - o - 1];
+                                bPos++;
+                            }
+
+                            break;
+
+                        default:
+                            break;
+                    }
+                }
+            }
+
+            return address - start;
+        }
+
+        public static byte[] Compress(byte[] data)
+        {
+            return Compress(data, 0, data.Length);
+        }
+
+        public static byte[] Compress(byte[] data, int address, int length)
+        {
+            int start = address;
+
+            List<byte> obuf = new List<byte>();
+            List<byte> tbuf = new List<byte>();
+            int control = 0;
+
+            // Let's start by encoding the signature and the length
+            obuf.Add(0x10);
+            obuf.Add((byte)(length & 0xFF));
+            obuf.Add((byte)((length >> 8) & 0xFF));
+            obuf.Add((byte)((length >> 16) & 0xFF));
+
+            while ((address - start) < length)
+            {
+                tbuf.Clear();
+                control = 0;
+                for (int i = 0; i < 8; i++)
+                {
+                    bool found = false;
+
+                    // First byte should be raw
+                    if (address == start)
+                    {
+                        tbuf.Add(data[address++]);
+                        found = true;
+                    }
+                    else if ((address - start) >= length)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        // We're looking for the longest possible string
+                        // The farthest possible distance from the current address is 0x1000
+                        int max_length = -1;
+                        int max_distance = -1;
+
+                        for (int k = 1; k <= 0x1000; k++)
+                        {
+                            if ((address - k) < start) break;
+
+                            int l = 0;
+                            for (; l < 18; l++)
+                            {
+                                if (((address - start + l) >= length) ||
+                                    (data[address - k + l] != data[address + l]))
+                                {
+                                    if (l > max_length)
+                                    {
+                                        max_length = l;
+                                        max_distance = k;
+                                    }
+                                    break;
+                                }
+                            }
+
+                            // Corner case: we matched all 18 bytes. This is
+                            // the maximum length, so don't bother continuing
+                            if (l == 18)
+                            {
+                                max_length = 18;
+                                max_distance = k;
+                                break;
+                            }
+                        }
+
+                        if (max_length >= 3)
+                        {
+                            address += max_length;
+
+                            // We hit a match, so add it to the output
+                            int t = (max_distance - 1) & 0xFFF;
+                            t |= (((max_length - 3) & 0xF) << 12);
+                            tbuf.Add((byte)((t >> 8) & 0xFF));
+                            tbuf.Add((byte)(t & 0xFF));
+
+                            // Set the control bit
+                            control |= (1 << (7 - i));
+
+                            found = true;
+                        }
+                    }
+
+                    if (!found)
+                    {
+                        // If we didn't find any strings, copy the byte to the output
+                        tbuf.Add(data[address++]);
+                    }
+                }
+
+                // Flush the temp buffer
+                obuf.Add((byte)(control & 0xFF));
+                obuf.AddRange(tbuf.ToArray());
+            }
+            while ((obuf.Count() % 4) != 0)
+                obuf.Add(0);
+            return obuf.ToArray();
+        }
+    }
+}
 namespace ConsolePNGConv
 {
     class Program
@@ -43,118 +209,75 @@ namespace ConsolePNGConv
             Modiheight = 0;
             int Limit = Tileheight, times = 0, more=0, mors=0;
             List<List<Byte>> TempTiles=new List<List<Byte>>();
+            List<List<Byte>> TumpTiles=new List<List<Byte>>();
             int o = Limit;
+            if (Tilewidth > 4)
+                Modiwidth = 8;
+            else if(Tilewidth>2)
+                Modiwidth = 4;
             for (int i = 0; i < Limit; i++)
             {
                 Modiheight += 1;
-                for (int k = 0; k < 8; k++)
+                for (int k = 0; k < Modiwidth; k++)
                 {
-                    TempTiles.Add(new List<Byte>());
+                    TumpTiles.Add(new List<Byte>());
                     if (k >= Tilewidth)
                     {
                         for (int j = 0; j < 32; j++)
-                            TempTiles[((i + more + (Limit * times)) * 8) + k].Add(0);
+                            TumpTiles[(i * Modiwidth) + k].Add(0);
                     }
                     else { 
                     for (int j = 0; j < 32; j++)
-                        TempTiles[((i+more) * 8) + k].Add(Tile[(i * Tilewidth) + k, j]);
+                        TumpTiles[(i * Modiwidth) + k].Add(Tile[(i * Tilewidth) + k, j]);
                 }
                     }
             }
-            if (Tilewidth > 4)
-            {
-                while ((o % 4) != 0)
-                {
-                    Modiheight += 1;
-                    for (int k = 0; k < 8; k++)
-                    {
-                        TempTiles.Add(new List<Byte>());
-                        for (int j = 0; j < 32; j++)
-                            TempTiles[(o * 8) + k].Add(0);
-                    }
-                    more++;
-                    o++;
-                }
-            }
-            o = Limit;
+			int Singularwidth, Singularheight, XAdd=0;
+            List<int> X=new List<int>(), Y = new List<int>(), XSize = new List<int>(), YSize = new List<int>();
+            X.Add(0);
+            Y.Add(0);
+            XSize.Add(Modiwidth);
+            YSize.Add(Tileheight);
+			TumpTiles=RemoveExceedTiles(TumpTiles, Modiwidth, Tileheight, out Singularwidth, out Singularheight, ref Modiheight, ref XSize, ref YSize, ref X, ref Y, ref XAdd);
+            TumpTiles = FixTile(TumpTiles, Singularwidth, Tilewidth, ref Singularheight, ref Modiheight, ref XSize, ref YSize);
+            int XTemp = X[X.Count() - 1] + XSize[XSize.Count() - 1];
+            MoveTile(ref TumpTiles, Singularwidth, ref Singularheight, ref Modiheight, 0, Tilewidth, XAdd, ref XSize, ref YSize, ref X, ref Y);
+			TempTiles.AddRange(TumpTiles);
+            TumpTiles=new List<List<Byte>>();
             times += 1;
            if (Tilewidth > 8)
             {
                 for (int g = 0; g < (Tilewidth / 8); g++)
                 {
+					mors=more;
                     for (int i = 0; i < Limit; i++)
                     {
                         Modiheight += 1;
                         for (int k = 0; k < 8; k++)
                         {
-                            TempTiles.Add(new List<Byte>());
+                            TumpTiles.Add(new List<Byte>());
                             if ((8 * times + k) >= Tilewidth)
                             {
                                 for (int j = 0; j < 32; j++)
-                                    TempTiles[((i + more + (Limit * times)) * 8) + k].Add(0);
+                                    TumpTiles[(i  * 8) + k].Add(0);
                             }
                             else {
                                 for (int j = 0; j < 32; j++)
-                                    TempTiles[((i + more + (Limit * times)) * 8) + k].Add(Tile[(i * Tilewidth) + 8 * times + k, j]);
+                                    TumpTiles[(i * 8) + k].Add(Tile[(i * Tilewidth) + 8 * times + k, j]);
                             }
                         }
                     }
-                    if (Tilewidth > 4)
-                    {
-                        mors = more;
-                        while ((o % 4) != 0)
-                        {
-                            Modiheight += 1;
-                            for (int k = 0; k < 8; k++)
-                            {
-                                TempTiles.Add(new List<Byte>());
-                                for (int j = 0; j < 32; j++)
-                                    TempTiles[((o + mors + (Limit * times)) * 8) + k].Add(0);
-                            }
-                            more += 1;
-                            o++;
-                        }
-                        o = Limit;
-                    }
+                    X.Add(XTemp+XAdd);
+                    Y.Add(0);
+                    XSize.Add(8);
+                    YSize.Add(Tileheight);
+                    TumpTiles =RemoveExceedTiles(TumpTiles, 8, Tileheight, out Singularwidth, out Singularheight, ref Modiheight, ref XSize, ref YSize, ref X, ref Y, ref XAdd);
+			TumpTiles=FixTile(TumpTiles, Singularwidth, Tilewidth, ref Singularheight, ref Modiheight, ref XSize, ref YSize);
+			MoveTile(ref TumpTiles, Singularwidth, ref Singularheight, ref Modiheight, 0, Tilewidth, XAdd, ref XSize, ref YSize, ref X, ref Y);
+			TempTiles.AddRange(TumpTiles);
+            TumpTiles=new List<List<Byte>>();
                     times += 1;
                 }
-            }
-            for (mors = o; (mors % 4) != 0; mors++);
-            int morn = (mors / 8) * 2;
-            if (((Tilewidth % 8) == 5) || ((Tilewidth % 8) == 6))
-            {
-                for (int g = 0; g < 3; g++)
-                {
-                    for (int i = 0; i < morn; i++)
-                {
-                            for (int k = 0; k < 2; k++)
-                                TempTiles[((i + more + (g*morn)+ (Limit * (times - 1))) * 8) + k + 6] = TempTiles[((i+(morn*3) +  more + (Limit * (times-1))) * 8) +(g*2)+ k];
-                    }
-                }
-                Modiheight -= morn;
-            }
-            else if (((Tilewidth % 8) == 3) || ((Tilewidth % 8) == 4))
-            {
-                for (int i = 0; i < mors / 2; i++)
-                {
-                    for (int k = 0; k < 4; k++)
-                    {
-                        TempTiles[((i + more + (Limit * (times-1))) * 8) + k+4]=TempTiles[((i + (mors/2) + more + (Limit * (times-1))) * 8) + k];
-                    }
-                }
-                Modiheight -= mors/2;
-            }
-            else if (((Tilewidth % 8) == 2)||((Tilewidth%8)==1))
-            {
-                for (int g = 0; g < 3; g++)
-                {
-                    for (int i = 0; i < morn; i++)
-                    {
-                        for (int k = 0; k < 2; k++)
-                            TempTiles[((i + more + (Limit * (times - 1))) * 8) + (g*2) + k + 2] = TempTiles[((i + (morn * (g+1)) + more + (Limit * (times - 1))) * 8) + k];
-                    }
-                }
-                Modiheight -= (morn*3);
             }
             Limit = TempTiles.Count();
             Byte[,] Newtiles=new Byte[Limit, 32];
@@ -162,13 +285,127 @@ namespace ConsolePNGConv
                 for (int k = 0; k < 32; k++)
                     Newtiles[i, k] = TempTiles[i][k];
             }
-            if (Tilewidth > 4)
-                Modiwidth = 8;
-            else
-                Modiwidth = 4;
             return Newtiles;
         }
-        static Byte[] OAMGen(int Tilewidth, int Tileheight, int Back, out int OAMNum, out int BackOAMNum)
+		static void MoveTile(ref List<List<Byte>> TempTiles, int Tilewidth, ref int TileheightMod, ref int Modiheight, int Limitimes, int RealTileWidth, int XAdd, ref List<int> XSize, ref List<int> YSize, ref List<int> X, ref List<int> Y)
+		{
+            int mors;
+		for (mors = TileheightMod; (mors % 2) != 0; mors++);
+            int morn = (mors / 8) * 2;
+			int Tileheight=TileheightMod;
+            int XTemp = X[X.Count() - 1];
+            if (((Tilewidth % 8) == 5) || ((Tilewidth % 8) == 6))
+            {
+                if(morn>0)
+                XSize[XSize.Count() - 1] -= 2;
+                YSize[YSize.Count() - 1] -= morn;
+                for (int g = 0; g < 3; g++)
+                {
+                    YSize.Add(morn);
+                    Y.Add(Tileheight - morn);
+                    for (int i = 0; i < morn; i++)
+                {
+                        XSize.Add(2);
+                        X.Add(XTemp+(g*2));
+                            for (int k = 0; k < 2; k++)
+                                TempTiles[((i + (g*morn)) * 8) + k + 6] = TempTiles[((i+(morn*3) ) * 8) +(g*2)+ k];
+                    }
+                }
+                Modiheight -= morn;
+				TileheightMod-=morn;
+            }
+            else if (((Tilewidth % 8) == 3) || ((Tilewidth % 8) == 4))
+            {
+                if (mors / 2 > 0) {
+                    XSize[XSize.Count() - 1] = 4;
+                    YSize[YSize.Count() - 1] -= mors / 2;
+                    X.Add(X[X.Count() - 1]);
+                    Y.Add(Y[Y.Count()-1]+mors / 2);
+                    XSize.Add(4);
+                    YSize.Add(mors / 2);
+                for (int i = 0; i < mors / 2; i++)
+                    {
+                        for (int k = 0; k < 4; k++)
+                        {
+                            TempTiles[(i * 8) + k + 4] = TempTiles[((i + (mors / 2)) * 8) + k];
+                        }
+                    }
+                    Modiheight -= mors / 2;
+                    TileheightMod -= mors / 2; }
+            }
+            else if (((Tilewidth % 8) == 2)||((Tilewidth%8)==1))
+            {
+				morn=mors/4;
+                int OriginalY = Y[Y.Count()-1];
+                int Countemp = X.Count() - 1;
+				if((mors%4)!=0)
+					morn++;
+                XSize[Countemp] = 2;
+                for (int g = 0; g < 3; g++)
+                {
+                    XSize.Add(2);
+                    YSize.Add(0);
+                    for (int i = 0; i < morn; i++)
+                    {
+						if((i + (morn * (g+1)))<Tileheight){
+							Modiheight -=1;
+							TileheightMod-=1;
+                            YSize[Countemp] -= 1;
+                            YSize[YSize.Count() - 1] += 1;
+                            X.Add(XTemp);
+                            Y.Add(OriginalY-((2-g)*morn));
+						}
+                        for (int k = 0; k < 2; k++){
+							if((i + (morn * (g+1)))<Tileheight)
+                            TempTiles[(i * 8) + (g*2) + k + 2] = TempTiles[((i + (morn * (g+1))) * 8) + k];
+						else{
+							for(int j=0; j<32; j++)
+							TempTiles[(i * 8) + (g*2) + k + 2][j] =0;
+							}
+						}
+                    }
+                }
+			}
+		}
+        static List<List<Byte>> FixTile(List<List<Byte>> TempTiles, int Tilewidth, int RealTileWidth, ref int Tileheight, ref int Modiheight, ref List<int> XSize, ref List<int> YSize)
+		{
+			int l=Tilewidth;
+			List<List<Byte>>NewTile=new List<List<Byte>>();
+            if (RealTileWidth > 4)
+            {
+                l = 8;
+                XSize[XSize.Count() - 1] = 8;
+            }
+            else if (RealTileWidth > 2)
+            {
+                l = 4;
+                XSize[XSize.Count() - 1] = 4;
+            }
+			for(int i=0; i<Tileheight; i++){
+			for(int k=0; k<l; k++){
+				NewTile.Add(new List<Byte>());
+                    if (k >= Tilewidth)
+                    {
+                        for (int j = 0; j < 32; j++)
+                            NewTile[(i * l) + k].Add(0);
+                    }
+                    else
+                        NewTile[(i * l) + k]=TempTiles[(i * Tilewidth) + k];
+				}
+			}
+			while(Tileheight%2!=0){
+				for(int k=0; k<l; k++){
+					NewTile.Add(new List<Byte>());
+					for(int j=0; j<32; j++)
+						NewTile[(Tileheight*l)+k].Add(0);
+				}
+				Tileheight+=1;
+				Modiheight+=1;
+                YSize[YSize.Count() - 1] += 1;
+			}
+			return NewTile;
+		}
+		static Byte[] OAMGen(int Tilewidth, int Tileheight, int Back, out int OAMNum, out int BackOAMNum)
         {
             List<Byte> OAMList = new List<byte>();
             Byte Xcord = 0, Shape = 0, size = 0;
@@ -274,7 +511,109 @@ namespace ConsolePNGConv
                 TileSame[u] = Tile[Tilenumber, u];
                 return TileSame;
         }
-        static int Comparison(Byte[,]Tile, int Tilenumber, int Tilenumber2)
+        static List<List<Byte>> RemoveExceedTiles(List<List<Byte>>Tile,int Tilewidth, int Tileheight, out int Tilewdth, out int Tilehight, ref int Modiheight, ref List<int> XSize, ref List<int> YSize, ref List<int> X, ref List<int> Y, ref int XAdd)
+        {
+            int temp = 0, hu=0, hd=0, hl=0, hr=0, g=0;
+            while (g == 0)
+            {
+                for (int u = (hu*Tilewidth); u < ((hu+1)*Tilewidth); u++)
+                {
+                    for (int k = 0; k < 32; k++)
+                    {
+                        if (Tile[u][k] == 0)
+                            temp += 1;
+                    }
+                }
+                if (temp == (32 * Tilewidth))
+                {
+                    hu += 1;
+					Modiheight-=1;
+                    Y[Y.Count() - 1] += 1;
+                    YSize[YSize.Count() - 1] -= 1;
+                }
+                else
+                    g = 1;
+                temp = 0;
+            }
+            g = 0;
+            while (g == 0)
+            {
+                for (int u = ((Tileheight-hd-1)*Tilewidth); u < ((Tileheight - hd)*Tilewidth); u++)
+                {
+                    for (int k = 0; k < 32; k++)
+                    {
+                        if (Tile[u][k] == 0)
+                            temp += 1;
+                    }
+                }
+                if (temp == (32 * Tilewidth))
+                {
+                    hd += 1;
+					Modiheight-=1;
+                    YSize[YSize.Count() - 1] -= 1;
+                }
+                else
+                    g = 1;
+
+                temp = 0;
+            }
+            g = 0;
+            while (g == 0)
+            {
+                for (int u = hl; u <= (((Tileheight-1)*(Tilewidth))+hl); u=u+Tilewidth)
+                {
+                    for (int k = 0; k < 32; k++)
+                    {
+                        if (Tile[u][k] == 0)
+                            temp += 1;
+                    }
+                }
+                if (temp == (32 * Tileheight))
+                {
+                    hl += 1;
+                    XAdd -= 1;
+                    XSize[XSize.Count() - 1] -= 1;
+                    X[X.Count()-1] += 1;
+                }
+                else
+                    g = 1;
+                temp = 0;
+            }
+            g = 0;
+            while (g == 0)
+            {
+                for (int u = (Tilewidth-hr-1); u<(((Tileheight) * (Tilewidth)) +Tilewidth-hr-1); u = u + Tilewidth)
+                {
+                    for (int k = 0; k < 32; k++)
+                    {
+                        if (Tile[u][k] == 0)
+                            temp += 1;
+                    }
+                }
+                if (temp == (32 * (Tileheight)))
+                {
+                    hr += 1;
+                    XAdd += 1;
+                    XSize[XSize.Count()-1] -= 1;
+                }
+                else
+                    g = 1;
+                temp = 0;
+            }
+            Tilehight = Tileheight - hu - hd;
+            Tilewdth = Tilewidth - hl - hr;
+            List<List<Byte>> NewTile = new List<List<Byte>>();
+            for(int f=0; f<(Tilehight); f++)
+            {
+                for (int d = 0; d < Tilewdth; d++)
+                {
+					NewTile.Add(new List<Byte>());
+                        NewTile[(d + (Tilewdth*f))] = Tile[hl +d+(Tilewidth*(f + hu))];
+                }
+            }
+            return NewTile;
+        }
+		static int Comparison(Byte[,]Tile, int Tilenumber, int Tilenumber2)
         {
             int Compared = 0, Use=0;
             Byte[] TileComp = Same(Tile, Tilenumber2);
@@ -831,6 +1170,28 @@ namespace ConsolePNGConv
                 Image[((tileheight*tilewidth)*32)+k]=255;//Prepare the image for CCG compression.
             }
             File.WriteAllBytes("Testimage.bin", Image);
+            int Tiletemp = Image.Count()/32;
+            Image = GBA.LZ77.Compress(Image);
+            byte[] CCG = new byte[Image.Count() + 16];
+            CCG[0] = 0x63;
+            CCG[1] = 0x63;
+            CCG[2] = 0x67;
+            CCG[3] = 0x20;
+            CCG[4] = 0x2;
+            CCG[5] = 0;
+            CCG[6] = 0;
+            CCG[7] = 0;
+            CCG[8] = ((byte)(Tiletemp & 0xFF));
+            CCG[9] = ((byte)((Tiletemp>>8) & 0xFF));
+            CCG[10] = ((byte)((Tiletemp >> 16) & 0xFF));
+            CCG[11] = ((byte)((Tiletemp >> 24) & 0xFF));
+            for (int o = 0; o < Image.Count(); o++)
+                CCG[o + 12] = Image[o];
+            CCG[Image.Count() + 12] = 0x7E;
+            CCG[Image.Count() + 13] = 0x63;
+            CCG[Image.Count() + 14] = 0x63;
+            CCG[Image.Count() + 15] = 0x67;
+            File.WriteAllBytes("Testimage_c.bin", CCG);
             return;
         }
     }
