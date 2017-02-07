@@ -10,3 +10,9 @@ C:\Users\Lorenzo Carletti\Desktop\Console\ConsolePNGConv\ConsolePNGConv\obj\Debu
 C:\Users\Lorenzo Carletti\Desktop\Console\ConsolePNGConv\ConsolePNGConv\bin\Debug\ConsolePNGConv.exe
 C:\Users\Lorenzo Carletti\Desktop\Console\ConsolePNGConv\ConsolePNGConv\bin\Debug\ConsolePNGConv.pdb
 C:\Users\Lorenzo Carletti\Desktop\Console\ConsolePNGConv\ConsolePNGConv\obj\Debug\ConsolePNGConv.csprojResolveAssemblyReference.cache
+C:\Users\lollo\Desktop\Console\ConsolePNGConv\ConsolePNGConv\bin\Debug\ConsolePNGConv.exe.config
+C:\Users\lollo\Desktop\Console\ConsolePNGConv\ConsolePNGConv\obj\Debug\ConsolePNGConv.exe
+C:\Users\lollo\Desktop\Console\ConsolePNGConv\ConsolePNGConv\obj\Debug\ConsolePNGConv.pdb
+C:\Users\lollo\Desktop\Console\ConsolePNGConv\ConsolePNGConv\bin\Debug\ConsolePNGConv.exe
+C:\Users\lollo\Desktop\Console\ConsolePNGConv\ConsolePNGConv\bin\Debug\ConsolePNGConv.pdb
+C:\Users\lollo\Desktop\Console\ConsolePNGConv\ConsolePNGConv\obj\Debug\ConsolePNGConv.csprojResolveAssemblyReference.cache

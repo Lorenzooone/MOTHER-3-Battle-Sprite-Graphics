@@ -176,7 +176,7 @@ namespace ConsolePNGConv
 {
     class Program
     {
-        static List<Byte>SOBGen(Byte[,]Tile, int Tileheight, int Tilewidth, int Back)
+        static Byte[]SOBGen(Byte[]OAMFront,Byte[]OAMBack, int TileheightFront, int TilewidthFront, int Back)
         {
             List<Byte> SOB = new List<byte>();
             SOB.Add(0x73);
@@ -189,6 +189,14 @@ namespace ConsolePNGConv
                 SOB.Add(0);
                 SOB.Add(2);
                 SOB.Add(0);
+                SOB.Add(0x10);
+                SOB.Add(0);
+                SOB.Add((Byte)(0x14 + OAMFront.Count()));
+                SOB.Add(0);
+                SOB.Add((Byte)(0x18 + OAMFront.Count() + OAMBack.Count()));
+                SOB.Add(0);
+                SOB.Add((Byte)(0x20 + OAMFront.Count() + OAMBack.Count()));
+                SOB.Add(0);
             }
             else
             {
@@ -196,12 +204,59 @@ namespace ConsolePNGConv
                 SOB.Add(0);
                 SOB.Add(1);
                 SOB.Add(0);
+                SOB.Add(0x0C);
+                SOB.Add(0);
+                SOB.Add((Byte)(0x10 + OAMFront.Count()));
+                SOB.Add(0);
             }
+            SOB.Add(0);
+            SOB.Add(0);
+            SOB.Add((Byte)((OAMFront.Count() / 8) & 0xFF));
+            SOB.Add((Byte)(((OAMFront.Count() / 8)>>8) & 0xFF));
+            SOB.AddRange(OAMFront);
+            if (Back == 1)
+            {
+                SOB.Add(0);
+                SOB.Add(0);
+                SOB.Add((Byte)((OAMBack.Count() / 8) & 0xFF));
+                SOB.Add((Byte)(((OAMBack.Count() / 8) >> 8) & 0xFF));
+                int u = 0;
+                for(int k=0; k<OAMBack.Count(); k++)
+                {
+                    if (k % 8 == 0)
+                        u = 0;
+                    if (k % 8 != 4)
+                        SOB.Add(OAMBack[k]);
+                    else
+                    {
+                        SOB.Add((Byte)((OAMBack[k] + (TilewidthFront * TileheightFront)) & 0xFF));
+                        SOB.Add(((Byte)(OAMBack[k+1]+(((OAMBack[k] + (TilewidthFront * TileheightFront)) >> 8) & 0x3))));
+                        k++;
+                        if ((SOB[SOB.Count()-1]) > 3)
+                        {
+                            Console.WriteLine("Too many tiles in the end!");
+                            Environment.Exit(01);
+                        }
+                    }
+                }
+            }
+            do
+            {
+                SOB.Add(4);
+                SOB.Add(0);
+                SOB.Add(1);
+                SOB.Add(0);
+                SOB.Add(0);
+                SOB.Add(0);
+                SOB.Add(0);
+                SOB.Add(0);
+                Back -= 1;
+            } while (Back == 0);
             SOB.Add(0x7E);
             SOB.Add(0x73);
             SOB.Add(0x6F);
             SOB.Add(0x62);
-            return SOB;
+            return SOB.ToArray();
         }
         static Byte[,] TileOAM(Byte[,]Tile, int Tileheight, int Tilewidth, int Back, out int Modiheight, out int Modiwidth, out Byte[] OAM)
         {
@@ -282,7 +337,7 @@ namespace ConsolePNGConv
                     times += 1;
                 }
             }
-            OAM = OAMGen(TempTiles, XSize, YSize, X, Y, Tilestart).ToArray();
+            OAM = OAMGen(TempTiles, XSize, YSize, X, Y, Tilestart, Tilewidth).ToArray();
             Limit = TempTiles.Count();
             Byte[,] Newtiles=new Byte[Limit, 32];
             for (int i = 0; i < Limit; i++) {
@@ -412,15 +467,27 @@ namespace ConsolePNGConv
 			}
 			return NewTile;
 		}
-		static List<Byte> OAMGen(List<List<Byte>> Tile, List<int> XSize, List<int> YSize, List<int> X, List<int> Y, List<int>Tilestart)
+		static List<Byte> OAMGen(List<List<Byte>> Tile, List<int> XSize, List<int> YSize, List<int> X, List<int> Y, List<int>Tilestart, int OriginalWidth)
         {
             List<Byte> OAMList = new List<byte>();
             Byte Shape = 0, size = 0;
+            int l = OriginalWidth;
+            if (OriginalWidth > 4)
+                l = 8;
+            else if (OriginalWidth > 2)
+                l = 4;
             for (int k = 0; k < (Tilestart.Count()); k++) {
+                if (Tilestart[k] >= 1024)
+                {
+                    Console.WriteLine("Too many tiles in the end!");
+                    Environment.Exit(01);
+                }
                 int Height = 272 - ((YSize[k]-Y[k]) << 3);
                 if (Height > 255)
                     Height -= 255;
+                int y = 0;
                 for(int i = YSize[k]; i > 0;) {
+                    int x = 0;
                     if (i >= 8)
                     {
                         for (int j = XSize[k]; j > 0;)
@@ -440,8 +507,8 @@ namespace ConsolePNGConv
                                 OAMList.Add(Shape);
                                 OAMList.Add(0);
                                 OAMList.Add(size);
-                                OAMList.Add(0);
-                                OAMList.Add(0);
+                                OAMList.Add((Byte)((Tilestart[k]+(y*l)+x)&0xFF));
+                                OAMList.Add((Byte)(((Tilestart[k]+(y*l)+x)>>8) & 0x3));
                                 OAMList.Add(0);
                                 OAMList.Add(0);
                                 size = 0x80;
@@ -450,14 +517,16 @@ namespace ConsolePNGConv
                                 OAMList.Add(Shape);
                                 OAMList.Add(0);
                                 OAMList.Add(size);
-                                OAMList.Add(0);
-                                OAMList.Add(0);
+                                OAMList.Add((Byte)((Tilestart[k] + (y * l)+4+x) & 0xFF));
+                                OAMList.Add((Byte)(((Tilestart[k] + (y * l)+4+x) >> 8) & 0x3));
                                 OAMList.Add(0);
                                 OAMList.Add(0);
                                 size = 0x80;
                                 Shape = 0x80;
                                 j -= 6;
                                 i -= 8;
+                                x += 4;
+                                y += 4;
                             }
                             else if (j >= 3)
                             {
@@ -484,14 +553,21 @@ namespace ConsolePNGConv
                             OAMList.Add(Shape);
                             OAMList.Add(0);
                             OAMList.Add(size);
+                            OAMList.Add((Byte)((Tilestart[k] + (y * l)+x) & 0xFF));
+                            OAMList.Add((Byte)(((Tilestart[k] + (y * l)+x) >> 8) & 0x3));
                             OAMList.Add(0);
                             OAMList.Add(0);
+                            if ((XSize[k] >= 5 && XSize[k] <= 6)||(XSize[k] == 2)||(XSize[k]==1))
+                                y += 4;
+                            else
+                            y += 8;
                         }
                     }
                     else if (i >= 4)
                     {
                         for (int j = XSize[k]; j > 0;)
                         {
+                            int xtemp = 0;
                             if ((j == 1))
                             {
                                 size = 0x40;
@@ -515,20 +591,26 @@ namespace ConsolePNGConv
                                 size =0x80;
                                 Shape = 0;
                                 j -= 4;
+                                xtemp += 4;
                             }
                             OAMList.Add(0);
                             OAMList.Add(Shape);
                             OAMList.Add(0);
                             OAMList.Add(size);
+                            OAMList.Add((Byte)((Tilestart[k] + (y * l) + x) & 0xFF));
+                            OAMList.Add((Byte)(((Tilestart[k] + (y * l) + x) >> 8) & 0x3));
                             OAMList.Add(0);
                             OAMList.Add(0);
-                        }
+                            x += xtemp;
+                          }
                         i -= 4;
+                        y += 4;
                     }
                     else if ((i == 1) || (i == 3))
                     {
                         for (int j = XSize[k]; j > 0;)
                         {
+                            int xtemp = 0;
                             if (j == 1)
                             {
                                 size = 0;
@@ -546,20 +628,26 @@ namespace ConsolePNGConv
                                 size = 0x40;
                                 Shape = 0x40;
                                 j -= 4;
+                                xtemp += 4;
                             }
                             OAMList.Add(0);
                             OAMList.Add(Shape);
                             OAMList.Add(0);
                             OAMList.Add(size);
+                            OAMList.Add((Byte)((Tilestart[k] + (y * l) + x) & 0xFF));
+                            OAMList.Add((Byte)(((Tilestart[k] + (y * l) + x) >> 8) & 0x3));
                             OAMList.Add(0);
                             OAMList.Add(0);
+                            x += xtemp;
                         }
                         i -= 1;
+                        y += 1;
                     }
                    else if (i == 2)
                     {
                         for (int j = XSize[k]; j > 0;)
                         {
+                            int xtemp = 0;
                             if ((j == 1))
                             {
                                 size = 0;
@@ -577,18 +665,21 @@ namespace ConsolePNGConv
                                 size = 0x80;
                                 Shape = 0x40;
                                 j -= 4;
+                                xtemp += 4;
                             }
                             OAMList.Add(0);
                             OAMList.Add(Shape);
                             OAMList.Add(0);
                             OAMList.Add(size);
+                            OAMList.Add((Byte)((Tilestart[k] + (y * l) + x) & 0xFF));
+                            OAMList.Add((Byte)(((Tilestart[k] + (y * l) + x) >> 8) & 0x3));
                             OAMList.Add(0);
                             OAMList.Add(0);
+                            x += xtemp;
                         }
                         i -= 2;
+                        y += 1;
                     }
-                    OAMList.Add(0);
-                    OAMList.Add(0);
                 }
             }
             return OAMList;
@@ -1253,14 +1344,14 @@ namespace ConsolePNGConv
                 }
             }
             Byte[,] Tileback, OAMTile;
-            Byte[] OAMFront, OAMBack;
+            Byte[] OAMFront, OAMBack, SOB;
             int tilewidth1 = tilewidth;
             int tileheight1 = 0;
             int tilewidth2 = tilewidth;
             int tileheight2 = 0;
             int Tiletemph = tileheight;
             int Tiletempw = tilewidth;
-            if (Back== 1)
+            if (Back == 1)
             {
                 NewTile = SeparateBack(NewTile, tilewidth, tileheight, Back, out tileheight1, out tileheight2, out Tileback);
                 NewTile = RemoveExceedingTiles(NewTile, tilewidth, tileheight1, out tilewidth1, out tileheight1);
@@ -1268,11 +1359,15 @@ namespace ConsolePNGConv
                 Tileback = TileOAM(Tileback, tileheight2, tilewidth2, Back, out tileheight2, out tilewidth2, out OAMBack);
                 OAMTile = TileOAM(NewTile, tileheight1, tilewidth1, Back, out tileheight1, out tilewidth1, out OAMFront);
                 OAMTile = UniteTile(OAMTile, Tileback, Back, tilewidth1, tileheight1, tilewidth2, tileheight2, out tilewidth, out tileheight);
-                File.WriteAllBytes("TestOAMBAck.bin", OAMBack);
+                SOB = SOBGen(OAMFront, OAMBack, tileheight1, tilewidth1, Back);
             }
             else
-            OAMTile =TileOAM(NewTile, tileheight, tilewidth, Back, out tileheight, out tilewidth, out OAMFront);
-            File.WriteAllBytes("TestOAMFront.bin", OAMFront);
+            {
+                OAMTile = TileOAM(NewTile, tileheight, tilewidth, Back, out tileheight, out tilewidth, out OAMFront);
+                OAMBack = new Byte[0];
+                SOB = SOBGen(OAMFront, OAMBack, tileheight, tilewidth, Back);
+            }
+            File.WriteAllBytes("SOBBlockTest.bin", SOB);
             /*
             int j, p;
             for (u = 0; u < (tileheight * tilewidth); u++)
