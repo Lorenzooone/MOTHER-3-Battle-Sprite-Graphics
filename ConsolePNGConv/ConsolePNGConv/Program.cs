@@ -6,6 +6,358 @@ using System.Threading.Tasks;
 using System.Drawing;
 using System.IO;
 //Still in coding. 01: 80AECC5 9F64128 02: Phase 1: 80ADB55 9F61D08 Phase 2: 80ADA9D 9F61D10
+namespace FreeSpace
+{
+    class Pointers
+    {
+       public static void Removal(ref byte[] memblock, string path, out int LastCCG, out int LastSOB)
+        {
+            uint i = 0, f = 0, t = 0, g = 0, d = 0, character = 0;
+            uint Num = 0, actual = 0, Num2 = 0, Freed = 0;
+            uint[,] GIGAMATR = new uint[257, 152], UNIMATR=new uint[257,152];
+                uint []LenghtMATR=new uint[257], LenghtMATR2 = new uint[257], Corrispondenze = new uint[257], Relazioni = new uint[257], Pointers = new uint[257], FinalPointers = new uint[257], Array1 = new uint[4], Corrispondenze2 = new uint[257], GraphPointers = new uint[257], FinalGraphPointers = new uint[257];
+	for (f = 0; f <= 3; f++) {
+		Array1[f] = 0;
+	}
+	for (g = 0; g <= 256; g++) {
+		for (f = 0; f <= 151; f++) {
+			GIGAMATR[g,f] = 0;
+			UNIMATR[g,f] = 0;
+		}
+	}
+	for (f = 0; f <= 256; f++) {
+		Relazioni[f] = 0;
+		Corrispondenze2[f]=0;
+		Corrispondenze[f] = 0;
+		LenghtMATR[f] = 0;
+		LenghtMATR2[f] = 0;
+		Pointers[f] = 0;
+		FinalPointers[f] = 0;
+		GraphPointers[f] = 0;
+		FinalGraphPointers[f] = 0;
+	}
+	g = 0;
+	f = 0;
+    i = 0;
+	f = 0;
+	d = 0;
+        i = 29957768;//Start of enemy SOB blocks pointers
+		t = 0;
+		f = 1;
+		character = 0;
+		d = 29952352;//Start of battle pointers
+		while (t <= 256) {
+			Num = (uint)(memblock[(int)i] + (memblock[(int)i + 1]*256) + (memblock[(int)i + 2]* 65536) + (memblock[(int)i + 3]* 16777216));
+			Pointers[t] = (uint)Num; //Memorize original pointers
+			g =(uint)Num + d;
+			f = 1;
+			while (f == 1) {
+				Num = (uint)((memblock[(int)g] * 16777216) + (memblock[(int)g + 1] * 65536) + (memblock[(int)g + 2] * 256) + (memblock[(int)g + 3] ));
+				g = g + 4;
+				GIGAMATR[t,character] = (uint)Num; //Memorize every SOB block
+				character = character + 1;
+				if (Num == 2121494370) { //See if this is the end of the SOB block, if it isn't, then continue scanning
+					f = 0;
+					LenghtMATR[t] = character-1;
+					character = 0;
+				}
+			}
+			t = t + 1;
+			i = i + 8; //Next pointer
+		}
+		for (f = 0; f <= 151; f++)
+			UNIMATR[0,f] = GIGAMATR[0,f]; //First unique SOB block is the one of enemy 00
+		LenghtMATR2[0] = LenghtMATR[0];
+		Relazioni[0] = 0;
+		Corrispondenze[0] = 0;
+		f = 0;
+		g = 0;
+		d = 0;
+		t = 1;
+		i = 0;
+		character = 0;
+		while (t <= 256) {
+			while (i <= actual) {
+				if (LenghtMATR[t] != LenghtMATR2[i])
+					i = i + 1; //Do not even waste time comparing blocks if they differ in lenght
+				else {
+					while (g <= LenghtMATR[t]) {
+						Num = (uint)UNIMATR[i,g];
+						Num2 = (uint)GIGAMATR[t,g]; //Compare blocks with the same lenght
+						if (Num==Num2)
+							d = d + 1; //If a set of four bytes is the same, add one
+						g = g + 1;
+					}
+					if (d == g) { //If in the end g=d, then the blocks are the same
+						Corrispondenze[t] = Relazioni[i];
+						Corrispondenze2[t] = i; //Set everything up for later repointing
+						i = (uint)actual + 1; //Exit from the whole inner cycle, this isn't an unique SOB block
+						character = character + 1; //Flag this as a non-unique SOB block
+					}
+					g = 0;
+					d = 0;
+				i = i + 1;//Get ready for another cycle if i+1<=actual
+				}
+			}
+			i = 0;
+			if (character == 0) {//If this is an unique SOB block, then character=0
+				actual = actual + 1; //Add one more unique block to the count
+				for (f = 0; f <= LenghtMATR[t]; f++)
+					UNIMATR[actual,f] = GIGAMATR[t,f]; //Put the unique block in the new matrix
+				LenghtMATR2[actual] = LenghtMATR[t];
+				Corrispondenze2[t] = (uint)actual; //This is unique
+				Relazioni[actual] = t;
+				Corrispondenze[t] = t;
+			}
+			character = 0;//Set everything back and get ready for another enemy
+			t = t + 1;
+		}
+		t = 0;
+		f = 1;
+		character = 0;
+		d = 29952352; //Start of battle pointers. Remove everything, so that the SOB blocks may be reorganized
+		while (t <= 256) {
+				g = Pointers[t];
+				character = g + d;
+				for (g = 0; g <= LenghtMATR[t]; g++) {
+					memblock[(int)character] = 255;
+					memblock[(int)character + 1] = 255;
+					memblock[(int)character + 2] = 255;
+					memblock[(int)character + 3] = 255;
+					character = character + 4;
+					Freed = Freed + 1;
+				}
+			t = t + 1;
+		}
+		i = 29952352; //Start of battle pointers
+		g = 0;
+		d = 0;
+		t = 0;
+		g = 0x1CFB9E0; //Get beginning of enemy SOB blocks
+		while (t <= actual) {
+			FinalPointers[t] = g-i; //Set the new pointers to unique SOB blocks
+			for (f = 0; f <= LenghtMATR2[t]; f++) {
+				Num = (uint)UNIMATR[t,f]; //Print back each and every block of a SOB block, only then advance
+				while (Num >= 16777216) {
+					Array1[3] = Array1[3] + 1;
+					Num = Num - 16777216;
+				}
+				while (Num >= 65536) {
+					Array1[2] = Array1[2] + 1;
+					Num = Num - 65536;
+				}
+				while (Num >= 256) {
+					Array1[1] = Array1[1] + 1;
+					Num = Num - 256;
+				}
+				Array1[0] = (uint)Num;
+				Freed = Freed - 1;
+				for (d = 4; d > 0; d--) {
+					memblock[(int)g + ((int)d -1)] = (Byte)Array1[3 - (d - 1)];
+				}
+				g = g + 4; //Continue advancing by 4
+				for (d = 0; d <= 3; d++)
+					Array1[d] = 0;
+			}
+			t = t + 1; //Next unique SOB block
+		}
+        LastSOB = (int)(g);
+		i = 29957768;//Start of enemy SOB pointers
+		t = 0;
+		f = 0;
+		character = 0;
+		while (t <= 256) {
+			d = Corrispondenze2[t]; //Unique SOB blocks point to themselves, all repeated ones point to the first one of them
+			Num= (uint)FinalPointers[d]; //Print new pointers for every enemy's SOB block
+			while (Num >= 16777216) {
+				Array1[3] = Array1[3] + 1;
+				Num = Num - 16777216;
+			}
+			while (Num >= 65536){
+				Array1[2] = Array1[2] + 1;
+			Num = Num - 65536;
+			}
+		while (Num >= 256){
+			Array1[1] = Array1[1] + 1;
+		Num = Num - 256;
+			}
+			Array1[0] = (uint)Num;
+			for (d = 0; d <= 3; d++)
+				memblock[(int)i + (int)d] = (Byte)Array1[d];
+			t = t + 1;
+			i = i + 8;
+			for (f = 0; f <= 3; f++) {
+				Array1[f] = 0;
+			}
+			f = 0;
+		}
+		for (f = 0; f <= 256; f++) {
+			LenghtMATR[f] = 0;
+			LenghtMATR2[f] = 0;
+		}
+		i = 29952424;//Start of enemy CCG blocks pointers
+		actual = 0;
+		t = 0;
+            List<List<uint>> GRAPH = new List<List<uint>>();
+		f = 1;
+		character = 0;
+		d = 29952352;//Start of battle pointers
+            while (t <= 256)
+            {
+                Num = (uint)(memblock[(int)i] + (memblock[(int)i + 1] * 256) +(memblock[(int)i + 2] * 65536) +(memblock[(int)i + 3] * 16777216));
+                GraphPointers[t] = Num; //Memorize original pointers
+                g = Num + d;
+                f = 1;
+                GRAPH.Add(new List<uint>());
+                while (f == 1)
+                {
+                    Num = (uint)((memblock[(int)g] * 16777216) +(memblock[(int)g + 1] * 65536) +(memblock[(int)g + 2] * 256) +(memblock[(int)g + 3]));
+                    g = g + 4;
+                    GRAPH[(int)t].Add(Num); //Memorize every CCG block
+                    character = character + 1;
+                    if (Num == 2120442727)
+                    { //See if this is the end of the CCG block, if it isn't, then continue scanning
+                        f = 0;
+                        LenghtMATR[t] = character - 1;
+                        character = 0;
+                    }
+                }
+                t = t + 1;
+                i = i + 8; //Next pointer
+            }
+            g = LenghtMATR[0];
+            List<List<uint>> FINALGRAPH = new List<List<uint>>();
+            FINALGRAPH.Add(new List<uint>());
+			FINALGRAPH[0]= GRAPH[0]; //First unique CCG block is the one of enemy 00
+		LenghtMATR2[0] = g;
+		Relazioni[0] = 0;
+		Corrispondenze[0] = 0;
+		f = 0;
+		g = 0;
+		d = 0;
+		t = 1;
+		i = 0;
+		character = 0;
+		while (t <= 256) {
+			while (i <= actual) {
+				if (LenghtMATR[t] != LenghtMATR2[i])
+					i = i + 1; //Do not even waste time comparing blocks if they differ in lenght
+				else {
+					while (g <= LenghtMATR[t]) {
+						Num = FINALGRAPH[(int)i][(int)g];
+						Num2 = GRAPH[(int)t][(int)g]; //Compare blocks with the same lenght
+						if (Num == Num2)
+							d = d + 1; //If a set of four bytes is the same, add one
+						g = g + 1;
+					}
+					if (d == g) { //If in the end g=d, then the blocks are the same
+						Corrispondenze[t] = Relazioni[i];
+						Corrispondenze2[t] = i; //Set everything up for later repointing
+						i = (uint)actual + 1; //Exit from the whole inner cycle, this isn't an unique CCG block
+						character = character + 1; //Flag this as a non-unique CCG block
+					}
+					g = 0;
+					d = 0;
+					i = i + 1;//Get ready for another cycle if i+1<=actual
+				}
+			}
+			i = 0;
+			if (character == 0) {//If this is an unique CCG block, then character=0
+				actual = actual + 1; //Add one more unique block to the count
+                    FINALGRAPH.Add(new List<uint>());
+					FINALGRAPH[(int)actual]=GRAPH[(int)t]; //Put the unique block in the new matrix
+				LenghtMATR2[actual] = LenghtMATR[t];
+				Corrispondenze2[t] = (uint)actual; //This is unique
+				Relazioni[actual] = t;
+				Corrispondenze[t] = t;
+			}
+			character = 0;//Set everything back and get ready for another enemy
+			t = t + 1;
+		}
+		t = 0;
+		f = 1;
+		character = 0;
+		d = 29952352; //Start of battle pointers. Remove everything, so that the CCG blocks may be reorganized
+		while (t <= 256) {
+			g = GraphPointers[t];
+			character = g + d;
+			for (g = 0; g <= LenghtMATR[t]; g++) {
+				memblock[(int)character] = 255;
+				memblock[(int)character + 1] = 255;
+				memblock[(int)character + 2] = 255;
+				memblock[(int)character + 3] = 255;
+				character = character + 4;
+				Freed = Freed + 1;
+			}
+			t = t + 1;
+		}
+		i = 29952352; //Start of battle pointers
+		g = 0;
+		d = 0;
+		t = 0;
+		g = 0x1CA70E8; //Get beginning of enemy CCG blocks
+		while (t <= actual) {
+			FinalGraphPointers[t] = g - i; //Set the new pointers to unique CCG blocks
+			for (f = 0; f <= LenghtMATR2[t]; f++) {
+				Num = FINALGRAPH[(int)t][(int)f]; //Print back each and every block of a CCG block, only then advance
+				while (Num >= 16777216) {
+					Array1[3] = Array1[3] + 1;
+					Num = Num - 16777216;
+				}
+				while (Num >= 65536) {
+					Array1[2] = Array1[2] + 1;
+					Num = Num - 65536;
+				}
+				while (Num >= 256) {
+					Array1[1] = Array1[1] + 1;
+					Num = Num - 256;
+				}
+				Array1[0] = (uint)Num;
+				Freed = Freed - 1;
+                    for (d = 4; d > 0; d--)
+                    {
+                        memblock[(int)g + ((int)d - 1)] = (Byte)Array1[3 - (d - 1)];
+                    }
+                    g = g + 4; //Continue advancing by 4
+				for (d = 0; d <= 3; d++)
+					Array1[d] = 0;
+			}
+			t = t + 1; //Next unique CCG block
+		}
+        LastCCG = (int)(g);
+        i = 29952424;//Start of enemy CCG pointers
+		t = 0;
+		f = 0;
+		character = 0;
+		while (t <= 256) {
+			d = Corrispondenze2[t]; //Unique CCG blocks point to themselves, all repeated ones point to the first one of them
+			Num = (uint)FinalGraphPointers[d]; //Print new pointers for every enemy's CCG block
+			while (Num >= 16777216) {
+				Array1[3] = Array1[3] + 1;
+				Num = Num - 16777216;
+			}
+			while (Num >= 65536) {
+				Array1[2] = Array1[2] + 1;
+				Num = Num - 65536;
+			}
+			while (Num >= 256) {
+				Array1[1] = Array1[1] + 1;
+				Num = Num - 256;
+			}
+			Array1[0] = (uint)Num;
+			for (d = 0; d <= 3; d++)
+				memblock[(int)i + (int)d] = (Byte)Array1[d];
+			t = t + 1;
+			i = i + 8;
+			for (f = 0; f <= 3; f++) {
+				Array1[f] = 0;
+			}
+			f = 0;
+		}
+            File.WriteAllBytes(path, memblock.ToArray());
+        }
+    }
+}
 namespace GBA
 {
     class LZ77
@@ -471,7 +823,7 @@ namespace ConsolePNGConv
             TumpTiles = FixTile(TumpTiles, Singularwidth, Tilewidth, ref Singularheight, ref Modiheight, ref XSize, ref YSize);
             int XTemp = X[X.Count() - 1] + XSize[XSize.Count() - 1];
             MoveTile(ref TumpTiles, Singularwidth, ref Singularheight, ref Modiheight, 0, Tilewidth, XAdd, ref XSize, ref YSize, ref X, ref Y, ref Tilestart);
-			TempTiles.AddRange(TumpTiles);
+            TempTiles.AddRange(TumpTiles);
             TumpTiles=new List<List<Byte>>();
             times += 1;
            if (Tilewidth > 8)
@@ -542,7 +894,7 @@ namespace ConsolePNGConv
                     for (int i = 0; i < morn; i++)
                 {
                             for (int k = 0; k < 2; k++)
-                                TempTiles[((i + (g*morn)) * 8) + k + 6] = TempTiles[((i+(morn*3) ) * 8) +(g*2)+ k];
+                                TempTiles[((i + (g*morn)) * 8) + k + 6] = TempTiles[((i+(Tileheight-morn) ) * 8) +(g*2)+ k];
                     }
                 }
                 Modiheight -= morn;
@@ -553,8 +905,9 @@ namespace ConsolePNGConv
                 if (mors / 2 > 0) {
                     XSize[XSize.Count() - 1] = 4;
                     YSize[YSize.Count() - 1] -= mors / 2;
+                    int YOriginal = Y[Y.Count() - 1] + YSize[YSize.Count() - 1];
                     X.Add(X[X.Count() - 1]);
-                    Y.Add(Y[Y.Count()-1]+mors / 2);
+                    Y.Add(YOriginal);
                     XSize.Add(4);
                     YSize.Add(mors / 2);
                     Tilestart.Add(4+ OriginalStart);
@@ -571,18 +924,18 @@ namespace ConsolePNGConv
             else if (((Tilewidth % 8) == 2)||((Tilewidth%8)==1))
             {
 				morn=mors/4;
-                int OriginalY = Y[Y.Count()-1];
                 int Countemp = X.Count() - 1;
 				if((mors%4)!=0)
 					morn++;
                 XSize[Countemp] = 2;
+                int YOriginal = Y[Countemp] + morn;
                 for (int g = 0; g < 3; g++)
                 {
                     Tilestart.Add(OriginalStart+(2 * (g + 1)));
                     XSize.Add(2);
                     YSize.Add(0);
                     X.Add(XTemp);
-                    Y.Add(OriginalY - ((2 - g) * morn));
+                    Y.Add(YOriginal+(morn*g));
                     for (int i = 0; i < morn; i++)
                     {
 						if((i + (morn * (g+1)))<Tileheight){
@@ -660,13 +1013,17 @@ namespace ConsolePNGConv
                 int y = 0;
                 for(int i = YSize[k]; i > 0;) {
                     int x = 0;
-                    Height = 272 - ((OriginalHeight << 3) - ((Y[k]) << 3)-((YSize[k]-i)<<3));
+                    Height = -24- (((OriginalHeight/2) << 3) - ((Y[k]) << 3)-((YSize[k]-i)<<3));
                     Tempheight = 0;
                     if (i >= 8)
                     {
                         for (int j = XSize[k]; j > 0;)
                         {
-                            Width = 400 + ((OriginalWidth / 2) << 3) + (X[k] << 3) + ((XSize[k] - j) << 3);
+                            Width = - ((OriginalWidth / 2) << 3) + (X[k] << 3) + ((XSize[k] - j) << 3);
+                            if (Width < 0)
+                                Width += 0x400;
+                            if (Width > 0x3FF)
+                                Width -= 0x400;
                             if (j >= 7)
                             {
                                 size = 0xC0;
@@ -734,17 +1091,21 @@ namespace ConsolePNGConv
                             OAMList.Add((Byte)(((Tilestart[k] + (y * l)+x) >> 8) & 0x3));
                             OAMList.Add(0);
                             OAMList.Add(0);
-                            if ((XSize[k] >= 5 && XSize[k] <= 6)||(XSize[k] == 2)||(XSize[k]==1))
+                            if ((XSize[k] >= 5 && XSize[k] <= 6) || (XSize[k] == 2) || (XSize[k] == 1))
                                 y += 4;
                             else
-                            y += 8;
+                                y += 8;
                         }
                     }
                     else if (i >= 4)
                     {
                         for (int j = XSize[k]; j > 0;)
                         {
-                            Width = 400 + ((OriginalWidth / 2) << 3) + (X[k] << 3) + ((XSize[k] - j) << 3);
+                            Width = -((OriginalWidth / 2) << 3) + (X[k] << 3) + ((XSize[k] - j) << 3);
+                            if (Width < 0)
+                                Width += 0x400;
+                            if (Width > 0x3FF)
+                                Width -= 0x400;
                             int xtemp = 0;
                             if ((j == 1))
                             {
@@ -788,7 +1149,11 @@ namespace ConsolePNGConv
                     {
                         for (int j = XSize[k]; j > 0;)
                         {
-                            Width = 400 + ((OriginalWidth / 2) << 3) + (X[k] << 3) + ((XSize[k] - j) << 3);
+                            Width = -((OriginalWidth / 2) << 3) + (X[k] << 3) + ((XSize[k] - j) << 3);
+                            if (Width < 0)
+                                Width += 0x400;
+                            if (Width > 0x3FF)
+                                Width -= 0x400;
                             int xtemp = 0;
                             if (j == 1)
                             {
@@ -826,7 +1191,11 @@ namespace ConsolePNGConv
                     {
                         for (int j = XSize[k]; j > 0;)
                         {
-                            Width = 400 + ((OriginalWidth / 2) << 3) + (X[k] << 3) + ((XSize[k] - j) << 3);
+                            Width = -((OriginalWidth / 2) << 3) + (X[k] << 3) + ((XSize[k] - j) << 3);
+                            if (Width < 0)
+                                Width += 0x400;
+                            if (Width > 0x3FF)
+                                Width -= 0x400;
                             int xtemp = 0;
                             if ((j == 1))
                             {
@@ -858,7 +1227,7 @@ namespace ConsolePNGConv
                             x += xtemp;
                         }
                         i -= 2;
-                        y += 1;
+                        y += 2;
                     }
                 }
             }
@@ -1241,7 +1610,18 @@ namespace ConsolePNGConv
                 Console.WriteLine("If the enemy has a back sprite, please make sure it starts at the middle of the image and enter 1. Otherwise enter 0.");
                 Back = Convert.ToInt16(Console.ReadLine());
             }
-            int k = 0, lenght = 0, u = 0;
+            Console.WriteLine("Please, type the number of the enemy you want to substitute.");
+            int Enemynum = Convert.ToInt16(Console.ReadLine());
+            if (Enemynum > 256)
+                Enemynum = 256;
+            if (Enemynum <0)
+                Enemynum = 0;
+            int k = 0, lenght = 0, u = 0, LastSOB, LastCCG;
+            Console.WriteLine("Please enter the gba path.");
+            string FilePath = Console.ReadLine();
+            byte[] memblock = File.ReadAllBytes(FilePath);
+            File.WriteAllBytes(FilePath+".bak", memblock);
+            FreeSpace.Pointers.Removal(ref memblock, FilePath, out LastCCG, out LastSOB);
             List<int> Times = new List<int>();
             List<int> Connections = new List<int>();
             List<Color> Maxcolors = new List<Color>();
@@ -1249,6 +1629,8 @@ namespace ConsolePNGConv
             int height = img.Height;
             int width = img.Width;
             Console.WriteLine("Width: " + img.Width + ", Height: " + img.Height + ".");
+            Console.WriteLine("Last SOB: {0:X}.", LastSOB);
+            Console.WriteLine("Last CCG: {0:X}.", LastCCG);
             for (int i = 0; i < img.Height; i++)
             {
                 for (int j = 0; j < img.Width; j++)
@@ -1587,7 +1969,6 @@ namespace ConsolePNGConv
             {
                 Image[((tileheight*tilewidth)*32)+k]=255;//Prepare the image for CCG compression.
             }
-            File.WriteAllBytes("Testimage.bin", Image);
             int Tiletemp = Image.Count()/32;
             Image = GBA.LZ77.Compress(Image);
             byte[] CCG = new byte[Image.Count() + 16];
@@ -1610,6 +1991,48 @@ namespace ConsolePNGConv
             CCG[Image.Count() + 14] = 0x63;
             CCG[Image.Count() + 15] = 0x67;
             File.WriteAllBytes("Testimage_c.bin", CCG);
+            if (0x1CE541F - LastCCG < CCG.Count())
+            {
+                Console.WriteLine("No more space left for CCG Blocks!");
+                Environment.Exit(02);
+            }
+            if (0x1CFFD97 - LastSOB < SOB.Count())
+            {
+                Console.WriteLine("No more space left for SOB Blocks!");
+                Environment.Exit(03);
+            }
+            int Base = 0x1C90960;
+            int BaseSOB = 0x1C91E88;//Start of enemy SOB blocks pointers
+            int BaseCCG = 0x1C909A8;//Start of enemy CCG blocks pointers
+            int BasePAL = 0x1C91530;//Start of enemy palettes
+            BaseSOB = BaseSOB + (Enemynum * 8);
+            BaseCCG = BaseCCG + (Enemynum * 8);
+            BasePAL = BasePAL + (Enemynum * 8);
+            memblock[BaseSOB] = (Byte)((LastSOB - Base) & 0xFF);//SOB
+            memblock[BaseSOB + 1] = (Byte)(((LastSOB - Base) >> 8) & 0xFF);
+            memblock[BaseSOB + 2] = (Byte)(((LastSOB - Base) >> 16) & 0xFF);
+            memblock[BaseSOB + 3] = (Byte)(((LastSOB - Base) >> 24) & 0xFF);
+            memblock[BaseSOB + 4] = (Byte)((SOB.Count()) & 0xFF);
+            memblock[BaseSOB + 5] = (Byte)((SOB.Count() >> 8) & 0xFF);
+            memblock[BaseSOB + 6] = (Byte)((SOB.Count() >> 16) & 0xFF);
+            memblock[BaseSOB + 7] = (Byte)((SOB.Count() >> 24) & 0xFF);
+            for (int i = 0; i < SOB.Count(); i++)
+                memblock[LastSOB + i] = SOB[i];
+            memblock[BaseCCG] = (Byte)((LastCCG - Base) & 0xFF);//CCG
+            memblock[BaseCCG + 1] = (Byte)(((LastCCG - Base) >> 8) & 0xFF);
+            memblock[BaseCCG + 2] = (Byte)(((LastCCG - Base) >> 16) & 0xFF);
+            memblock[BaseCCG + 3] = (Byte)(((LastCCG - Base) >> 24) & 0xFF);
+            memblock[BaseCCG + 4] = (Byte)((CCG.Count()) & 0xFF);
+            memblock[BaseCCG + 5] = (Byte)((CCG.Count() >> 8) & 0xFF);
+            memblock[BaseCCG + 6] = (Byte)((CCG.Count() >> 16) & 0xFF);
+            memblock[BaseCCG + 7] = (Byte)((CCG.Count() >> 24) & 0xFF);
+            for (int i = 0; i < CCG.Count(); i++)
+                memblock[LastCCG + i] = CCG[i];
+            int OffsetPAL = memblock[BasePAL] + (memblock[BasePAL + 1] << 8) + (memblock[BasePAL + 2] << 16) + (memblock[BasePAL + 3] << 24);//Palette
+            OffsetPAL += Base;
+            for (int i = 0; i < PALette.Count(); i++)
+                memblock[OffsetPAL + i] = PALette[i];
+            File.WriteAllBytes(FilePath, memblock);
             return;
         }
     }
