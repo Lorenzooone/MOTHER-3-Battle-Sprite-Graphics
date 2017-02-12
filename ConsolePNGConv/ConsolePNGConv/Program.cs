@@ -2196,8 +2196,16 @@ namespace ConsolePNGConv
                 memblock[Enemytable + (Enemynum * 0x90) + 0x75] = 0;
             }
             memblock[Enemytable + (Enemynum * 0x90) + 0x6C] = 1;//Fix the heights, so we avoid problems.
-            memblock[Enemytable + (Enemynum * 0x90) + 0x70] = (byte)(32 - ((tileheight1temp << 3) / 2) + (memblock[0xC6D62 + (Enemynum * 2)]));
-            memblock[Enemytable + (Enemynum * 0x90) + 0x71] = (byte)(32 - ((tileheight2temp << 3) / 2) + (memblock[0xC6D62 + (Enemynum * 2)]));
+            if (memblock[0xC6D62 + (Enemynum * 2)] >= 128)
+            {
+                memblock[Enemytable + (Enemynum * 0x90) + 0x70] = (byte)(32 - ((tileheight1temp << 3) / 2) + (256 - ((256 - memblock[0xC6D62 + (Enemynum * 2)]) / 2)));
+                memblock[Enemytable + (Enemynum * 0x90) + 0x71] = (byte)(32 - ((tileheight2temp << 3) / 2) + (256-((256-memblock[0xC6D62 + (Enemynum * 2)]) / 2)));
+            }
+            else
+            {
+                memblock[Enemytable + (Enemynum * 0x90) + 0x70] = (byte)(32 - ((tileheight1temp << 3) / 2) + (memblock[0xC6D62 + (Enemynum * 2)]/2));
+                memblock[Enemytable + (Enemynum * 0x90) + 0x71] = (byte)(32 - ((tileheight2temp << 3) / 2) + (memblock[0xC6D62 + (Enemynum * 2)]/2));
+            }
             memblock[Enemytable + (Enemynum * 0x90) + 0x72] = 0;
             memblock[Enemytable + (Enemynum * 0x90) + 0x73] = 0;
             File.WriteAllBytes(FilePath, memblock);

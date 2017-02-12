@@ -1,9 +1,7 @@
 # MOTHER-3-Battle-Sprite-Graphics
-Bunch of "ready to insert" graphics in MOTHER 3.
-Graphics must be compressed before inserting them if they're not.
-The ccg header must be put before the compressed graphic in the ROM.
-The ccg footer must be put after the compressed graphic in the ROM.
-Palettes should be inserted with APE.
-OAM data already includes SOB block info.
-OAM must be inserted throught HEX editing.
-For Info, look here: http://datacrystal.romhacking.net/wiki/MOTHER_3:ROM_map
+ConsolePNGConv is an Inserter that will let you put the enemy sprites you want inside MOTHER 3.
+Just put your sprite in the same folder as the Inserter and the MOTHER 3 ROM, this program will make sure 
+everything is put correctly inside the ROM.
+The Inserter creates its own space inside the MOTHER 3's ROM, so there won't be conflicts with other tools.
+It's written in C#.
+For info, look here: http://datacrystal.romhacking.net/wiki/MOTHER_3:ROM_map
