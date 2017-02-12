@@ -1060,14 +1060,14 @@ namespace ConsolePNGConv
                 int YSizeTemp = 0;
                 for(int i = YSize[k]; i > 0;) {
                     int x = 0;
-                    Height = -28- (((OriginalHeight/2) << 3) - ((Y[k]) << 3)-((YSize[k]-i)<<3));
+                    Height = -28- (((OriginalHeight<< 3)/2) - ((Y[k]) << 3)-((YSize[k]-i)<<3));
                     Tempheight = 0;
                     if (i >= 8)
                     {
                         for (int j = XSize[k]; j > 0;)
                         {
                             int temp = 0;
-                            Width = - ((OriginalWidth / 2) << 3) + (X[k] << 3) + ((XSize[k] - j) << 3);
+                            Width = - ((OriginalWidth<<3) /2) + (X[k] << 3) + ((XSize[k] - j) << 3);
                             if (Width < 0)
                                 Width += 0x400;
                             if (Width > 0x3FF)
@@ -1184,7 +1184,7 @@ namespace ConsolePNGConv
                         for (int j = XSize[k]; j > 0;)
                         {
                             int temp = 0;
-                            Width = -((OriginalWidth / 2) << 3) + (X[k] << 3) + ((XSize[k] - j) << 3);
+                            Width = -((OriginalWidth << 3) / 2) + (X[k] << 3) + ((XSize[k] - j) << 3);
                             if (Width < 0)
                                 Width += 0x400;
                             if (Width > 0x3FF)
@@ -1251,7 +1251,7 @@ namespace ConsolePNGConv
                         for (int j = XSize[k]; j > 0;)
                         {
                             int temp = 0;
-                            Width = -((OriginalWidth / 2) << 3) + (X[k] << 3) + ((XSize[k] - j) << 3);
+                            Width = -((OriginalWidth << 3) / 2) + (X[k] << 3) + ((XSize[k] - j) << 3);
                             if (Width < 0)
                                 Width += 0x400;
                             if (Width > 0x3FF)
@@ -1310,7 +1310,7 @@ namespace ConsolePNGConv
                         for (int j = XSize[k]; j > 0;)
                         {
                             int temp = 0;
-                            Width = -((OriginalWidth / 2) << 3) + (X[k] << 3) + ((XSize[k] - j) << 3);
+                            Width = -((OriginalWidth << 3) / 2) + (X[k] << 3) + ((XSize[k] - j) << 3);
                             if (Width < 0)
                                 Width += 0x400;
                             if (Width > 0x3FF)
@@ -1738,7 +1738,7 @@ namespace ConsolePNGConv
         }
             static void Main(string[] args)
         {
-            Console.WriteLine("Please enter the png path.");
+            Console.WriteLine("Enter the image's path.");
             string Path = Console.ReadLine();
             int Back = 3, Backheight=0;
             while ((Back != 0) && (Back != 1) && (Back != 2))
@@ -1749,17 +1749,17 @@ namespace ConsolePNGConv
             }
             if (Back == 2)
             {
-                Console.WriteLine("Please, type the starting height pixel of the image.");
+                Console.WriteLine("Type the starting height pixel of the image.");
                 Backheight = Convert.ToInt16(Console.ReadLine());
             }
-            Console.WriteLine("Please, type the number of the enemy you want to substitute.");
+            Console.WriteLine("Type the number of the enemy you want to substitute.");
             int Enemynum = Convert.ToInt16(Console.ReadLine());
             if (Enemynum > 256)
                 Enemynum = 256;
             if (Enemynum <0)
                 Enemynum = 0;
             int k = 0, lenght = 0, u = 0, LastSOB, LastCCG;
-            Console.WriteLine("Please enter the gba path.");
+            Console.WriteLine("Enter the gba path.");
             string FilePath = Console.ReadLine();
             byte[] memblock = File.ReadAllBytes(FilePath);
             File.WriteAllBytes(FilePath+".bak", memblock);
@@ -2198,15 +2198,21 @@ namespace ConsolePNGConv
             memblock[Enemytable + (Enemynum * 0x90) + 0x6C] = 1;//Fix the heights, so we avoid problems.
             if (memblock[0xC6D62 + (Enemynum * 2)] >= 128)
             {
-                memblock[Enemytable + (Enemynum * 0x90) + 0x70] = (byte)(32 - ((tileheight1temp << 3) / 2) + (256 - ((256 - memblock[0xC6D62 + (Enemynum * 2)]) / 2)));
-                memblock[Enemytable + (Enemynum * 0x90) + 0x71] = (byte)(32 - ((tileheight2temp << 3) / 2) + (256-((256-memblock[0xC6D62 + (Enemynum * 2)]) / 2)));
+                memblock[Enemytable + (Enemynum * 0x90) + 0x70] = (byte)(36 - ((tileheight1temp << 3) / 2) + (256 - ((256 - memblock[0xC6D62 + (Enemynum * 2)]) / 2)));
+                memblock[Enemytable + (Enemynum * 0x90) + 0x71] = (byte)(36 - ((tileheight2temp << 3) / 2) + (256-((256-memblock[0xC6D62 + (Enemynum * 2)]) / 2)));
             }
             else
             {
-                memblock[Enemytable + (Enemynum * 0x90) + 0x70] = (byte)(32 - ((tileheight1temp << 3) / 2) + (memblock[0xC6D62 + (Enemynum * 2)]/2));
-                memblock[Enemytable + (Enemynum * 0x90) + 0x71] = (byte)(32 - ((tileheight2temp << 3) / 2) + (memblock[0xC6D62 + (Enemynum * 2)]/2));
+                memblock[Enemytable + (Enemynum * 0x90) + 0x70] = (byte)(36 - ((tileheight1temp << 3) / 2) + (memblock[0xC6D62 + (Enemynum * 2)]/2));
+                memblock[Enemytable + (Enemynum * 0x90) + 0x71] = (byte)(36 - ((tileheight2temp << 3) / 2) + (memblock[0xC6D62 + (Enemynum * 2)]/2));
             }
+            if (tileheight1temp >= 12)
+                memblock[Enemytable + (Enemynum * 0x90) + 0x72] = (byte)(256 - (((tileheight1temp - 12) << 3) / 2));
+            else
             memblock[Enemytable + (Enemynum * 0x90) + 0x72] = 0;
+            if (tileheight2temp >= 12)
+                memblock[Enemytable + (Enemynum * 0x90) + 0x73] = (byte)(256 - (((tileheight2temp - 12) << 3) / 2));
+            else
             memblock[Enemytable + (Enemynum * 0x90) + 0x73] = 0;
             File.WriteAllBytes(FilePath, memblock);
             return;
