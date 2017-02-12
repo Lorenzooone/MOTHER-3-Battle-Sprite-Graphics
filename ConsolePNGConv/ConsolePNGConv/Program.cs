@@ -357,7 +357,7 @@ namespace FreeSpace
             File.WriteAllBytes(path, memblock.ToArray());
         }
     }
-}
+}//Import of C++ code. It's commented, but somewhat messy.
 namespace GBA
 {
     class LZ77
@@ -711,7 +711,7 @@ namespace ConsolePNGConv
             SOB.Add(0x6F);
             SOB.Add(0x62);
             SOB.Add(0x20);
-            if (Back == 1)
+            if (Back >= 1)
             {
                 SOB.Add(2);
                 SOB.Add(0);
@@ -746,7 +746,7 @@ namespace ConsolePNGConv
             SOB.Add((Byte)((OAMFront.Count() / 8) & 0xFF));
             SOB.Add((Byte)(((OAMFront.Count() / 8)>>8) & 0xFF));
             SOB.AddRange(OAMFront);
-            if (Back == 1)
+            if (Back >= 1)
             {
                 SOB.Add(0);
                 SOB.Add(0);
@@ -783,7 +783,7 @@ namespace ConsolePNGConv
             SOB.Add(0x62);
             return SOB.ToArray();
         }
-        static Byte[,] TileOAM(Byte[,]Tile, int Tileheight, int Tilewidth, int Back, out int Modiheight, out int Modiwidth, out Byte[] OAM)
+        static Byte[,] TileOAM(Byte[,]Tile, int Tileheight, int Tilewidth, out int Modiheight, out int Modiwidth, out Byte[] OAM)
         {
             Modiwidth = Tilewidth;
             Modiheight = 0;
@@ -872,7 +872,10 @@ namespace ConsolePNGConv
             return Newtiles;
         }
 		static void MoveTile(ref List<List<Byte>> TempTiles, int Tilewidth, ref int TileheightMod, ref int Modiheight, int Limitimes, int RealTileWidth, int XAdd, ref List<int> XSize, ref List<int> YSize, ref List<int> X, ref List<int> Y, ref List<int> Tilestart)
-		{
+        {
+            List<byte> Compare0 = new List<byte>();
+            for (int j = 0; j < 32; j++)
+                Compare0.Add(0);
             int mors, OriginalStart=Tilestart[Tilestart.Count()-1];
 		for (mors = TileheightMod; (mors % 2) != 0; mors++);
             int morn = (mors / 8) * 2;
@@ -892,9 +895,26 @@ namespace ConsolePNGConv
                     XSize.Add(2);
                     X.Add(XTemp + (g * 2));
                     for (int i = 0; i < morn; i++)
-                {
+                     {
                             for (int k = 0; k < 2; k++)
                                 TempTiles[((i + (g*morn)) * 8) + k + 6] = TempTiles[((i+(Tileheight-morn) ) * 8) +(g*2)+ k];
+                    }
+                    int temp = 0;
+                    for (int i = 0; i < morn; i++)
+                    {
+                        for (int k = 0; k < 2; k++)
+                        {
+                                if (TempTiles[((i + (g * morn)) * 8) + k + 6] == Compare0)
+                                    temp += 1;
+                        }
+                    }
+                    if (temp == (2 * morn))
+                    {
+                        Y.RemoveAt(Y.Count() - 1);
+                        X.RemoveAt(X.Count() - 1);
+                        YSize.RemoveAt(YSize.Count() - 1);
+                        XSize.RemoveAt(XSize.Count() - 1);
+                        Tilestart.RemoveAt(Tilestart.Count() - 1);
                     }
                 }
                 Modiheight -= morn;
@@ -911,7 +931,7 @@ namespace ConsolePNGConv
                     XSize.Add(4);
                     YSize.Add(mors / 2);
                     Tilestart.Add(4+ OriginalStart);
-                for (int i = 0; i < mors / 2; i++)
+                    for (int i = 0; i < mors / 2; i++)
                     {
                         for (int k = 0; k < 4; k++)
                         {
@@ -936,6 +956,7 @@ namespace ConsolePNGConv
                     YSize.Add(0);
                     X.Add(XTemp);
                     Y.Add(YOriginal+(morn*g));
+                    int temp = 0;
                     for (int i = 0; i < morn; i++)
                     {
 						if((i + (morn * (g+1)))<Tileheight){
@@ -952,6 +973,22 @@ namespace ConsolePNGConv
 							TempTiles[(i * 8) + (g*2) + k + 2][j] =0;
 							}
 						}
+                    }
+                    for (int i = 0; i < morn; i++)
+                    {
+                        for (int k = 0; k < 2; k++)
+                        {
+                                if (TempTiles[(i * 8) + (g * 2) + k + 2] == Compare0)
+                                    temp += 1;
+                        }
+                    }
+                    if (temp == (2 * morn))
+                    {
+                        Y.RemoveAt(Y.Count() - 1);
+                        X.RemoveAt(X.Count() - 1);
+                        YSize.RemoveAt(YSize.Count() - 1);
+                        XSize.RemoveAt(XSize.Count() - 1);
+                        Tilestart.RemoveAt(Tilestart.Count() - 1);
                     }
                 }
 			}
@@ -998,6 +1035,9 @@ namespace ConsolePNGConv
         {
             List<Byte> OAMList = new List<byte>();
             Byte Shape = 0, size = 0;
+            List<Byte> Compare0 = new List<Byte>();
+            for (int i = 0; i < 32; i++)
+                Compare0.Add(0);
             int l = OriginalWidth;
             if (OriginalWidth > 4)
                 l = 8;
@@ -1011,14 +1051,17 @@ namespace ConsolePNGConv
                 }
                 int Height, Tempheight=0, Width=0, TempWidth=0; 
                 int y = 0;
+                int XSizeTemp = 0;
+                int YSizeTemp = 0;
                 for(int i = YSize[k]; i > 0;) {
                     int x = 0;
-                    Height = -24- (((OriginalHeight/2) << 3) - ((Y[k]) << 3)-((YSize[k]-i)<<3));
+                    Height = -28- (((OriginalHeight/2) << 3) - ((Y[k]) << 3)-((YSize[k]-i)<<3));
                     Tempheight = 0;
                     if (i >= 8)
                     {
                         for (int j = XSize[k]; j > 0;)
                         {
+                            int temp = 0;
                             Width = - ((OriginalWidth / 2) << 3) + (X[k] << 3) + ((XSize[k] - j) << 3);
                             if (Width < 0)
                                 Width += 0x400;
@@ -1030,37 +1073,57 @@ namespace ConsolePNGConv
                                 Shape = 0;
                                 j = 0;
                                 i -= 8;
+                                XSizeTemp = 8;
+                                YSizeTemp = 8;
                             }
                             else if (j >= 5)
                             {
                                 size = 0xC0;
                                 Shape = 0x80;
-                                OAMList.Add((Byte)Height);
-                                OAMList.Add(Shape);
-                                OAMList.Add((Byte)(((Width)) & 0xFF));
-                                OAMList.Add((Byte)((size) + ((((Width)) >> 8) & 0x1)));
-                                OAMList.Add((Byte)((Tilestart[k]+(y*l)+x)&0xFF));
-                                OAMList.Add((Byte)(((Tilestart[k]+(y*l)+x)>>8) & 0x3));
-                                OAMList.Add(0);
-                                OAMList.Add(0);
+                                XSizeTemp = 4;
+                                YSizeTemp = 8;
+                                for (int u = 0; u < YSizeTemp; u++)
+                                    for (int c = 0; c < XSizeTemp; c++)
+                                        if (Tile[Tilestart[k] + ((u+y) * l) + c + x] == Compare0)
+                                            temp += 1;
+                                if (temp != YSizeTemp * XSizeTemp) {
+                                    OAMList.Add((Byte)Height);
+                                    OAMList.Add(Shape);
+                                    OAMList.Add((Byte)(((Width)) & 0xFF));
+                                    OAMList.Add((Byte)((size) + ((((Width)) >> 8) & 0x1)));
+                                    OAMList.Add((Byte)((Tilestart[k] + (y * l) + x) & 0xFF));
+                                    OAMList.Add((Byte)(((Tilestart[k] + (y * l) + x) >> 8) & 0x3));
+                                    OAMList.Add(0);
+                                    OAMList.Add(0);
+                                }
                                 size = 0x80;
                                 Shape = 0x80;
-                                OAMList.Add((Byte)(Height));
-                                OAMList.Add(Shape);
-                                OAMList.Add((Byte)(((Width)+32)&0xFF));
-                                OAMList.Add((Byte)((size)+((((Width)+32)>>8) & 0x1)));
-                                OAMList.Add((Byte)((Tilestart[k] + (y * l)+4+x) & 0xFF));
-                                OAMList.Add((Byte)(((Tilestart[k] + (y * l)+4+x) >> 8) & 0x3));
-                                OAMList.Add(0);
-                                OAMList.Add(0);
+                                XSizeTemp =2;
+                                YSizeTemp =4;
+                                temp = 0;
+                                for (int u = 0; u < YSizeTemp; u++)
+                                    for (int c = 0; c < XSizeTemp; c++)
+                                        if (Tile[Tilestart[k] + ((u + y) * l) + c + 4 + x] == Compare0)
+                                            temp += 1;
+                                if (temp != YSizeTemp * XSizeTemp)
+                                {
+                                    OAMList.Add((Byte)(Height));
+                                    OAMList.Add(Shape);
+                                    OAMList.Add((Byte)(((Width) + 32) & 0xFF));
+                                    OAMList.Add((Byte)((size) + ((((Width) + 32) >> 8) & 0x1)));
+                                    OAMList.Add((Byte)((Tilestart[k] + (y * l) + 4 + x) & 0xFF));
+                                    OAMList.Add((Byte)(((Tilestart[k] + (y * l) + 4 + x) >> 8) & 0x3));
+                                    OAMList.Add(0);
+                                    OAMList.Add(0);
+                                }
                                 size = 0x80;
                                 Shape = 0x80;
                                 Tempheight += 32;
                                 TempWidth += 32;
-                                j -= 6;
-                                i -= 8;
                                 x += 4;
                                 y += 4;
+                                j -= 6;
+                                i -= 8;
                             }
                             else if (j >= 3)
                             {
@@ -1068,6 +1131,8 @@ namespace ConsolePNGConv
                                 Shape = 0x80;
                                 j -= 4;
                                 i -= 8;
+                                XSizeTemp = 4;
+                                YSizeTemp = 8;
                             }
                             else if (j == 2)
                             {
@@ -1075,6 +1140,8 @@ namespace ConsolePNGConv
                                 Shape = 0x80;
                                 j -= 2;
                                 i -= 4;
+                                XSizeTemp = 2;
+                                YSizeTemp = 4;
                             }
                             else
                             {
@@ -1082,15 +1149,25 @@ namespace ConsolePNGConv
                                 Shape = 0x80;
                                 j -= 1;
                                 i -= 4;
+                                XSizeTemp = 1;
+                                YSizeTemp = 4;
                             }
-                            OAMList.Add((Byte)(Height+Tempheight));
-                            OAMList.Add(Shape);
-                            OAMList.Add((Byte)(((Width) + TempWidth) & 0xFF));
-                            OAMList.Add((Byte)((size) + ((((Width) + TempWidth) >> 8) & 0x1)));
-                            OAMList.Add((Byte)((Tilestart[k] + (y * l)+x) & 0xFF));
-                            OAMList.Add((Byte)(((Tilestart[k] + (y * l)+x) >> 8) & 0x3));
-                            OAMList.Add(0);
-                            OAMList.Add(0);
+                            temp = 0;
+                            for (int u = 0; u < YSizeTemp; u++)
+                                for (int c = 0; c < XSizeTemp; c++)
+                                    if (Tile[Tilestart[k] + ((u + y) * l) + c + x] == Compare0)
+                                        temp += 1;
+                            if (temp != YSizeTemp * XSizeTemp)
+                            {
+                                OAMList.Add((Byte)(Height + Tempheight));
+                                OAMList.Add(Shape);
+                                OAMList.Add((Byte)(((Width) + TempWidth) & 0xFF));
+                                OAMList.Add((Byte)((size) + ((((Width) + TempWidth) >> 8) & 0x1)));
+                                OAMList.Add((Byte)((Tilestart[k] + (y * l) + x) & 0xFF));
+                                OAMList.Add((Byte)(((Tilestart[k] + (y * l) + x) >> 8) & 0x3));
+                                OAMList.Add(0);
+                                OAMList.Add(0);
+                            }
                             if ((XSize[k] >= 5 && XSize[k] <= 6) || (XSize[k] == 2) || (XSize[k] == 1))
                                 y += 4;
                             else
@@ -1101,6 +1178,7 @@ namespace ConsolePNGConv
                     {
                         for (int j = XSize[k]; j > 0;)
                         {
+                            int temp = 0;
                             Width = -((OriginalWidth / 2) << 3) + (X[k] << 3) + ((XSize[k] - j) << 3);
                             if (Width < 0)
                                 Width += 0x400;
@@ -1112,18 +1190,24 @@ namespace ConsolePNGConv
                                 size = 0x40;
                                 Shape = 0x80;
                                 j -= 1;
+                                XSizeTemp = 1;
+                                YSizeTemp = 4;
                             }
                             else if (j == 2)
                             {
                                 size = 0x80;
                                 Shape = 0x80;
                                 j = 0;
+                                XSizeTemp = 2;
+                                YSizeTemp = 4;
                             }
                             else if(j>=7)
                             {
                                 size = 0xC0;
                                 Shape = 0x40;
                                 j -= 8;
+                                XSizeTemp = 8;
+                                YSizeTemp = 4;
                             }
                             else
                             {
@@ -1131,24 +1215,37 @@ namespace ConsolePNGConv
                                 Shape = 0;
                                 j -= 4;
                                 xtemp += 4;
+                                XSizeTemp = 4;
+                                YSizeTemp = 4;
                             }
-                            OAMList.Add((Byte)Height);
-                            OAMList.Add(Shape);
-                            OAMList.Add((Byte)(((Width)) & 0xFF));
-                            OAMList.Add((Byte)((size) + ((((Width)) >> 8) & 0x1)));
-                            OAMList.Add((Byte)((Tilestart[k] + (y * l) + x) & 0xFF));
-                            OAMList.Add((Byte)(((Tilestart[k] + (y * l) + x) >> 8) & 0x3));
-                            OAMList.Add(0);
-                            OAMList.Add(0);
+                            i -= 4;
+                            temp = 0;
+                            for (int u = 0; u < YSizeTemp; u++)
+                                for (int c = 0; c < XSizeTemp; c++)
+                                    if (Tile[Tilestart[k] + ((u + y) * l) + c + x] == Compare0)
+                                        temp += 1;
+                            if (temp != YSizeTemp * XSizeTemp)
+                            {
+                                OAMList.Add((Byte)Height);
+                                OAMList.Add(Shape);
+                                OAMList.Add((Byte)(((Width)) & 0xFF));
+                                OAMList.Add((Byte)((size) + ((((Width)) >> 8) & 0x1)));
+                                OAMList.Add((Byte)((Tilestart[k] + (y * l) + x) & 0xFF));
+                                OAMList.Add((Byte)(((Tilestart[k] + (y * l) + x) >> 8) & 0x3));
+                                OAMList.Add(0);
+                                OAMList.Add(0);
+                            }
                             x += xtemp;
+                            if ((size == 0x80) && (Shape == 0) && (x == xtemp) && (j > 0))
+                                i += 4;
                           }
-                        i -= 4;
                         y += 4;
                     }
                     else if ((i == 1) || (i == 3))
                     {
                         for (int j = XSize[k]; j > 0;)
                         {
+                            int temp = 0;
                             Width = -((OriginalWidth / 2) << 3) + (X[k] << 3) + ((XSize[k] - j) << 3);
                             if (Width < 0)
                                 Width += 0x400;
@@ -1160,12 +1257,16 @@ namespace ConsolePNGConv
                                 size = 0;
                                 Shape = 0;
                                 j -= 1;
+                                XSizeTemp = 1;
+                                YSizeTemp = 1;
                             }
                             else if (j == 2)
                             {
                                 size = 0;
                                 Shape = 0x40;
                                 j = 0;
+                                XSizeTemp = 2;
+                                YSizeTemp = 1;
                             }
                             else
                             {
@@ -1173,24 +1274,37 @@ namespace ConsolePNGConv
                                 Shape = 0x40;
                                 j -= 4;
                                 xtemp += 4;
+                                XSizeTemp = 4;
+                                YSizeTemp = 1;
                             }
-                            OAMList.Add((Byte)Height);
-                            OAMList.Add(Shape);
-                            OAMList.Add((Byte)(((Width)) & 0xFF));
-                            OAMList.Add((Byte)((size) + ((((Width)) >> 8) & 0x1)));
-                            OAMList.Add((Byte)((Tilestart[k] + (y * l) + x) & 0xFF));
-                            OAMList.Add((Byte)(((Tilestart[k] + (y * l) + x) >> 8) & 0x3));
-                            OAMList.Add(0);
-                            OAMList.Add(0);
+                            i -= 1;
+                            temp = 0;
+                            for (int u = 0; u < YSizeTemp; u++)
+                                for (int c = 0; c < XSizeTemp; c++)
+                                    if (Tile[Tilestart[k] + ((u + y) * l) + c + x] == Compare0)
+                                        temp += 1;
+                            if (temp != YSizeTemp * XSizeTemp)
+                            {
+                                OAMList.Add((Byte)Height);
+                                OAMList.Add(Shape);
+                                OAMList.Add((Byte)(((Width)) & 0xFF));
+                                OAMList.Add((Byte)((size) + ((((Width)) >> 8) & 0x1)));
+                                OAMList.Add((Byte)((Tilestart[k] + (y * l) + x) & 0xFF));
+                                OAMList.Add((Byte)(((Tilestart[k] + (y * l) + x) >> 8) & 0x3));
+                                OAMList.Add(0);
+                                OAMList.Add(0);
+                            }
                             x += xtemp;
+                            if ((size == 0x40) && (Shape == 0x40) && (x == xtemp)&&(j>0))
+                                i += 1;
                         }
-                        i -= 1;
                         y += 1;
                     }
                    else if (i == 2)
                     {
                         for (int j = XSize[k]; j > 0;)
                         {
+                            int temp = 0;
                             Width = -((OriginalWidth / 2) << 3) + (X[k] << 3) + ((XSize[k] - j) << 3);
                             if (Width < 0)
                                 Width += 0x400;
@@ -1202,12 +1316,16 @@ namespace ConsolePNGConv
                                 size = 0;
                                 Shape = 0x80;
                                 j -= 1;
+                                XSizeTemp = 1;
+                                YSizeTemp = 2;
                             }
                             else if (j == 2)
                             {
                                 size = 0x40;
                                 Shape = 0;
                                 j = 0;
+                                XSizeTemp = 2;
+                                YSizeTemp = 2;
                             }
                             else
                             {
@@ -1215,18 +1333,30 @@ namespace ConsolePNGConv
                                 Shape = 0x40;
                                 j -= 4;
                                 xtemp += 4;
+                                XSizeTemp = 4;
+                                YSizeTemp = 2;
                             }
-                            OAMList.Add((Byte)Height);
-                            OAMList.Add(Shape);
-                            OAMList.Add((Byte)(((Width)) & 0xFF));
-                            OAMList.Add((Byte)((size) + ((((Width)) >> 8) & 0x1)));
-                            OAMList.Add((Byte)((Tilestart[k] + (y * l) + x) & 0xFF));
-                            OAMList.Add((Byte)(((Tilestart[k] + (y * l) + x) >> 8) & 0x3));
-                            OAMList.Add(0);
-                            OAMList.Add(0);
+                            temp = 0;
+                            i -= 2;
+                            for (int u = 0; u < YSizeTemp; u++)
+                                for (int c = 0; c < XSizeTemp; c++)
+                                    if (Tile[Tilestart[k] + ((u + y) * l) + c + x] == Compare0)
+                                        temp += 1;
+                            if (temp != YSizeTemp * XSizeTemp)
+                            {
+                                OAMList.Add((Byte)Height);
+                                OAMList.Add(Shape);
+                                OAMList.Add((Byte)(((Width)) & 0xFF));
+                                OAMList.Add((Byte)((size) + ((((Width)) >> 8) & 0x1)));
+                                OAMList.Add((Byte)((Tilestart[k] + (y * l) + x) & 0xFF));
+                                OAMList.Add((Byte)(((Tilestart[k] + (y * l) + x) >> 8) & 0x3));
+                                OAMList.Add(0);
+                                OAMList.Add(0);
+                            }
                             x += xtemp;
+                            if ((size == 0x80) && (Shape == 0x40)&&(x==xtemp) && (j > 0))
+                                i += 2;
                         }
-                        i -= 2;
                         y += 2;
                     }
                 }
@@ -1440,7 +1570,7 @@ namespace ConsolePNGConv
             Use = 0;
             return Compared;
         }
-        static Byte[,] RemoveExceedingTiles(byte[,]Tile,int Tilewidth, int Tileheight, out int Tilewdth, out int Tilehight)
+        static Byte[,] RemoveExceedingTiles(byte[,]Tile,int Tilewidth, int Tileheight, ref int Backheight, out int Tilewdth, out int Tilehight)
         {
             int temp = 0, hu=0, hd=0, hl=0, hr=0, g=0;
             while (g == 0)
@@ -1456,6 +1586,7 @@ namespace ConsolePNGConv
                 if (temp == (32 * Tilewidth))
                 {
                     hu += 1;
+                    Backheight -= 8;
                 }
                 else
                     g = 1;
@@ -1534,12 +1665,12 @@ namespace ConsolePNGConv
             }
             return NewTile;
         }
-        static Byte[,] SeparateBack(byte[,] Tile, int Tilewidth, int Tileheight, int Back, out int Tilehight, out int Tilehight2, out byte[,] TileBack)
+        static Byte[,] SeparateBack(byte[,] Tile, int Tilewidth, int Tileheight, int Back, int Backheight, out int Tilehight, out int Tilehight2, out byte[,] TileBack)
         {
-           if (Back == 1)
+           if (Back >= 1)
             {
-                Tilehight = Tileheight / 2;
-                Tilehight2 = Tileheight - Tilehight;
+                Tilehight = (Backheight/8);
+                Tilehight2 = Tileheight-(Backheight / 8);
             }
             else {
                 Tilehight = Tileheight;
@@ -1581,7 +1712,7 @@ namespace ConsolePNGConv
                             Tile[(i * TilewidthUNITE) + k, j]= TileFront[(i * Tilewidth) + k, j];
               }
             }
-            if (Back == 1)
+            if (Back >= 1)
             {
                 for (int i = 0; i < Tileheight2; i++)
                 {
@@ -1604,11 +1735,17 @@ namespace ConsolePNGConv
         {
             Console.WriteLine("Please enter the png path.");
             string Path = Console.ReadLine();
-            int Back = 2;
-            while ((Back != 0) && (Back != 1))
+            int Back = 3, Backheight=0;
+            while ((Back != 0) && (Back != 1) && (Back != 2))
             {
-                Console.WriteLine("If the enemy has a back sprite, please make sure it starts at the middle of the image and enter 1. Otherwise enter 0.");
+                Console.WriteLine("If the enemy has a back sprite, if it starts at the middle of the image's height, enter 1, if it doesn't, enter 2.");
+                Console.WriteLine("If the sprite has no back sprite at all, enter 0.");
                 Back = Convert.ToInt16(Console.ReadLine());
+            }
+            if (Back == 2)
+            {
+                Console.WriteLine("Please, type the starting height pixel of the image.");
+                Backheight = Convert.ToInt16(Console.ReadLine());
             }
             Console.WriteLine("Please, type the number of the enemy you want to substitute.");
             int Enemynum = Convert.ToInt16(Console.ReadLine());
@@ -1628,6 +1765,12 @@ namespace ConsolePNGConv
             Bitmap img = new Bitmap(Path);
             int height = img.Height;
             int width = img.Width;
+            if (Backheight > img.Height)
+                Backheight = img.Height / 2;
+            else if (Backheight < 8)
+                Backheight = img.Height / 2;
+            while (Backheight % 8 != 0)
+                Backheight -= 1;
             Console.WriteLine("Width: " + img.Width + ", Height: " + img.Height + ".");
             Console.WriteLine("Last SOB: {0:X}.", LastSOB);
             Console.WriteLine("Last CCG: {0:X}.", LastCCG);
@@ -1848,7 +1991,7 @@ namespace ConsolePNGConv
                 }
                 //Console.WriteLine("");
             }
-            byte[,] NewTile = RemoveExceedingTiles(Tile, tilewidth, tileheight, out tilewidth, out tileheight);
+            byte[,] NewTile = RemoveExceedingTiles(Tile, tilewidth, tileheight, ref Backheight, out tilewidth, out tileheight);
             List<List<int>> Reverse = new List<List<int>>();
             List<int> ReverseCorrespond = new List<int>();
             List<List<int>> Same = new List<List<int>>();
@@ -1911,21 +2054,25 @@ namespace ConsolePNGConv
             int tileheight1 = 0;
             int tilewidth2 = tilewidth;
             int tileheight2 = 0;
+            int tileheight1temp = tileheight;
+            int tileheight2temp = tileheight;
             int Tiletemph = tileheight;
             int Tiletempw = tilewidth;
-            if (Back == 1)
+            if ((Back == 1)||(Back == 2))
             {
-                NewTile = SeparateBack(NewTile, tilewidth, tileheight, Back, out tileheight1, out tileheight2, out Tileback);
-                NewTile = RemoveExceedingTiles(NewTile, tilewidth, tileheight1, out tilewidth1, out tileheight1);
-                Tileback = RemoveExceedingTiles(Tileback, tilewidth2, tileheight2, out tilewidth2, out tileheight2);
-                Tileback = TileOAM(Tileback, tileheight2, tilewidth2, Back, out tileheight2, out tilewidth2, out OAMBack);
-                OAMTile = TileOAM(NewTile, tileheight1, tilewidth1, Back, out tileheight1, out tilewidth1, out OAMFront);
+                NewTile = SeparateBack(NewTile, tilewidth, tileheight, Back, Backheight, out tileheight1, out tileheight2, out Tileback);
+                NewTile = RemoveExceedingTiles(NewTile, tilewidth, tileheight1, ref Backheight, out tilewidth1, out tileheight1);
+                Tileback = RemoveExceedingTiles(Tileback, tilewidth2, tileheight2, ref Backheight, out tilewidth2, out tileheight2);
+                tileheight1temp = tileheight1;
+                tileheight2temp = tileheight2;
+                Tileback = TileOAM(Tileback, tileheight2, tilewidth2, out tileheight2, out tilewidth2, out OAMBack);
+                OAMTile = TileOAM(NewTile, tileheight1, tilewidth1, out tileheight1, out tilewidth1, out OAMFront);
                 OAMTile = UniteTile(OAMTile, Tileback, Back, tilewidth1, tileheight1, tilewidth2, tileheight2, out tilewidth, out tileheight);
                 SOB = SOBGen(OAMFront, OAMBack, tileheight1, tilewidth1, Back);
             }
             else
             {
-                OAMTile = TileOAM(NewTile, tileheight, tilewidth, Back, out tileheight, out tilewidth , out OAMFront);
+                OAMTile = TileOAM(NewTile, tileheight, tilewidth, out tileheight, out tilewidth , out OAMFront);
                 OAMBack = new Byte[0];
                 SOB = SOBGen(OAMFront, OAMBack, tileheight, tilewidth, Back);
             }
@@ -2004,7 +2151,7 @@ namespace ConsolePNGConv
             int Base = 0x1C90960;
             int BaseSOB = 0x1C91E88;//Start of enemy SOB blocks pointers
             int BaseCCG = 0x1C909A8;//Start of enemy CCG blocks pointers
-            int BasePAL = 0x1C91530;//Start of enemy palettes
+            int BasePAL = 0x1C91530;//Start of enemy palettes pointers
             BaseSOB = BaseSOB + (Enemynum * 8);
             BaseCCG = BaseCCG + (Enemynum * 8);
             BasePAL = BasePAL + (Enemynum * 8);
@@ -2032,6 +2179,22 @@ namespace ConsolePNGConv
             OffsetPAL += Base;
             for (int i = 0; i < PALette.Count(); i++)
                 memblock[OffsetPAL + i] = PALette[i];
+            int Enemytable = 0xD0D28; //If it has a back sprite, make it turnable in battle and in memo, otherwise make it not turnable. Probably something should be done to allow the creation of enemies like the Mecha-Turtle one, but that's not the focus right now.
+            if (Back >= 1)
+            {
+                memblock[Enemytable + (Enemynum * 0x90) + 0x74] = 1;
+                memblock[Enemytable + (Enemynum * 0x90) + 0x75] = 1;
+            }
+            else
+            {
+                memblock[Enemytable + (Enemynum * 0x90) + 0x74] = 0;
+                memblock[Enemytable + (Enemynum * 0x90) + 0x75] = 0;
+            }
+            memblock[Enemytable + (Enemynum * 0x90) + 0x6C] = 1;//Fix the heights, so we avoid problems.
+            memblock[Enemytable + (Enemynum * 0x90) + 0x70] = (byte)(32 - ((tileheight1temp << 3) / 2) + (memblock[0xC6D62 + (Enemynum * 2)]));
+            memblock[Enemytable + (Enemynum * 0x90) + 0x71] = (byte)(32 - ((tileheight2temp << 3) / 2) + (memblock[0xC6D62 + (Enemynum * 2)]));
+            memblock[Enemytable + (Enemynum * 0x90) + 0x72] = 0;
+            memblock[Enemytable + (Enemynum * 0x90) + 0x73] = 0;
             File.WriteAllBytes(FilePath, memblock);
             return;
         }
