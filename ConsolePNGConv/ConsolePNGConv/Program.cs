@@ -876,12 +876,17 @@ namespace ConsolePNGConv
             List<byte> Compare0 = new List<byte>();
             for (int j = 0; j < 32; j++)
                 Compare0.Add(0);
+            int l = RealTileWidth;
+            if (RealTileWidth >= 5)
+                l = 8;
+            else if (RealTileWidth >= 3)
+                l = 4;
             int mors, OriginalStart=Tilestart[Tilestart.Count()-1];
 		for (mors = TileheightMod; (mors % 2) != 0; mors++);
-            int morn = (mors / 8) * 2;
+            int morn = (mors / l) * 2;
 			int Tileheight=TileheightMod;
             int XTemp = X[X.Count() - 1];
-            if (((Tilewidth % 8) == 5) || ((Tilewidth % 8) == 6))
+            if (((Tilewidth % l) == 5) || ((Tilewidth % l) == 6))
             {
                 if(morn>0)
                 XSize[XSize.Count() - 1] -= 2;
@@ -891,20 +896,20 @@ namespace ConsolePNGConv
                 {
                     YSize.Add(morn);
                     Y.Add(YOriginal);
-                    Tilestart.Add(6+((g*morn)*8)+OriginalStart);
+                    Tilestart.Add(6+((g*morn)*l)+OriginalStart);
                     XSize.Add(2);
                     X.Add(XTemp + (g * 2));
                     for (int i = 0; i < morn; i++)
                      {
                             for (int k = 0; k < 2; k++)
-                                TempTiles[((i + (g*morn)) * 8) + k + 6] = TempTiles[((i+(Tileheight-morn) ) * 8) +(g*2)+ k];
+                                TempTiles[((i + (g*morn)) * l) + k + 6] = TempTiles[((i+(Tileheight-morn) ) * l) +(g*2)+ k];
                     }
                     int temp = 0;
                     for (int i = 0; i < morn; i++)
                     {
                         for (int k = 0; k < 2; k++)
                         {
-                                if (TempTiles[((i + (g * morn)) * 8) + k + 6] == Compare0)
+                                if (TempTiles[((i + (g * morn)) * l) + k + 6] == Compare0)
                                     temp += 1;
                         }
                     }
@@ -920,7 +925,7 @@ namespace ConsolePNGConv
                 Modiheight -= morn;
 				TileheightMod-=morn;
             }
-            else if (((Tilewidth % 8) == 3) || ((Tilewidth % 8) == 4))
+            else if (((Tilewidth % l) == 3) || ((Tilewidth % l) == 4))
             {
                 if (mors / 2 > 0) {
                     XSize[XSize.Count() - 1] = 4;
@@ -935,13 +940,13 @@ namespace ConsolePNGConv
                     {
                         for (int k = 0; k < 4; k++)
                         {
-                            TempTiles[(i * 8) + k + 4] = TempTiles[((i + (mors / 2)) * 8) + k];
+                            TempTiles[(i * l) + k + 4] = TempTiles[((i + (mors / 2)) * l) + k];
                         }
                     }
                     Modiheight -= mors / 2;
                     TileheightMod -= mors / 2; }
             }
-            else if (((Tilewidth % 8) == 2)||((Tilewidth%8)==1))
+            else if (((Tilewidth % l) == 2)||((Tilewidth%l)==1))
             {
 				morn=mors/4;
                 int Countemp = X.Count() - 1;
@@ -967,10 +972,10 @@ namespace ConsolePNGConv
 						}
                         for (int k = 0; k < 2; k++){
 							if((i + (morn * (g+1)))<Tileheight)
-                            TempTiles[(i * 8) + (g*2) + k + 2] = TempTiles[((i + (morn * (g+1))) * 8) + k];
+                            TempTiles[(i * l) + (g*2) + k + 2] = TempTiles[((i + (morn * (g+1))) * l) + k];
 						else{
 							for(int j=0; j<32; j++)
-							TempTiles[(i * 8) + (g*2) + k + 2][j] =0;
+							TempTiles[(i * l) + (g*2) + k + 2][j] =0;
 							}
 						}
                     }
@@ -978,7 +983,7 @@ namespace ConsolePNGConv
                     {
                         for (int k = 0; k < 2; k++)
                         {
-                                if (TempTiles[(i * 8) + (g * 2) + k + 2] == Compare0)
+                                if (TempTiles[(i * l) + (g * 2) + k + 2] == Compare0)
                                     temp += 1;
                         }
                     }
