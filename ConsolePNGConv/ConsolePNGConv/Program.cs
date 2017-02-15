@@ -1749,7 +1749,7 @@ namespace ConsolePNGConv
             }
             if (Back == 2)
             {
-                Console.WriteLine("Type the starting height pixel of the image.");
+                Console.WriteLine("Type the starting height pixel of the back sprite.");
                 Backheight = Convert.ToInt16(Console.ReadLine());
             }
             Console.WriteLine("Type the number of the enemy you want to substitute.");
