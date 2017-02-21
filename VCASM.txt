@@ -1,0 +1,48 @@
+ROM:09F90000 ; =============== S U B R O U T I N E =======================================
+ROM:09F90000
+ROM:09F90000
+ROM:09F90000 sub_9F90000                             ; CODE XREF: sub_8019E40+3Ej
+ROM:09F90000                                         ; DATA XREF: sub_8019E40+3Co ...
+ROM:09F90000                 PUSH            {LR}
+ROM:09F90002                 LDR             R1, =unk_200E0B8
+ROM:09F90004                 LDR             R1, [R1]
+ROM:09F90006                 LDR             R2, =dword_9269360
+ROM:09F90008                 CMP             R1, R2
+ROM:09F9000A                 BEQ             loc_9F9001A
+ROM:09F9000C                 LDR             R2, =dword_9335B10
+ROM:09F9000E                 CMP             R1, R2
+ROM:09F90010                 BEQ             loc_9F9001A
+ROM:09F90012                 LDR             R2, =dword_91EBD54
+ROM:09F90014                 CMP             R1, R2
+ROM:09F90016                 BEQ             loc_9F9001A
+ROM:09F90018                 B               loc_9F9001E
+ROM:09F9001A ; ---------------------------------------------------------------------------
+ROM:09F9001A
+ROM:09F9001A loc_9F9001A                             ; CODE XREF: sub_9F90000+Aj
+ROM:09F9001A                                         ; sub_9F90000+10j ...
+ROM:09F9001A                 MOVS            R2, #1
+ROM:09F9001C                 POP             {PC}
+ROM:09F9001E ; ---------------------------------------------------------------------------
+ROM:09F9001E
+ROM:09F9001E loc_9F9001E                             ; CODE XREF: sub_9F90000+18j
+ROM:09F9001E                 LDR             R1, =word_2016028
+ROM:09F90020                 LDRH            R2, [R1,#8]
+ROM:09F90022                 LDR             R0, =0xE1FF
+ROM:09F90024                 ANDS            R0, R2
+ROM:09F90026                 LDRH            R2, [R1,#8]
+ROM:09F90028                 STRH            R0, [R1,#8]
+ROM:09F9002A                 LDR             R2, =0x2C9C
+ROM:09F9002C                 ADDS            R0, R1, R2
+ROM:09F9002E                 MOVS            R2, #0
+ROM:09F90030                 POP             {PC}
+ROM:09F90030 ; End of function sub_9F90000
+ROM:09F90030
+ROM:09F90030 ; ---------------------------------------------------------------------------
+ROM:09F90032                 ALIGN 4
+ROM:09F90034 off_9F90034     DCD word_2016028        ; DATA XREF: sub_9F90000:loc_9F9001Er
+ROM:09F90038 dword_9F90038   DCD 0xE1FF              ; DATA XREF: sub_9F90000+22r
+ROM:09F9003C dword_9F9003C   DCD 0x2C9C              ; DATA XREF: sub_9F90000+2Ar
+ROM:09F90040 off_9F90040     DCD unk_200E0B8         ; DATA XREF: sub_9F90000+2r
+ROM:09F90044 off_9F90044     DCD dword_9269360       ; DATA XREF: sub_9F90000+6r
+ROM:09F90048 off_9F90048     DCD dword_9335B10       ; DATA XREF: sub_9F90000+Cr
+ROM:09F9004C off_9F9004C     DCD dword_91EBD54       ; DATA XREF: sub_9F90000+12r
