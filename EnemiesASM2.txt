@@ -1,380 +1,81 @@
-ROM:00063AD4 loc_63AD4                               ; CODE XREF: sub_63AD0+12j
-ROM:00063AD4                 LSLS            R0, R4, #0x10
-ROM:00063AD6                 LSRS            R0, R0, #0x10
-ROM:00063AD8                 LDR             R1, =0x80A18AD
-ROM:00063ADA                 BL              sub_63EB4
-ROM:00063ADE                 ADDS            R4, #1
-ROM:00063AE0                 CMP             R4, #0xFF
-ROM:00063AE2                 BLS             loc_63AD4
-ROM:00063AE4                 LDR             R1, =0x80A1829
-ROM:00063AE6                 MOVS            R0, #1
-ROM:00063AE8                 BL              sub_63EB4
-ROM:00063AEC                 LDR             R1, =0x80A1805
-ROM:00063AEE                 MOVS            R0, #5
-ROM:00063AF0                 BL              sub_63EB4
-ROM:00063AF4                 LDR             R1, =0x80A17E1
-ROM:00063AF6                 MOVS            R0, #0x32 ; '2'
-ROM:00063AF8                 BL              sub_63EB4
-ROM:00063AFC                 LDR             R1, =0x80A17BD
-ROM:00063AFE                 MOVS            R0, #0x31 ; '1'
-ROM:00063B00                 BL              sub_63EB4
-ROM:00063B04                 LDR             R1, =0x80A1799
-ROM:00063B06                 MOVS            R0, #0x37 ; '7'
-ROM:00063B08                 BL              sub_63EB4
-ROM:00063B0C                 LDR             R1, =0x80A1775
-ROM:00063B0E                 MOVS            R0, #0x33 ; '3'
-ROM:00063B10                 BL              sub_63EB4
-ROM:00063B14                 LDR             R1, =0x80A1751
-ROM:00063B16                 MOVS            R0, #0x41 ; 'A'
-ROM:00063B18                 BL              sub_63EB4
-ROM:00063B1C                 LDR             R1, =0x80A172D
-ROM:00063B1E                 MOVS            R0, #0x42 ; 'B'
-ROM:00063B20                 BL              sub_63EB4
-ROM:00063B24                 LDR             R1, =0x80A1709
-ROM:00063B26                 MOVS            R0, #2
-ROM:00063B28                 BL              sub_63EB4
-ROM:00063B2C                 LDR             R1, =0x80A16E5
-ROM:00063B2E                 MOVS            R0, #4
-ROM:00063B30                 BL              sub_63EB4
-ROM:00063B34                 LDR             R1, =0x80A16C1
-ROM:00063B36                 MOVS            R0, #3
-ROM:00063B38                 BL              sub_63EB4
-ROM:00063B3C                 LDR             R1, =0x80A169D
-ROM:00063B3E                 MOVS            R0, #0x4A ; 'J'
-ROM:00063B40                 BL              sub_63EB4
-ROM:00063B44                 LDR             R1, =0x80A1679
-ROM:00063B46                 MOVS            R0, #0x52 ; 'R'
-ROM:00063B48                 BL              sub_63EB4
-ROM:00063B4C                 LDR             R1, =0x80A1655
-ROM:00063B4E                 MOVS            R0, #0x5A ; 'Z'
-ROM:00063B50                 BL              sub_63EB4
-ROM:00063B54                 LDR             R1, =0x80A1631
-ROM:00063B56                 MOVS            R0, #0x5B ; '['
-ROM:00063B58                 BL              sub_63EB4
-ROM:00063B5C                 LDR             R1, =0x80A160D
-ROM:00063B5E                 MOVS            R0, #0x95 ; 'ò'
-ROM:00063B60                 BL              sub_63EB4
-ROM:00063B64                 LDR             R1, =0x80A15E9
-ROM:00063B66                 MOVS            R0, #6
-ROM:00063B68                 BL              sub_63EB4
-ROM:00063B6C                 LDR             R1, =0x80A15C5
-ROM:00063B6E                 MOVS            R0, #0x60 ; '`'
-ROM:00063B70                 BL              sub_63EB4
-ROM:00063B74                 LDR             R1, =0x80A15A1
-ROM:00063B76                 MOVS            R0, #0x62 ; 'b'
-ROM:00063B78                 BL              sub_63EB4
-ROM:00063B7C                 LDR             R1, =0x80A157D
-ROM:00063B7E                 MOVS            R0, #0x6F ; 'o'
-ROM:00063B80                 BL              sub_63EB4
-ROM:00063B84                 LDR             R1, =0x80A1559
-ROM:00063B86                 MOVS            R0, #0x69 ; 'i'
-ROM:00063B88                 BL              sub_63EB4
-ROM:00063B8C                 LDR             R1, =0x80A1535
-ROM:00063B8E                 MOVS            R0, #0x3A ; ':'
-ROM:00063B90                 BL              sub_63EB4
-ROM:00063B94                 LDR             R1, =0x80A1511
-ROM:00063B96                 MOVS            R0, #0x9B ; 'ø'
-ROM:00063B98                 BL              sub_63EB4
-ROM:00063B9C                 LDR             R1, =0x80A14ED
-ROM:00063B9E                 MOVS            R0, #0x9C ; '£'
-ROM:00063BA0                 BL              sub_63EB4
-ROM:00063BA4                 LDR             R1, =0x80A14C9
-ROM:00063BA6                 MOVS            R0, #0x10
-ROM:00063BA8                 BL              sub_63EB4
-ROM:00063BAC                 LDR             R1, =0x80A14A5
-ROM:00063BAE                 MOVS            R0, #0x75 ; 'u'
-ROM:00063BB0                 BL              sub_63EB4
-ROM:00063BB4                 LDR             R1, =0x80A1481
-ROM:00063BB6                 MOVS            R0, #0x7F ; ''
-ROM:00063BB8                 BL              sub_63EB4
-ROM:00063BBC                 LDR             R1, =0x80A145D
-ROM:00063BBE                 MOVS            R0, #0xE
-ROM:00063BC0                 BL              sub_63EB4
-ROM:00063BC4                 LDR             R1, =0x80A1439
-ROM:00063BC6                 MOVS            R0, #0xF
-ROM:00063BC8                 BL              sub_63EB4
-ROM:00063BCC                 LDR             R1, =0x80A1415
-ROM:00063BCE                 MOVS            R0, #0x25 ; '%'
-ROM:00063BD0                 BL              sub_63EB4
-ROM:00063BD4                 LDR             R1, =0x80A13F1
-ROM:00063BD6                 MOVS            R0, #0x86 ; 'å'
-ROM:00063BD8                 BL              sub_63EB4
-ROM:00063BDC                 LDR             R1, =0x80A13CD
-ROM:00063BDE                 MOVS            R0, #0xA2 ; 'ó'
-ROM:00063BE0                 BL              sub_63EB4
-ROM:00063BE4                 LDR             R1, =0x80A13A9
-ROM:00063BE6                 MOVS            R0, #0x83 ; 'â'
-ROM:00063BE8                 BL              sub_63EB4
-ROM:00063BEC                 LDR             R1, =0x80A1385
-ROM:00063BEE                 MOVS            R0, #0xA4 ; 'ñ'
-ROM:00063BF0                 BL              sub_63EB4
-ROM:00063BF4                 LDR             R1, =0x80A1361
-ROM:00063BF6                 MOVS            R0, #0xA3 ; 'ú'
-ROM:00063BF8                 BL              sub_63EB4
-ROM:00063BFC                 LDR             R1, =0x80A133D
-ROM:00063BFE                 MOVS            R0, #0x7C ; '|'
-ROM:00063C00                 BL              sub_63EB4
-ROM:00063C04                 LDR             R1, =0x80A1319
-ROM:00063C06                 MOVS            R0, #7
-ROM:00063C08                 BL              sub_63EB4
-ROM:00063C0C                 LDR             R1, =0x80A12F5
-ROM:00063C0E                 MOVS            R0, #0x76 ; 'v'
-ROM:00063C10                 BL              sub_63EB4
-ROM:00063C14                 LDR             R1, =0x80A12D1
-ROM:00063C16                 MOVS            R0, #0x7D ; '}'
-ROM:00063C18                 BL              sub_63EB4
-ROM:00063C1C                 LDR             R1, =0x80A12AD
-ROM:00063C1E                 MOVS            R0, #0xAC ; '¼'
-ROM:00063C20                 BL              sub_63EB4
-ROM:00063C24                 LDR             R1, =0x80A1289
-ROM:00063C26                 MOVS            R0, #0x39 ; '9'
-ROM:00063C28                 BL              sub_63EB4
-ROM:00063C2C                 LDR             R1, =0x80A1265
-ROM:00063C2E                 MOVS            R0, #0x38 ; '8'
-ROM:00063C30                 BL              sub_63EB4
-ROM:00063C34                 LDR             R1, =0x80A1241
-ROM:00063C36                 MOVS            R0, #0x8E ; 'Ä'
-ROM:00063C38                 BL              sub_63EB4
-ROM:00063C3C                 LDR             R1, =0x80A121D
-ROM:00063C3E                 MOVS            R0, #0x21 ; '!'
-ROM:00063C40                 BL              sub_63EB4
-ROM:00063C44                 LDR             R1, =0x80A11F9
-ROM:00063C46                 MOVS            R0, #0x23 ; '#'
-ROM:00063C48                 BL              sub_63EB4
-ROM:00063C4C                 LDR             R1, =0x80A11D5
-ROM:00063C4E                 MOVS            R0, #0x46 ; 'F'
-ROM:00063C50                 BL              sub_63EB4
-ROM:00063C54                 LDR             R1, =0x80A11B1
-ROM:00063C56                 MOVS            R0, #0x16
-ROM:00063C58                 BL              sub_63EB4
-ROM:00063C5C                 LDR             R1, =0x80A118D
-ROM:00063C5E                 MOVS            R0, #0xAD ; '¡'
-ROM:00063C60                 BL              sub_63EB4
-ROM:00063C64                 LDR             R1, =0x80A1169
-ROM:00063C66                 MOVS            R0, #0x90 ; 'É'
-ROM:00063C68                 BL              sub_63EB4
-ROM:00063C6C                 LDR             R1, =0x80A1145
-ROM:00063C6E                 MOVS            R0, #0xAE ; '«'
-ROM:00063C70                 BL              sub_63EB4
-ROM:00063C74                 LDR             R1, =0x80A1121
-ROM:00063C76                 MOVS            R0, #0x65 ; 'e'
-ROM:00063C78                 BL              sub_63EB4
-ROM:00063C7C                 LDR             R1, =0x80A10FD
-ROM:00063C7E                 MOVS            R0, #0x5C ; '\'
-ROM:00063C80                 BL              sub_63EB4
-ROM:00063C84                 LDR             R1, =0x80A10D9
-ROM:00063C86                 MOVS            R0, #9
-ROM:00063C88                 BL              sub_63EB4
-ROM:00063C8C                 LDR             R1, =0x80A10B5
-ROM:00063C8E                 MOVS            R0, #0x7A ; 'z'
-ROM:00063C90                 BL              sub_63EB4
-ROM:00063C94                 LDR             R1, =0x80A1091
-ROM:00063C96                 MOVS            R0, #0x17
-ROM:00063C98                 BL              sub_63EB4
-ROM:00063C9C                 LDR             R1, =0x80A106D
-ROM:00063C9E                 MOVS            R0, #0xB6 ; 'Â'
-ROM:00063CA0                 BL              sub_63EB4
-ROM:00063CA4                 LDR             R1, =0x80A1049
-ROM:00063CA6                 MOVS            R0, #0x85 ; 'à'
-ROM:00063CA8                 BL              sub_63EB4
-ROM:00063CAC                 LDR             R1, =0x80A1025
-ROM:00063CAE                 MOVS            R0, #0x72 ; 'r'
-ROM:00063CB0                 BL              sub_63EB4
-ROM:00063CB4                 LDR             R1, =0x80A1001
-ROM:00063CB6                 MOVS            R0, #0x54 ; 'T'
-ROM:00063CB8                 BL              sub_63EB4
-ROM:00063CBC                 LDR             R1, =0x80A0FB9
-ROM:00063CBE                 MOVS            R0, #0xA6 ; 'ª'
-ROM:00063CC0                 BL              sub_63EB4
-ROM:00063CC4                 LDR             R1, =0x80A0FDD
-ROM:00063CC6                 MOVS            R0, #0x19
-ROM:00063CC8                 BL              sub_63EB4
-ROM:00063CCC                 LDR             R1, =0x80A0F95
-ROM:00063CCE                 MOVS            R0, #0xD
-ROM:00063CD0                 BL              sub_63EB4
-ROM:00063CD4                 LDR             R1, =0x80A0F71
-ROM:00063CD6                 MOVS            R0, #0x1C
-ROM:00063CD8                 BL              sub_63EB4
-ROM:00063CDC                 LDR             R1, =0x80A0F4D
-ROM:00063CDE                 MOVS            R0, #0xAA ; '¬'
-ROM:00063CE0                 BL              sub_63EB4
-ROM:00063CE4                 LDR             R1, =0x80A0F05
-ROM:00063CE6                 MOVS            R0, #0x87 ; 'ç'
-ROM:00063CE8                 BL              sub_63EB4
-ROM:00063CEC                 LDR             R1, =0x80A0F29
-ROM:00063CEE                 MOVS            R0, #0xB7 ; 'À'
-ROM:00063CF0                 BL              sub_63EB4
-ROM:00063CF4                 LDR             R1, =0x80A0EE1
-ROM:00063CF6                 MOVS            R0, #0xAB ; '½'
-ROM:00063CF8                 BL              sub_63EB4
-ROM:00063CFC                 LDR             R1, =0x80A0EBD
-ROM:00063CFE                 MOVS            R0, #0xC
-ROM:00063D00                 BL              sub_63EB4
-ROM:00063D04                 LDR             R4, =0x80A0E99
-ROM:00063D06                 MOVS            R0, #0x2E ; '.'
-ROM:00063D08                 MOVS            R1, R4
-ROM:00063D0A                 BL              sub_63EB4
-ROM:00063D0E                 MOVS            R0, #0x2E ; '.'
-ROM:00063D10                 MOVS            R1, R4
-ROM:00063D12                 BL              sub_63EB4
-ROM:00063D16                 MOVS            R0, #0x13
-ROM:00063D18                 MOVS            R1, R4
-ROM:00063D1A                 BL              sub_63EB4
-ROM:00063D1E                 MOVS            R0, #0x1A
-ROM:00063D20                 MOVS            R1, R4
-ROM:00063D22                 BL              sub_63EB4
-ROM:00063D26                 MOVS            R0, #0xBB ; '+'
-ROM:00063D28                 MOVS            R1, R4
-ROM:00063D2A                 BL              sub_63EB4
-ROM:00063D2E                 MOVS            R0, #0xBC ; '+'
-ROM:00063D30                 MOVS            R1, R4
-ROM:00063D32                 BL              sub_63EB4
-ROM:00063D36                 LDR             R5, =0x80A0E75
-ROM:00063D38                 MOVS            R0, #0xA9 ; '®'
-ROM:00063D3A                 MOVS            R1, R5
-ROM:00063D3C                 BL              sub_63EB4
-ROM:00063D40                 MOVS            R0, #0x91 ; 'æ'
-ROM:00063D42                 MOVS            R1, R5
-ROM:00063D44                 BL              sub_63EB4
-ROM:00063D48                 MOVS            R0, #0x1B
-ROM:00063D4A                 MOVS            R1, R4
-ROM:00063D4C                 BL              sub_63EB4
-ROM:00063D50                 MOVS            R0, #0xB4 ; '¦'
-ROM:00063D52                 MOVS            R1, R4
-ROM:00063D54                 BL              sub_63EB4
-ROM:00063D58                 MOVS            R0, #0xB5 ; 'Á'
-ROM:00063D5A                 MOVS            R1, R4
-ROM:00063D5C                 BL              sub_63EB4
-ROM:00063D60                 LDR             R1, =0x80A0E51
-ROM:00063D62                 MOVS            R0, #0xB
-ROM:00063D64                 BL              sub_63EB4
-ROM:00063D68                 LDR             R1, =0x80A0E2D
-ROM:00063D6A                 MOVS            R0, #0x11
-ROM:00063D6C                 BL              sub_63EB4
-ROM:00063D70                 LDR             R1, =0x80A0E09
-ROM:00063D72                 MOVS            R0, #0xBD ; '¢'
-ROM:00063D74                 BL              sub_63EB4
-ROM:00063D78                 LDR             R1, =0x80A0DE5
-ROM:00063D7A                 MOVS            R0, #0xBE ; '¥'
-ROM:00063D7C                 BL              sub_63EB4
-ROM:00063D80                 POP             {R4,R5}
-ROM:00063D82                 POP             {R0}
-ROM:00063D84                 BX              R0
-ROM:00063D84 ; End of function sub_63AD0
-ROM:00063D84
-ROM:00063D84 ; ---------------------------------------------------------------------------
-ROM:00063D86                 ALIGN 4
-ROM:00063D88 dword_63D88     DCD 0x80A18AD           ; DATA XREF: sub_63AD0+8r
-ROM:00063D8C dword_63D8C     DCD 0x80A1829           ; DATA XREF: sub_63AD0+14r
-ROM:00063D90 dword_63D90     DCD 0x80A1805           ; DATA XREF: sub_63AD0+1Cr
-ROM:00063D94 dword_63D94     DCD 0x80A17E1           ; DATA XREF: sub_63AD0+24r
-ROM:00063D98 dword_63D98     DCD 0x80A17BD           ; DATA XREF: sub_63AD0+2Cr
-ROM:00063D9C dword_63D9C     DCD 0x80A1799           ; DATA XREF: sub_63AD0+34r
-ROM:00063DA0 dword_63DA0     DCD 0x80A1775           ; DATA XREF: sub_63AD0+3Cr
-ROM:00063DA4 dword_63DA4     DCD 0x80A1751           ; DATA XREF: sub_63AD0+44r
-ROM:00063DA8 dword_63DA8     DCD 0x80A172D           ; DATA XREF: sub_63AD0+4Cr
-ROM:00063DAC dword_63DAC     DCD 0x80A1709           ; DATA XREF: sub_63AD0+54r
-ROM:00063DB0 dword_63DB0     DCD 0x80A16E5           ; DATA XREF: sub_63AD0+5Cr
-ROM:00063DB4 dword_63DB4     DCD 0x80A16C1           ; DATA XREF: sub_63AD0+64r
-ROM:00063DB8 dword_63DB8     DCD 0x80A169D           ; DATA XREF: sub_63AD0+6Cr
-ROM:00063DBC dword_63DBC     DCD 0x80A1679           ; DATA XREF: sub_63AD0+74r
-ROM:00063DC0 dword_63DC0     DCD 0x80A1655           ; DATA XREF: sub_63AD0+7Cr
-ROM:00063DC4 dword_63DC4     DCD 0x80A1631           ; DATA XREF: sub_63AD0+84r
-ROM:00063DC8 dword_63DC8     DCD 0x80A160D           ; DATA XREF: sub_63AD0+8Cr
-ROM:00063DCC dword_63DCC     DCD 0x80A15E9           ; DATA XREF: sub_63AD0+94r
-ROM:00063DD0 dword_63DD0     DCD 0x80A15C5           ; DATA XREF: sub_63AD0+9Cr
-ROM:00063DD4 dword_63DD4     DCD 0x80A15A1           ; DATA XREF: sub_63AD0+A4r
-ROM:00063DD8 dword_63DD8     DCD 0x80A157D           ; DATA XREF: sub_63AD0+ACr
-ROM:00063DDC dword_63DDC     DCD 0x80A1559           ; DATA XREF: sub_63AD0+B4r
-ROM:00063DE0 dword_63DE0     DCD 0x80A1535           ; DATA XREF: sub_63AD0+BCr
-ROM:00063DE4 dword_63DE4     DCD 0x80A1511           ; DATA XREF: sub_63AD0+C4r
-ROM:00063DE8 dword_63DE8     DCD 0x80A14ED           ; DATA XREF: sub_63AD0+CCr
-ROM:00063DEC dword_63DEC     DCD 0x80A14C9           ; DATA XREF: sub_63AD0+D4r
-ROM:00063DF0 dword_63DF0     DCD 0x80A14A5           ; DATA XREF: sub_63AD0+DCr
-ROM:00063DF4 dword_63DF4     DCD 0x80A1481           ; DATA XREF: sub_63AD0+E4r
-ROM:00063DF8 dword_63DF8     DCD 0x80A145D           ; DATA XREF: sub_63AD0+ECr
-ROM:00063DFC dword_63DFC     DCD 0x80A1439           ; DATA XREF: sub_63AD0+F4r
-ROM:00063E00 dword_63E00     DCD 0x80A1415           ; DATA XREF: sub_63AD0+FCr
-ROM:00063E04 dword_63E04     DCD 0x80A13F1           ; DATA XREF: sub_63AD0+104r
-ROM:00063E08 dword_63E08     DCD 0x80A13CD           ; DATA XREF: sub_63AD0+10Cr
-ROM:00063E0C dword_63E0C     DCD 0x80A13A9           ; DATA XREF: sub_63AD0+114r
-ROM:00063E10 dword_63E10     DCD 0x80A1385           ; DATA XREF: sub_63AD0+11Cr
-ROM:00063E14 dword_63E14     DCD 0x80A1361           ; DATA XREF: sub_63AD0+124r
-ROM:00063E18 dword_63E18     DCD 0x80A133D           ; DATA XREF: sub_63AD0+12Cr
-ROM:00063E1C dword_63E1C     DCD 0x80A1319           ; DATA XREF: sub_63AD0+134r
-ROM:00063E20 dword_63E20     DCD 0x80A12F5           ; DATA XREF: sub_63AD0+13Cr
-ROM:00063E24 dword_63E24     DCD 0x80A12D1           ; DATA XREF: sub_63AD0+144r
-ROM:00063E28 dword_63E28     DCD 0x80A12AD           ; DATA XREF: sub_63AD0+14Cr
-ROM:00063E2C dword_63E2C     DCD 0x80A1289           ; DATA XREF: sub_63AD0+154r
-ROM:00063E30 dword_63E30     DCD 0x80A1265           ; DATA XREF: sub_63AD0+15Cr
-ROM:00063E34 dword_63E34     DCD 0x80A1241           ; DATA XREF: sub_63AD0+164r
-ROM:00063E38 dword_63E38     DCD 0x80A121D           ; DATA XREF: sub_63AD0+16Cr
-ROM:00063E3C dword_63E3C     DCD 0x80A11F9           ; DATA XREF: sub_63AD0+174r
-ROM:00063E40 dword_63E40     DCD 0x80A11D5           ; DATA XREF: sub_63AD0+17Cr
-ROM:00063E44 dword_63E44     DCD 0x80A11B1           ; DATA XREF: sub_63AD0+184r
-ROM:00063E48 dword_63E48     DCD 0x80A118D           ; DATA XREF: sub_63AD0+18Cr
-ROM:00063E4C dword_63E4C     DCD 0x80A1169           ; DATA XREF: sub_63AD0+194r
-ROM:00063E50 dword_63E50     DCD 0x80A1145           ; DATA XREF: sub_63AD0+19Cr
-ROM:00063E54 dword_63E54     DCD 0x80A1121           ; DATA XREF: sub_63AD0+1A4r
-ROM:00063E58 dword_63E58     DCD 0x80A10FD           ; DATA XREF: sub_63AD0+1ACr
-ROM:00063E5C dword_63E5C     DCD 0x80A10D9           ; DATA XREF: sub_63AD0+1B4r
-ROM:00063E60 dword_63E60     DCD 0x80A10B5           ; DATA XREF: sub_63AD0+1BCr
-ROM:00063E64 dword_63E64     DCD 0x80A1091           ; DATA XREF: sub_63AD0+1C4r
-ROM:00063E68 dword_63E68     DCD 0x80A106D           ; DATA XREF: sub_63AD0+1CCr
-ROM:00063E6C dword_63E6C     DCD 0x80A1049           ; DATA XREF: sub_63AD0+1D4r
-ROM:00063E70 dword_63E70     DCD 0x80A1025           ; DATA XREF: sub_63AD0+1DCr
-ROM:00063E74 dword_63E74     DCD 0x80A1001           ; DATA XREF: sub_63AD0+1E4r
-ROM:00063E78 dword_63E78     DCD 0x80A0FB9           ; DATA XREF: sub_63AD0+1ECr
-ROM:00063E7C dword_63E7C     DCD 0x80A0FDD           ; DATA XREF: sub_63AD0+1F4r
-ROM:00063E80 dword_63E80     DCD 0x80A0F95           ; DATA XREF: sub_63AD0+1FCr
-ROM:00063E84 dword_63E84     DCD 0x80A0F71           ; DATA XREF: sub_63AD0+204r
-ROM:00063E88 dword_63E88     DCD 0x80A0F4D           ; DATA XREF: sub_63AD0+20Cr
-ROM:00063E8C dword_63E8C     DCD 0x80A0F05           ; DATA XREF: sub_63AD0+214r
-ROM:00063E90 dword_63E90     DCD 0x80A0F29           ; DATA XREF: sub_63AD0+21Cr
-ROM:00063E94 dword_63E94     DCD 0x80A0EE1           ; DATA XREF: sub_63AD0+224r
-ROM:00063E98 dword_63E98     DCD 0x80A0EBD           ; DATA XREF: sub_63AD0+22Cr
-ROM:00063E9C dword_63E9C     DCD 0x80A0E99           ; DATA XREF: sub_63AD0+234r
-ROM:00063EA0 dword_63EA0     DCD 0x80A0E75           ; DATA XREF: sub_63AD0+266r
-ROM:00063EA4 dword_63EA4     DCD 0x80A0E51           ; DATA XREF: sub_63AD0+290r
-ROM:00063EA8 dword_63EA8     DCD 0x80A0E2D           ; DATA XREF: sub_63AD0+298r
-ROM:00063EAC dword_63EAC     DCD 0x80A0E09           ; DATA XREF: sub_63AD0+2A0r
-ROM:00063EB0 dword_63EB0     DCD 0x80A0DE5           ; DATA XREF: sub_63AD0+2A8r
-ROM:00063EB4
-ROM:00063EB4 ; =============== S U B R O U T I N E =======================================
-ROM:00063EB4
-ROM:00063EB4
-ROM:00063EB4 sub_63EB4                               ; CODE XREF: sub_63AD0+Ap
-ROM:00063EB4                                         ; sub_63AD0+18p ...
-ROM:00063EB4                 LSLS            R0, R0, #0x10
-ROM:00063EB6                 LDR             R2, =0x2002540
-ROM:00063EB8                 LSRS            R0, R0, #0xE
-ROM:00063EBA                 ADDS            R0, R0, R2
-ROM:00063EBC                 STR             R1, [R0]
-ROM:00063EBE                 BX              LR
-ROM:00063EBE ; End of function sub_63EB4
-ROM:00063EBE
-ROM:00063EBE ; ---------------------------------------------------------------------------
-ROM:00063EC0 dword_63EC0     DCD 0x2002540           ; DATA XREF: sub_63EB4+2r
-ROM:00063EC4
-ROM:00063EC4 ; =============== S U B R O U T I N E =======================================
-ROM:00063EC4
-ROM:00063EC4
-ROM:00063EC4 sub_63EC4                               ; CODE XREF: ROM:000630F6p
-ROM:00063EC4                 PUSH            {LR}
-ROM:00063EC6                 LSLS            R0, R0, #0x10
-ROM:00063EC8                 LSRS            R0, R0, #0x10
-ROM:00063ECA                 LSLS            R1, R1, #0x10
-ROM:00063ECC                 LSRS            R1, R1, #0x10
-ROM:00063ECE                 LDR             R3, =0x2002540
-ROM:00063ED0                 LSLS            R2, R1, #2
-ROM:00063ED2                 ADDS            R2, R2, R3
-ROM:00063ED4                 LDR             R2, [R2]
-ROM:00063ED6                 BL              sub_9193C
-ROM:00063EDA                 POP             {R1}
-ROM:00063EDC                 BX              R1
-ROM:00063EDC ; End of function sub_63EC4
-ROM:00063EDC
-ROM:00063EDC ; ---------------------------------------------------------------------------
-ROM:00063EDE                 ALIGN 0x10
-ROM:00063EE0 dword_63EE0     DCD 0x2002540           ; DATA XREF: sub_63EC4+Ar
-ROM:00063EE4
+ROM:08080E28 ; =============== S U B R O U T I N E =======================================
+ROM:08080E28
+ROM:08080E28
+ROM:08080E28 sub_8080E28                             ; DATA XREF: ROM:09F4E5DCo
+ROM:08080E28                                         ; ROM:09F4EA8Co ...
+ROM:08080E28                 PUSH            {R4,R5,LR}
+ROM:08080E2A                 MOVS            R4, R0
+ROM:08080E2C                 BL              sub_8074CA8
+ROM:08080E30                 LSLS            R0, R0, #0x18
+ROM:08080E32                 LSRS            R0, R0, #0x18
+ROM:08080E34                 CMP             R0, #1
+ROM:08080E36                 BNE             loc_8080E80
+ROM:08080E38                 LDR             R1, [R4,#0x1C]
+ROM:08080E3A                 MOVS            R0, #0x2C0
+ROM:08080E3E                 ADDS            R1, R1, R0
+ROM:08080E40                 MOVS            R2, #0
+ROM:08080E42                 LDRSH           R0, [R1,R2]
+ROM:08080E44                 ADDS            R0, R4, R0
+ROM:08080E46                 LDR             R1, [R1,#4]
+ROM:08080E48                 BL              sub_8091938
+ROM:08080E4C                 MOVS            R5, R0
+ROM:08080E4E                 CMP             R5, #0
+ROM:08080E50                 BEQ             loc_8080E80
+ROM:08080E52                 LDR             R1, [R4,#0x1C]
+ROM:08080E54                 MOVS            R0, #0x2C8
+ROM:08080E58                 ADDS            R1, R1, R0
+ROM:08080E5A                 MOVS            R2, #0
+ROM:08080E5C                 LDRSH           R0, [R1,R2]
+ROM:08080E5E                 ADDS            R0, R4, R0
+ROM:08080E60                 LDR             R2, [R1,#4]
+ROM:08080E62                 MOVS            R1, R5
+ROM:08080E64                 BL              sub_809193C
+ROM:08080E68                 LSLS            R0, R0, #0x18
+ROM:08080E6A                 LSRS            R0, R0, #0x18
+ROM:08080E6C                 CMP             R0, #1
+ROM:08080E6E                 BEQ             loc_8080E84
+ROM:08080E70                 LDR             R1, [R5,#0x1C]
+ROM:08080E72                 MOVS            R2, #8
+ROM:08080E74                 LDRSH           R0, [R1,R2]
+ROM:08080E76                 ADDS            R0, R5, R0
+ROM:08080E78                 LDR             R2, [R1,#0xC]
+ROM:08080E7A                 MOVS            R1, #3
+ROM:08080E7C                 BL              sub_809193C
+ROM:08080E80
+ROM:08080E80 loc_8080E80                             ; CODE XREF: sub_8080E28+Ej
+ROM:08080E80                                         ; sub_8080E28+28j
+ROM:08080E80                 MOVS            R0, #0
+ROM:08080E82                 B               loc_8080EAE
+ROM:08080E84 ; ---------------------------------------------------------------------------
+ROM:08080E84
+ROM:08080E84 loc_8080E84                             ; CODE XREF: sub_8080E28+46j
+ROM:08080E84                 LDR             R1, [R4,#0x1C]
+ROM:08080E86                 ADDS            R1, #0x70
+ROM:08080E88                 MOVS            R2, #0
+ROM:08080E8A                 LDRSH           R0, [R1,R2]
+ROM:08080E8C                 ADDS            R0, R4, R0
+ROM:08080E8E                 LDR             R2, [R1,#4]
+ROM:08080E90                 MOVS            R1, R5
+ROM:08080E92                 BL              sub_809193C
+ROM:08080E96                 MOVS            R4, R0
+ROM:08080E98                 LSLS            R4, R4, #0x18
+ROM:08080E9A                 LSRS            R4, R4, #0x18
+ROM:08080E9C                 LDR             R1, [R5,#0x1C]
+ROM:08080E9E                 MOVS            R2, #8
+ROM:08080EA0                 LDRSH           R0, [R1,R2]
+ROM:08080EA2                 ADDS            R0, R5, R0
+ROM:08080EA4                 LDR             R2, [R1,#0xC]
+ROM:08080EA6                 MOVS            R1, #3
+ROM:08080EA8                 BL              sub_809193C
+ROM:08080EAC                 ADDS            R0, R4, #0
+ROM:08080EAE
+ROM:08080EAE loc_8080EAE                             ; CODE XREF: sub_8080E28+5Aj
+ROM:08080EAE                 POP             {R4,R5}
+ROM:08080EB0                 POP             {R1}
+ROM:08080EB2                 BX              R1
+ROM:08080EB2 ; End of function sub_8080E28
+ROM:08080EB2
+ROM:08080EB4 ; ---------------------------------------------------------------------------
+ROM:08080EB4                 MOVS            R0, #0
+ROM:08080EB6                 BX              LR
+ROM:08080EB8

@@ -1,1254 +1,380 @@
-ROM:000A0DE4                 PUSH            {R4,R5,LR}
-ROM:000A0DE6                 MOVS            R4, R0
-ROM:000A0DE8                 MOVS            R5, R1
-ROM:000A0DEA                 LSLS            R4, R4, #0x10
-ROM:000A0DEC                 LSRS            R4, R4, #0x10
-ROM:000A0DEE                 LSLS            R5, R5, #0x10
-ROM:000A0DF0                 LSRS            R5, R5, #0x10
-ROM:000A0DF2                 MOVS            R0, #0x148
-ROM:000A0DF6                 BL              sub_5D3B4
-ROM:000A0DFA                 MOVS            R1, R4
-ROM:000A0DFC                 MOVS            R2, R5
-ROM:000A0DFE                 BL              sub_A18D0
-ROM:000A0E02                 POP             {R4,R5}
-ROM:000A0E04                 POP             {R1}
-ROM:000A0E06                 BX              R1
-ROM:000A0E08 ; ---------------------------------------------------------------------------
-ROM:000A0E08                 PUSH            {R4,R5,LR}
-ROM:000A0E0A                 MOVS            R4, R0
-ROM:000A0E0C                 MOVS            R5, R1
-ROM:000A0E0E                 LSLS            R4, R4, #0x10
-ROM:000A0E10                 LSRS            R4, R4, #0x10
-ROM:000A0E12                 LSLS            R5, R5, #0x10
-ROM:000A0E14                 LSRS            R5, R5, #0x10
-ROM:000A0E16                 MOVS            R0, #0x150
-ROM:000A0E1A                 BL              sub_5D3B4
-ROM:000A0E1E                 MOVS            R1, R4
-ROM:000A0E20                 MOVS            R2, R5
-ROM:000A0E22                 BL              sub_A199C
-ROM:000A0E26                 POP             {R4,R5}
-ROM:000A0E28                 POP             {R1}
-ROM:000A0E2A                 BX              R1
-ROM:000A0E2C ; ---------------------------------------------------------------------------
-ROM:000A0E2C                 PUSH            {R4,R5,LR}
-ROM:000A0E2E                 MOVS            R4, R0
-ROM:000A0E30                 MOVS            R5, R1
-ROM:000A0E32                 LSLS            R4, R4, #0x10
-ROM:000A0E34                 LSRS            R4, R4, #0x10
-ROM:000A0E36                 LSLS            R5, R5, #0x10
-ROM:000A0E38                 LSRS            R5, R5, #0x10
-ROM:000A0E3A                 MOVS            R0, #0x148
-ROM:000A0E3E                 BL              sub_5D3B4
-ROM:000A0E42                 MOVS            R1, R4
-ROM:000A0E44                 MOVS            R2, R5
-ROM:000A0E46                 BL              sub_A1AC4
-ROM:000A0E4A                 POP             {R4,R5}
-ROM:000A0E4C                 POP             {R1}
-ROM:000A0E4E                 BX              R1
-ROM:000A0E50 ; ---------------------------------------------------------------------------
-ROM:000A0E50                 PUSH            {R4,R5,LR}
-ROM:000A0E52                 MOVS            R4, R0
-ROM:000A0E54                 MOVS            R5, R1
-ROM:000A0E56                 LSLS            R4, R4, #0x10
-ROM:000A0E58                 LSRS            R4, R4, #0x10
-ROM:000A0E5A                 LSLS            R5, R5, #0x10
-ROM:000A0E5C                 LSRS            R5, R5, #0x10
-ROM:000A0E5E                 MOVS            R0, #0x14C
-ROM:000A0E62                 BL              sub_5D3B4
-ROM:000A0E66                 MOVS            R1, R4
-ROM:000A0E68                 MOVS            R2, R5
-ROM:000A0E6A                 BL              sub_A1B98
-ROM:000A0E6E                 POP             {R4,R5}
-ROM:000A0E70                 POP             {R1}
-ROM:000A0E72                 BX              R1
-ROM:000A0E74 ; ---------------------------------------------------------------------------
-ROM:000A0E74                 PUSH            {R4,R5,LR}
-ROM:000A0E76                 MOVS            R4, R0
-ROM:000A0E78                 MOVS            R5, R1
-ROM:000A0E7A                 LSLS            R4, R4, #0x10
-ROM:000A0E7C                 LSRS            R4, R4, #0x10
-ROM:000A0E7E                 LSLS            R5, R5, #0x10
-ROM:000A0E80                 LSRS            R5, R5, #0x10
-ROM:000A0E82                 MOVS            R0, #0x154
-ROM:000A0E86                 BL              sub_5D3B4
-ROM:000A0E8A                 MOVS            R1, R4
-ROM:000A0E8C                 MOVS            R2, R5
-ROM:000A0E8E                 BL              sub_A1C94
-ROM:000A0E92                 POP             {R4,R5}
-ROM:000A0E94                 POP             {R1}
-ROM:000A0E96                 BX              R1
-ROM:000A0E98 ; ---------------------------------------------------------------------------
-ROM:000A0E98                 PUSH            {R4,R5,LR}
-ROM:000A0E9A                 MOVS            R4, R0
-ROM:000A0E9C                 MOVS            R5, R1
-ROM:000A0E9E                 LSLS            R4, R4, #0x10
-ROM:000A0EA0                 LSRS            R4, R4, #0x10
-ROM:000A0EA2                 LSLS            R5, R5, #0x10
-ROM:000A0EA4                 LSRS            R5, R5, #0x10
-ROM:000A0EA6                 MOVS            R0, #0x154
-ROM:000A0EAA                 BL              sub_5D3B4
-ROM:000A0EAE                 MOVS            R1, R4
-ROM:000A0EB0                 MOVS            R2, R5
-ROM:000A0EB2                 BL              sub_A1DB4
-ROM:000A0EB6                 POP             {R4,R5}
-ROM:000A0EB8                 POP             {R1}
-ROM:000A0EBA                 BX              R1
-ROM:000A0EBC ; ---------------------------------------------------------------------------
-ROM:000A0EBC                 PUSH            {R4,R5,LR}
-ROM:000A0EBE                 MOVS            R4, R0
-ROM:000A0EC0                 MOVS            R5, R1
-ROM:000A0EC2                 LSLS            R4, R4, #0x10
-ROM:000A0EC4                 LSRS            R4, R4, #0x10
-ROM:000A0EC6                 LSLS            R5, R5, #0x10
-ROM:000A0EC8                 LSRS            R5, R5, #0x10
-ROM:000A0ECA                 MOVS            R0, #0x16C
-ROM:000A0ECE                 BL              sub_5D3B4
-ROM:000A0ED2                 MOVS            R1, R4
-ROM:000A0ED4                 MOVS            R2, R5
-ROM:000A0ED6                 BL              sub_A1ED4
-ROM:000A0EDA                 POP             {R4,R5}
-ROM:000A0EDC                 POP             {R1}
-ROM:000A0EDE                 BX              R1
-ROM:000A0EE0 ; ---------------------------------------------------------------------------
-ROM:000A0EE0                 PUSH            {R4,R5,LR}
-ROM:000A0EE2                 MOVS            R4, R0
-ROM:000A0EE4                 MOVS            R5, R1
-ROM:000A0EE6                 LSLS            R4, R4, #0x10
-ROM:000A0EE8                 LSRS            R4, R4, #0x10
-ROM:000A0EEA                 LSLS            R5, R5, #0x10
-ROM:000A0EEC                 LSRS            R5, R5, #0x10
-ROM:000A0EEE                 MOVS            R0, #0x14C
-ROM:000A0EF2                 BL              sub_5D3B4
-ROM:000A0EF6                 MOVS            R1, R4
-ROM:000A0EF8                 MOVS            R2, R5
-ROM:000A0EFA                 BL              sub_A1FC0
-ROM:000A0EFE                 POP             {R4,R5}
-ROM:000A0F00                 POP             {R1}
-ROM:000A0F02                 BX              R1
-ROM:000A0F04 ; ---------------------------------------------------------------------------
-ROM:000A0F04                 PUSH            {R4,R5,LR}
-ROM:000A0F06                 MOVS            R4, R0
-ROM:000A0F08                 MOVS            R5, R1
-ROM:000A0F0A                 LSLS            R4, R4, #0x10
-ROM:000A0F0C                 LSRS            R4, R4, #0x10
-ROM:000A0F0E                 LSLS            R5, R5, #0x10
-ROM:000A0F10                 LSRS            R5, R5, #0x10
-ROM:000A0F12                 MOVS            R0, #0x14C
-ROM:000A0F16                 BL              sub_5D3B4
-ROM:000A0F1A                 MOVS            R1, R4
-ROM:000A0F1C                 MOVS            R2, R5
-ROM:000A0F1E                 BL              sub_A20B8
-ROM:000A0F22                 POP             {R4,R5}
-ROM:000A0F24                 POP             {R1}
-ROM:000A0F26                 BX              R1
-ROM:000A0F28 ; ---------------------------------------------------------------------------
-ROM:000A0F28                 PUSH            {R4,R5,LR}
-ROM:000A0F2A                 MOVS            R4, R0
-ROM:000A0F2C                 MOVS            R5, R1
-ROM:000A0F2E                 LSLS            R4, R4, #0x10
-ROM:000A0F30                 LSRS            R4, R4, #0x10
-ROM:000A0F32                 LSLS            R5, R5, #0x10
-ROM:000A0F34                 LSRS            R5, R5, #0x10
-ROM:000A0F36                 MOVS            R0, #0x14C
-ROM:000A0F3A                 BL              sub_5D3B4
-ROM:000A0F3E                 MOVS            R1, R4
-ROM:000A0F40                 MOVS            R2, R5
-ROM:000A0F42                 BL              sub_A218C
-ROM:000A0F46                 POP             {R4,R5}
-ROM:000A0F48                 POP             {R1}
-ROM:000A0F4A                 BX              R1
-ROM:000A0F4C ; ---------------------------------------------------------------------------
-ROM:000A0F4C                 PUSH            {R4,R5,LR}
-ROM:000A0F4E                 MOVS            R4, R0
-ROM:000A0F50                 MOVS            R5, R1
-ROM:000A0F52                 LSLS            R4, R4, #0x10
-ROM:000A0F54                 LSRS            R4, R4, #0x10
-ROM:000A0F56                 LSLS            R5, R5, #0x10
-ROM:000A0F58                 LSRS            R5, R5, #0x10
-ROM:000A0F5A                 MOVS            R0, #0x14C
-ROM:000A0F5E                 BL              sub_5D3B4
-ROM:000A0F62                 MOVS            R1, R4
-ROM:000A0F64                 MOVS            R2, R5
-ROM:000A0F66                 BL              sub_A226C
-ROM:000A0F6A                 POP             {R4,R5}
-ROM:000A0F6C                 POP             {R1}
-ROM:000A0F6E                 BX              R1
-ROM:000A0F70 ; ---------------------------------------------------------------------------
-ROM:000A0F70                 PUSH            {R4,R5,LR}
-ROM:000A0F72                 MOVS            R4, R0
-ROM:000A0F74                 MOVS            R5, R1
-ROM:000A0F76                 LSLS            R4, R4, #0x10
-ROM:000A0F78                 LSRS            R4, R4, #0x10
-ROM:000A0F7A                 LSLS            R5, R5, #0x10
-ROM:000A0F7C                 LSRS            R5, R5, #0x10
-ROM:000A0F7E                 MOVS            R0, #0x158
-ROM:000A0F82                 BL              sub_5D3B4
-ROM:000A0F86                 MOVS            R1, R4
-ROM:000A0F88                 MOVS            R2, R5
-ROM:000A0F8A                 BL              sub_A234C
-ROM:000A0F8E                 POP             {R4,R5}
-ROM:000A0F90                 POP             {R1}
-ROM:000A0F92                 BX              R1
-ROM:000A0F94 ; ---------------------------------------------------------------------------
-ROM:000A0F94                 PUSH            {R4,R5,LR}
-ROM:000A0F96                 MOVS            R4, R0
-ROM:000A0F98                 MOVS            R5, R1
-ROM:000A0F9A                 LSLS            R4, R4, #0x10
-ROM:000A0F9C                 LSRS            R4, R4, #0x10
-ROM:000A0F9E                 LSLS            R5, R5, #0x10
-ROM:000A0FA0                 LSRS            R5, R5, #0x10
-ROM:000A0FA2                 MOVS            R0, #0x150
-ROM:000A0FA6                 BL              sub_5D3B4
-ROM:000A0FAA                 MOVS            R1, R4
-ROM:000A0FAC                 MOVS            R2, R5
-ROM:000A0FAE                 BL              sub_A2460
-ROM:000A0FB2                 POP             {R4,R5}
-ROM:000A0FB4                 POP             {R1}
-ROM:000A0FB6                 BX              R1
-ROM:000A0FB8 ; ---------------------------------------------------------------------------
-ROM:000A0FB8                 PUSH            {R4,R5,LR}
-ROM:000A0FBA                 MOVS            R4, R0
-ROM:000A0FBC                 MOVS            R5, R1
-ROM:000A0FBE                 LSLS            R4, R4, #0x10
-ROM:000A0FC0                 LSRS            R4, R4, #0x10
-ROM:000A0FC2                 LSLS            R5, R5, #0x10
-ROM:000A0FC4                 LSRS            R5, R5, #0x10
-ROM:000A0FC6                 MOVS            R0, #0x14C
-ROM:000A0FCA                 BL              sub_5D3B4
-ROM:000A0FCE                 MOVS            R1, R4
-ROM:000A0FD0                 MOVS            R2, R5
-ROM:000A0FD2                 BL              sub_A2568
-ROM:000A0FD6                 POP             {R4,R5}
-ROM:000A0FD8                 POP             {R1}
-ROM:000A0FDA                 BX              R1
-ROM:000A0FDC ; ---------------------------------------------------------------------------
-ROM:000A0FDC                 PUSH            {R4,R5,LR}
-ROM:000A0FDE                 MOVS            R4, R0
-ROM:000A0FE0                 MOVS            R5, R1
-ROM:000A0FE2                 LSLS            R4, R4, #0x10
-ROM:000A0FE4                 LSRS            R4, R4, #0x10
-ROM:000A0FE6                 LSLS            R5, R5, #0x10
-ROM:000A0FE8                 LSRS            R5, R5, #0x10
-ROM:000A0FEA                 MOVS            R0, #0x148
-ROM:000A0FEE                 BL              sub_5D3B4
-ROM:000A0FF2                 MOVS            R1, R4
-ROM:000A0FF4                 MOVS            R2, R5
-ROM:000A0FF6                 BL              sub_A2648
-ROM:000A0FFA                 POP             {R4,R5}
-ROM:000A0FFC                 POP             {R1}
-ROM:000A0FFE                 BX              R1
-ROM:000A1000 ; ---------------------------------------------------------------------------
-ROM:000A1000                 PUSH            {R4,R5,LR}
-ROM:000A1002                 MOVS            R4, R0
-ROM:000A1004                 MOVS            R5, R1
-ROM:000A1006                 LSLS            R4, R4, #0x10
-ROM:000A1008                 LSRS            R4, R4, #0x10
-ROM:000A100A                 LSLS            R5, R5, #0x10
-ROM:000A100C                 LSRS            R5, R5, #0x10
-ROM:000A100E                 MOVS            R0, #0x15C
-ROM:000A1012                 BL              sub_5D3B4
-ROM:000A1016                 MOVS            R1, R4
-ROM:000A1018                 MOVS            R2, R5
-ROM:000A101A                 BL              sub_A2714
-ROM:000A101E                 POP             {R4,R5}
-ROM:000A1020                 POP             {R1}
-ROM:000A1022                 BX              R1
-ROM:000A1024 ; ---------------------------------------------------------------------------
-ROM:000A1024                 PUSH            {R4,R5,LR}
-ROM:000A1026                 MOVS            R4, R0
-ROM:000A1028                 MOVS            R5, R1
-ROM:000A102A                 LSLS            R4, R4, #0x10
-ROM:000A102C                 LSRS            R4, R4, #0x10
-ROM:000A102E                 LSLS            R5, R5, #0x10
-ROM:000A1030                 LSRS            R5, R5, #0x10
-ROM:000A1032                 MOVS            R0, #0x148
-ROM:000A1036                 BL              sub_5D3B4
-ROM:000A103A                 MOVS            R1, R4
-ROM:000A103C                 MOVS            R2, R5
-ROM:000A103E                 BL              sub_A2848
-ROM:000A1042                 POP             {R4,R5}
-ROM:000A1044                 POP             {R1}
-ROM:000A1046                 BX              R1
-ROM:000A1048 ; ---------------------------------------------------------------------------
-ROM:000A1048                 PUSH            {R4,R5,LR}
-ROM:000A104A                 MOVS            R4, R0
-ROM:000A104C                 MOVS            R5, R1
-ROM:000A104E                 LSLS            R4, R4, #0x10
-ROM:000A1050                 LSRS            R4, R4, #0x10
-ROM:000A1052                 LSLS            R5, R5, #0x10
-ROM:000A1054                 LSRS            R5, R5, #0x10
-ROM:000A1056                 MOVS            R0, #0x148
-ROM:000A105A                 BL              sub_5D3B4
-ROM:000A105E                 MOVS            R1, R4
-ROM:000A1060                 MOVS            R2, R5
-ROM:000A1062                 BL              sub_A2914
-ROM:000A1066                 POP             {R4,R5}
-ROM:000A1068                 POP             {R1}
-ROM:000A106A                 BX              R1
-ROM:000A106C ; ---------------------------------------------------------------------------
-ROM:000A106C                 PUSH            {R4,R5,LR}
-ROM:000A106E                 MOVS            R4, R0
-ROM:000A1070                 MOVS            R5, R1
-ROM:000A1072                 LSLS            R4, R4, #0x10
-ROM:000A1074                 LSRS            R4, R4, #0x10
-ROM:000A1076                 LSLS            R5, R5, #0x10
-ROM:000A1078                 LSRS            R5, R5, #0x10
-ROM:000A107A                 MOVS            R0, #0x148
-ROM:000A107E                 BL              sub_5D3B4
-ROM:000A1082                 MOVS            R1, R4
-ROM:000A1084                 MOVS            R2, R5
-ROM:000A1086                 BL              sub_A29E0
-ROM:000A108A                 POP             {R4,R5}
-ROM:000A108C                 POP             {R1}
-ROM:000A108E                 BX              R1
-ROM:000A1090 ; ---------------------------------------------------------------------------
-ROM:000A1090                 PUSH            {R4,R5,LR}
-ROM:000A1092                 MOVS            R4, R0
-ROM:000A1094                 MOVS            R5, R1
-ROM:000A1096                 LSLS            R4, R4, #0x10
-ROM:000A1098                 LSRS            R4, R4, #0x10
-ROM:000A109A                 LSLS            R5, R5, #0x10
-ROM:000A109C                 LSRS            R5, R5, #0x10
-ROM:000A109E                 MOVS            R0, #0x148
-ROM:000A10A2                 BL              sub_5D3B4
-ROM:000A10A6                 MOVS            R1, R4
-ROM:000A10A8                 MOVS            R2, R5
-ROM:000A10AA                 BL              sub_A2AAC
-ROM:000A10AE                 POP             {R4,R5}
-ROM:000A10B0                 POP             {R1}
-ROM:000A10B2                 BX              R1
-ROM:000A10B4 ; ---------------------------------------------------------------------------
-ROM:000A10B4                 PUSH            {R4,R5,LR}
-ROM:000A10B6                 MOVS            R4, R0
-ROM:000A10B8                 MOVS            R5, R1
-ROM:000A10BA                 LSLS            R4, R4, #0x10
-ROM:000A10BC                 LSRS            R4, R4, #0x10
-ROM:000A10BE                 LSLS            R5, R5, #0x10
-ROM:000A10C0                 LSRS            R5, R5, #0x10
-ROM:000A10C2                 MOVS            R0, #0x148
-ROM:000A10C6                 BL              sub_5D3B4
-ROM:000A10CA                 MOVS            R1, R4
-ROM:000A10CC                 MOVS            R2, R5
-ROM:000A10CE                 BL              sub_A2B78
-ROM:000A10D2                 POP             {R4,R5}
-ROM:000A10D4                 POP             {R1}
-ROM:000A10D6                 BX              R1
-ROM:000A10D8 ; ---------------------------------------------------------------------------
-ROM:000A10D8                 PUSH            {R4,R5,LR}
-ROM:000A10DA                 MOVS            R4, R0
-ROM:000A10DC                 MOVS            R5, R1
-ROM:000A10DE                 LSLS            R4, R4, #0x10
-ROM:000A10E0                 LSRS            R4, R4, #0x10
-ROM:000A10E2                 LSLS            R5, R5, #0x10
-ROM:000A10E4                 LSRS            R5, R5, #0x10
-ROM:000A10E6                 MOVS            R0, #0x148
-ROM:000A10EA                 BL              sub_5D3B4
-ROM:000A10EE                 MOVS            R1, R4
-ROM:000A10F0                 MOVS            R2, R5
-ROM:000A10F2                 BL              sub_A2C44
-ROM:000A10F6                 POP             {R4,R5}
-ROM:000A10F8                 POP             {R1}
-ROM:000A10FA                 BX              R1
-ROM:000A10FC ; ---------------------------------------------------------------------------
-ROM:000A10FC                 PUSH            {R4,R5,LR}
-ROM:000A10FE                 MOVS            R4, R0
-ROM:000A1100                 MOVS            R5, R1
-ROM:000A1102                 LSLS            R4, R4, #0x10
-ROM:000A1104                 LSRS            R4, R4, #0x10
-ROM:000A1106                 LSLS            R5, R5, #0x10
-ROM:000A1108                 LSRS            R5, R5, #0x10
-ROM:000A110A                 MOVS            R0, #0x148
-ROM:000A110E                 BL              sub_5D3B4
-ROM:000A1112                 MOVS            R1, R4
-ROM:000A1114                 MOVS            R2, R5
-ROM:000A1116                 BL              sub_A2D10
-ROM:000A111A                 POP             {R4,R5}
-ROM:000A111C                 POP             {R1}
-ROM:000A111E                 BX              R1
-ROM:000A1120 ; ---------------------------------------------------------------------------
-ROM:000A1120                 PUSH            {R4,R5,LR}
-ROM:000A1122                 MOVS            R4, R0
-ROM:000A1124                 MOVS            R5, R1
-ROM:000A1126                 LSLS            R4, R4, #0x10
-ROM:000A1128                 LSRS            R4, R4, #0x10
-ROM:000A112A                 LSLS            R5, R5, #0x10
-ROM:000A112C                 LSRS            R5, R5, #0x10
-ROM:000A112E                 MOVS            R0, #0x148
-ROM:000A1132                 BL              sub_5D3B4
-ROM:000A1136                 MOVS            R1, R4
-ROM:000A1138                 MOVS            R2, R5
-ROM:000A113A                 BL              sub_A2DDC
-ROM:000A113E                 POP             {R4,R5}
-ROM:000A1140                 POP             {R1}
-ROM:000A1142                 BX              R1
-ROM:000A1144 ; ---------------------------------------------------------------------------
-ROM:000A1144                 PUSH            {R4,R5,LR}
-ROM:000A1146                 MOVS            R4, R0
-ROM:000A1148                 MOVS            R5, R1
-ROM:000A114A                 LSLS            R4, R4, #0x10
-ROM:000A114C                 LSRS            R4, R4, #0x10
-ROM:000A114E                 LSLS            R5, R5, #0x10
-ROM:000A1150                 LSRS            R5, R5, #0x10
-ROM:000A1152                 MOVS            R0, #0x148
-ROM:000A1156                 BL              sub_5D3B4
-ROM:000A115A                 MOVS            R1, R4
-ROM:000A115C                 MOVS            R2, R5
-ROM:000A115E                 BL              sub_A2EA8
-ROM:000A1162                 POP             {R4,R5}
-ROM:000A1164                 POP             {R1}
-ROM:000A1166                 BX              R1
-ROM:000A1168 ; ---------------------------------------------------------------------------
-ROM:000A1168                 PUSH            {R4,R5,LR}
-ROM:000A116A                 MOVS            R4, R0
-ROM:000A116C                 MOVS            R5, R1
-ROM:000A116E                 LSLS            R4, R4, #0x10
-ROM:000A1170                 LSRS            R4, R4, #0x10
-ROM:000A1172                 LSLS            R5, R5, #0x10
-ROM:000A1174                 LSRS            R5, R5, #0x10
-ROM:000A1176                 MOVS            R0, #0x148
-ROM:000A117A                 BL              sub_5D3B4
-ROM:000A117E                 MOVS            R1, R4
-ROM:000A1180                 MOVS            R2, R5
-ROM:000A1182                 BL              sub_A2F74
-ROM:000A1186                 POP             {R4,R5}
-ROM:000A1188                 POP             {R1}
-ROM:000A118A                 BX              R1
-ROM:000A118C ; ---------------------------------------------------------------------------
-ROM:000A118C                 PUSH            {R4,R5,LR}
-ROM:000A118E                 MOVS            R4, R0
-ROM:000A1190                 MOVS            R5, R1
-ROM:000A1192                 LSLS            R4, R4, #0x10
-ROM:000A1194                 LSRS            R4, R4, #0x10
-ROM:000A1196                 LSLS            R5, R5, #0x10
-ROM:000A1198                 LSRS            R5, R5, #0x10
-ROM:000A119A                 MOVS            R0, #0x148
-ROM:000A119E                 BL              sub_5D3B4
-ROM:000A11A2                 MOVS            R1, R4
-ROM:000A11A4                 MOVS            R2, R5
-ROM:000A11A6                 BL              sub_A3040
-ROM:000A11AA                 POP             {R4,R5}
-ROM:000A11AC                 POP             {R1}
-ROM:000A11AE                 BX              R1
-ROM:000A11B0 ; ---------------------------------------------------------------------------
-ROM:000A11B0                 PUSH            {R4,R5,LR}
-ROM:000A11B2                 MOVS            R4, R0
-ROM:000A11B4                 MOVS            R5, R1
-ROM:000A11B6                 LSLS            R4, R4, #0x10
-ROM:000A11B8                 LSRS            R4, R4, #0x10
-ROM:000A11BA                 LSLS            R5, R5, #0x10
-ROM:000A11BC                 LSRS            R5, R5, #0x10
-ROM:000A11BE                 MOVS            R0, #0x150
-ROM:000A11C2                 BL              sub_5D3B4
-ROM:000A11C6                 MOVS            R1, R4
-ROM:000A11C8                 MOVS            R2, R5
-ROM:000A11CA                 BL              sub_A310C
-ROM:000A11CE                 POP             {R4,R5}
-ROM:000A11D0                 POP             {R1}
-ROM:000A11D2                 BX              R1
-ROM:000A11D4 ; ---------------------------------------------------------------------------
-ROM:000A11D4                 PUSH            {R4,R5,LR}
-ROM:000A11D6                 MOVS            R4, R0
-ROM:000A11D8                 MOVS            R5, R1
-ROM:000A11DA                 LSLS            R4, R4, #0x10
-ROM:000A11DC                 LSRS            R4, R4, #0x10
-ROM:000A11DE                 LSLS            R5, R5, #0x10
-ROM:000A11E0                 LSRS            R5, R5, #0x10
-ROM:000A11E2                 MOVS            R0, #0x148
-ROM:000A11E6                 BL              sub_5D3B4
-ROM:000A11EA                 MOVS            R1, R4
-ROM:000A11EC                 MOVS            R2, R5
-ROM:000A11EE                 BL              sub_A3214
-ROM:000A11F2                 POP             {R4,R5}
-ROM:000A11F4                 POP             {R1}
-ROM:000A11F6                 BX              R1
-ROM:000A11F8 ; ---------------------------------------------------------------------------
-ROM:000A11F8                 PUSH            {R4,R5,LR}
-ROM:000A11FA                 MOVS            R4, R0
-ROM:000A11FC                 MOVS            R5, R1
-ROM:000A11FE                 LSLS            R4, R4, #0x10
-ROM:000A1200                 LSRS            R4, R4, #0x10
-ROM:000A1202                 LSLS            R5, R5, #0x10
-ROM:000A1204                 LSRS            R5, R5, #0x10
-ROM:000A1206                 MOVS            R0, #0x148
-ROM:000A120A                 BL              sub_5D3B4
-ROM:000A120E                 MOVS            R1, R4
-ROM:000A1210                 MOVS            R2, R5
-ROM:000A1212                 BL              sub_A32E0
-ROM:000A1216                 POP             {R4,R5}
-ROM:000A1218                 POP             {R1}
-ROM:000A121A                 BX              R1
-ROM:000A121C ; ---------------------------------------------------------------------------
-ROM:000A121C                 PUSH            {R4,R5,LR}
-ROM:000A121E                 MOVS            R4, R0
-ROM:000A1220                 MOVS            R5, R1
-ROM:000A1222                 LSLS            R4, R4, #0x10
-ROM:000A1224                 LSRS            R4, R4, #0x10
-ROM:000A1226                 LSLS            R5, R5, #0x10
-ROM:000A1228                 LSRS            R5, R5, #0x10
-ROM:000A122A                 MOVS            R0, #0x148
-ROM:000A122E                 BL              sub_5D3B4
-ROM:000A1232                 MOVS            R1, R4
-ROM:000A1234                 MOVS            R2, R5
-ROM:000A1236                 BL              sub_A33AC
-ROM:000A123A                 POP             {R4,R5}
-ROM:000A123C                 POP             {R1}
-ROM:000A123E                 BX              R1
-ROM:000A1240 ; ---------------------------------------------------------------------------
-ROM:000A1240                 PUSH            {R4,R5,LR}
-ROM:000A1242                 MOVS            R4, R0
-ROM:000A1244                 MOVS            R5, R1
-ROM:000A1246                 LSLS            R4, R4, #0x10
-ROM:000A1248                 LSRS            R4, R4, #0x10
-ROM:000A124A                 LSLS            R5, R5, #0x10
-ROM:000A124C                 LSRS            R5, R5, #0x10
-ROM:000A124E                 MOVS            R0, #0x150
-ROM:000A1252                 BL              sub_5D3B4
-ROM:000A1256                 MOVS            R1, R4
-ROM:000A1258                 MOVS            R2, R5
-ROM:000A125A                 BL              sub_A3478
-ROM:000A125E                 POP             {R4,R5}
-ROM:000A1260                 POP             {R1}
-ROM:000A1262                 BX              R1
-ROM:000A1264 ; ---------------------------------------------------------------------------
-ROM:000A1264                 PUSH            {R4,R5,LR}
-ROM:000A1266                 MOVS            R4, R0
-ROM:000A1268                 MOVS            R5, R1
-ROM:000A126A                 LSLS            R4, R4, #0x10
-ROM:000A126C                 LSRS            R4, R4, #0x10
-ROM:000A126E                 LSLS            R5, R5, #0x10
-ROM:000A1270                 LSRS            R5, R5, #0x10
-ROM:000A1272                 MOVS            R0, #0x148
-ROM:000A1276                 BL              sub_5D3B4
-ROM:000A127A                 MOVS            R1, R4
-ROM:000A127C                 MOVS            R2, R5
-ROM:000A127E                 BL              sub_A3554
-ROM:000A1282                 POP             {R4,R5}
-ROM:000A1284                 POP             {R1}
-ROM:000A1286                 BX              R1
-ROM:000A1288 ; ---------------------------------------------------------------------------
-ROM:000A1288                 PUSH            {R4,R5,LR}
-ROM:000A128A                 MOVS            R4, R0
-ROM:000A128C                 MOVS            R5, R1
-ROM:000A128E                 LSLS            R4, R4, #0x10
-ROM:000A1290                 LSRS            R4, R4, #0x10
-ROM:000A1292                 LSLS            R5, R5, #0x10
-ROM:000A1294                 LSRS            R5, R5, #0x10
-ROM:000A1296                 MOVS            R0, #0x148
-ROM:000A129A                 BL              sub_5D3B4
-ROM:000A129E                 MOVS            R1, R4
-ROM:000A12A0                 MOVS            R2, R5
-ROM:000A12A2                 BL              sub_A3620
-ROM:000A12A6                 POP             {R4,R5}
-ROM:000A12A8                 POP             {R1}
-ROM:000A12AA                 BX              R1
-ROM:000A12AC ; ---------------------------------------------------------------------------
-ROM:000A12AC                 PUSH            {R4,R5,LR}
-ROM:000A12AE                 MOVS            R4, R0
-ROM:000A12B0                 MOVS            R5, R1
-ROM:000A12B2                 LSLS            R4, R4, #0x10
-ROM:000A12B4                 LSRS            R4, R4, #0x10
-ROM:000A12B6                 LSLS            R5, R5, #0x10
-ROM:000A12B8                 LSRS            R5, R5, #0x10
-ROM:000A12BA                 MOVS            R0, #0x148
-ROM:000A12BE                 BL              sub_5D3B4
-ROM:000A12C2                 MOVS            R1, R4
-ROM:000A12C4                 MOVS            R2, R5
-ROM:000A12C6                 BL              sub_A36EC
-ROM:000A12CA                 POP             {R4,R5}
-ROM:000A12CC                 POP             {R1}
-ROM:000A12CE                 BX              R1
-ROM:000A12D0 ; ---------------------------------------------------------------------------
-ROM:000A12D0                 PUSH            {R4,R5,LR}
-ROM:000A12D2                 MOVS            R4, R0
-ROM:000A12D4                 MOVS            R5, R1
-ROM:000A12D6                 LSLS            R4, R4, #0x10
-ROM:000A12D8                 LSRS            R4, R4, #0x10
-ROM:000A12DA                 LSLS            R5, R5, #0x10
-ROM:000A12DC                 LSRS            R5, R5, #0x10
-ROM:000A12DE                 MOVS            R0, #0x148
-ROM:000A12E2                 BL              sub_5D3B4
-ROM:000A12E6                 MOVS            R1, R4
-ROM:000A12E8                 MOVS            R2, R5
-ROM:000A12EA                 BL              sub_A37B8
-ROM:000A12EE                 POP             {R4,R5}
-ROM:000A12F0                 POP             {R1}
-ROM:000A12F2                 BX              R1
-ROM:000A12F4 ; ---------------------------------------------------------------------------
-ROM:000A12F4                 PUSH            {R4,R5,LR}
-ROM:000A12F6                 MOVS            R4, R0
-ROM:000A12F8                 MOVS            R5, R1
-ROM:000A12FA                 LSLS            R4, R4, #0x10
-ROM:000A12FC                 LSRS            R4, R4, #0x10
-ROM:000A12FE                 LSLS            R5, R5, #0x10
-ROM:000A1300                 LSRS            R5, R5, #0x10
-ROM:000A1302                 MOVS            R0, #0x148
-ROM:000A1306                 BL              sub_5D3B4
-ROM:000A130A                 MOVS            R1, R4
-ROM:000A130C                 MOVS            R2, R5
-ROM:000A130E                 BL              sub_A3884
-ROM:000A1312                 POP             {R4,R5}
-ROM:000A1314                 POP             {R1}
-ROM:000A1316                 BX              R1
-ROM:000A1318 ; ---------------------------------------------------------------------------
-ROM:000A1318                 PUSH            {R4,R5,LR}
-ROM:000A131A                 MOVS            R4, R0
-ROM:000A131C                 MOVS            R5, R1
-ROM:000A131E                 LSLS            R4, R4, #0x10
-ROM:000A1320                 LSRS            R4, R4, #0x10
-ROM:000A1322                 LSLS            R5, R5, #0x10
-ROM:000A1324                 LSRS            R5, R5, #0x10
-ROM:000A1326                 MOVS            R0, #0x14C
-ROM:000A132A                 BL              sub_5D3B4
-ROM:000A132E                 MOVS            R1, R4
-ROM:000A1330                 MOVS            R2, R5
-ROM:000A1332                 BL              sub_A3950
-ROM:000A1336                 POP             {R4,R5}
-ROM:000A1338                 POP             {R1}
-ROM:000A133A                 BX              R1
-ROM:000A133C ; ---------------------------------------------------------------------------
-ROM:000A133C                 PUSH            {R4,R5,LR}
-ROM:000A133E                 MOVS            R4, R0
-ROM:000A1340                 MOVS            R5, R1
-ROM:000A1342                 LSLS            R4, R4, #0x10
-ROM:000A1344                 LSRS            R4, R4, #0x10
-ROM:000A1346                 LSLS            R5, R5, #0x10
-ROM:000A1348                 LSRS            R5, R5, #0x10
-ROM:000A134A                 MOVS            R0, #0x14C
-ROM:000A134E                 BL              sub_5D3B4
-ROM:000A1352                 MOVS            R1, R4
-ROM:000A1354                 MOVS            R2, R5
-ROM:000A1356                 BL              sub_A3A38
-ROM:000A135A                 POP             {R4,R5}
-ROM:000A135C                 POP             {R1}
-ROM:000A135E                 BX              R1
-ROM:000A1360 ; ---------------------------------------------------------------------------
-ROM:000A1360                 PUSH            {R4,R5,LR}
-ROM:000A1362                 MOVS            R4, R0
-ROM:000A1364                 MOVS            R5, R1
-ROM:000A1366                 LSLS            R4, R4, #0x10
-ROM:000A1368                 LSRS            R4, R4, #0x10
-ROM:000A136A                 LSLS            R5, R5, #0x10
-ROM:000A136C                 LSRS            R5, R5, #0x10
-ROM:000A136E                 MOVS            R0, #0x148
-ROM:000A1372                 BL              sub_5D3B4
-ROM:000A1376                 MOVS            R1, R4
-ROM:000A1378                 MOVS            R2, R5
-ROM:000A137A                 BL              sub_A3B18
-ROM:000A137E                 POP             {R4,R5}
-ROM:000A1380                 POP             {R1}
-ROM:000A1382                 BX              R1
-ROM:000A1384 ; ---------------------------------------------------------------------------
-ROM:000A1384                 PUSH            {R4,R5,LR}
-ROM:000A1386                 MOVS            R4, R0
-ROM:000A1388                 MOVS            R5, R1
-ROM:000A138A                 LSLS            R4, R4, #0x10
-ROM:000A138C                 LSRS            R4, R4, #0x10
-ROM:000A138E                 LSLS            R5, R5, #0x10
-ROM:000A1390                 LSRS            R5, R5, #0x10
-ROM:000A1392                 MOVS            R0, #0x148
-ROM:000A1396                 BL              sub_5D3B4
-ROM:000A139A                 MOVS            R1, R4
-ROM:000A139C                 MOVS            R2, R5
-ROM:000A139E                 BL              sub_A3BE4
-ROM:000A13A2                 POP             {R4,R5}
-ROM:000A13A4                 POP             {R1}
-ROM:000A13A6                 BX              R1
-ROM:000A13A8 ; ---------------------------------------------------------------------------
-ROM:000A13A8                 PUSH            {R4,R5,LR}
-ROM:000A13AA                 MOVS            R4, R0
-ROM:000A13AC                 MOVS            R5, R1
-ROM:000A13AE                 LSLS            R4, R4, #0x10
-ROM:000A13B0                 LSRS            R4, R4, #0x10
-ROM:000A13B2                 LSLS            R5, R5, #0x10
-ROM:000A13B4                 LSRS            R5, R5, #0x10
-ROM:000A13B6                 MOVS            R0, #0x14C
-ROM:000A13BA                 BL              sub_5D3B4
-ROM:000A13BE                 MOVS            R1, R4
-ROM:000A13C0                 MOVS            R2, R5
-ROM:000A13C2                 BL              sub_A3CB0
-ROM:000A13C6                 POP             {R4,R5}
-ROM:000A13C8                 POP             {R1}
-ROM:000A13CA                 BX              R1
-ROM:000A13CC ; ---------------------------------------------------------------------------
-ROM:000A13CC                 PUSH            {R4,R5,LR}
-ROM:000A13CE                 MOVS            R4, R0
-ROM:000A13D0                 MOVS            R5, R1
-ROM:000A13D2                 LSLS            R4, R4, #0x10
-ROM:000A13D4                 LSRS            R4, R4, #0x10
-ROM:000A13D6                 LSLS            R5, R5, #0x10
-ROM:000A13D8                 LSRS            R5, R5, #0x10
-ROM:000A13DA                 MOVS            R0, #0x150
-ROM:000A13DE                 BL              sub_5D3B4
-ROM:000A13E2                 MOVS            R1, R4
-ROM:000A13E4                 MOVS            R2, R5
-ROM:000A13E6                 BL              sub_A3D90
-ROM:000A13EA                 POP             {R4,R5}
-ROM:000A13EC                 POP             {R1}
-ROM:000A13EE                 BX              R1
-ROM:000A13F0 ; ---------------------------------------------------------------------------
-ROM:000A13F0                 PUSH            {R4,R5,LR}
-ROM:000A13F2                 MOVS            R4, R0
-ROM:000A13F4                 MOVS            R5, R1
-ROM:000A13F6                 LSLS            R4, R4, #0x10
-ROM:000A13F8                 LSRS            R4, R4, #0x10
-ROM:000A13FA                 LSLS            R5, R5, #0x10
-ROM:000A13FC                 LSRS            R5, R5, #0x10
-ROM:000A13FE                 MOVS            R0, #0x14C
-ROM:000A1402                 BL              sub_5D3B4
-ROM:000A1406                 MOVS            R1, R4
-ROM:000A1408                 MOVS            R2, R5
-ROM:000A140A                 BL              sub_A3E8C
-ROM:000A140E                 POP             {R4,R5}
-ROM:000A1410                 POP             {R1}
-ROM:000A1412                 BX              R1
-ROM:000A1414 ; ---------------------------------------------------------------------------
-ROM:000A1414                 PUSH            {R4,R5,LR}
-ROM:000A1416                 MOVS            R4, R0
-ROM:000A1418                 MOVS            R5, R1
-ROM:000A141A                 LSLS            R4, R4, #0x10
-ROM:000A141C                 LSRS            R4, R4, #0x10
-ROM:000A141E                 LSLS            R5, R5, #0x10
-ROM:000A1420                 LSRS            R5, R5, #0x10
-ROM:000A1422                 MOVS            R0, #0x148
-ROM:000A1426                 BL              sub_5D3B4
-ROM:000A142A                 MOVS            R1, R4
-ROM:000A142C                 MOVS            R2, R5
-ROM:000A142E                 BL              sub_A3F60
-ROM:000A1432                 POP             {R4,R5}
-ROM:000A1434                 POP             {R1}
-ROM:000A1436                 BX              R1
-ROM:000A1438 ; ---------------------------------------------------------------------------
-ROM:000A1438                 PUSH            {R4,R5,LR}
-ROM:000A143A                 MOVS            R4, R0
-ROM:000A143C                 MOVS            R5, R1
-ROM:000A143E                 LSLS            R4, R4, #0x10
-ROM:000A1440                 LSRS            R4, R4, #0x10
-ROM:000A1442                 LSLS            R5, R5, #0x10
-ROM:000A1444                 LSRS            R5, R5, #0x10
-ROM:000A1446                 MOVS            R0, #0x14C
-ROM:000A144A                 BL              sub_5D3B4
-ROM:000A144E                 MOVS            R1, R4
-ROM:000A1450                 MOVS            R2, R5
-ROM:000A1452                 BL              sub_A402C
-ROM:000A1456                 POP             {R4,R5}
-ROM:000A1458                 POP             {R1}
-ROM:000A145A                 BX              R1
-ROM:000A145C ; ---------------------------------------------------------------------------
-ROM:000A145C                 PUSH            {R4,R5,LR}
-ROM:000A145E                 MOVS            R4, R0
-ROM:000A1460                 MOVS            R5, R1
-ROM:000A1462                 LSLS            R4, R4, #0x10
-ROM:000A1464                 LSRS            R4, R4, #0x10
-ROM:000A1466                 LSLS            R5, R5, #0x10
-ROM:000A1468                 LSRS            R5, R5, #0x10
-ROM:000A146A                 MOVS            R0, #0x158
-ROM:000A146E                 BL              sub_5D3B4
-ROM:000A1472                 MOVS            R1, R4
-ROM:000A1474                 MOVS            R2, R5
-ROM:000A1476                 BL              sub_A410C
-ROM:000A147A                 POP             {R4,R5}
-ROM:000A147C                 POP             {R1}
-ROM:000A147E                 BX              R1
-ROM:000A1480 ; ---------------------------------------------------------------------------
-ROM:000A1480                 PUSH            {R4,R5,LR}
-ROM:000A1482                 MOVS            R4, R0
-ROM:000A1484                 MOVS            R5, R1
-ROM:000A1486                 LSLS            R4, R4, #0x10
-ROM:000A1488                 LSRS            R4, R4, #0x10
-ROM:000A148A                 LSLS            R5, R5, #0x10
-ROM:000A148C                 LSRS            R5, R5, #0x10
-ROM:000A148E                 MOVS            R0, #0x148
-ROM:000A1492                 BL              sub_5D3B4
-ROM:000A1496                 MOVS            R1, R4
-ROM:000A1498                 MOVS            R2, R5
-ROM:000A149A                 BL              sub_A41F8
-ROM:000A149E                 POP             {R4,R5}
-ROM:000A14A0                 POP             {R1}
-ROM:000A14A2                 BX              R1
-ROM:000A14A4 ; ---------------------------------------------------------------------------
-ROM:000A14A4                 PUSH            {R4,R5,LR}
-ROM:000A14A6                 MOVS            R4, R0
-ROM:000A14A8                 MOVS            R5, R1
-ROM:000A14AA                 LSLS            R4, R4, #0x10
-ROM:000A14AC                 LSRS            R4, R4, #0x10
-ROM:000A14AE                 LSLS            R5, R5, #0x10
-ROM:000A14B0                 LSRS            R5, R5, #0x10
-ROM:000A14B2                 MOVS            R0, #0x148
-ROM:000A14B6                 BL              sub_5D3B4
-ROM:000A14BA                 MOVS            R1, R4
-ROM:000A14BC                 MOVS            R2, R5
-ROM:000A14BE                 BL              sub_A42C4
-ROM:000A14C2                 POP             {R4,R5}
-ROM:000A14C4                 POP             {R1}
-ROM:000A14C6                 BX              R1
-ROM:000A14C8 ; ---------------------------------------------------------------------------
-ROM:000A14C8                 PUSH            {R4,R5,LR}
-ROM:000A14CA                 MOVS            R4, R0
-ROM:000A14CC                 MOVS            R5, R1
-ROM:000A14CE                 LSLS            R4, R4, #0x10
-ROM:000A14D0                 LSRS            R4, R4, #0x10
-ROM:000A14D2                 LSLS            R5, R5, #0x10
-ROM:000A14D4                 LSRS            R5, R5, #0x10
-ROM:000A14D6                 MOVS            R0, #0x14C
-ROM:000A14DA                 BL              sub_5D3B4
-ROM:000A14DE                 MOVS            R1, R4
-ROM:000A14E0                 MOVS            R2, R5
-ROM:000A14E2                 BL              sub_A4390
-ROM:000A14E6                 POP             {R4,R5}
-ROM:000A14E8                 POP             {R1}
-ROM:000A14EA                 BX              R1
-ROM:000A14EC ; ---------------------------------------------------------------------------
-ROM:000A14EC                 PUSH            {R4,R5,LR}
-ROM:000A14EE                 MOVS            R4, R0
-ROM:000A14F0                 MOVS            R5, R1
-ROM:000A14F2                 LSLS            R4, R4, #0x10
-ROM:000A14F4                 LSRS            R4, R4, #0x10
-ROM:000A14F6                 LSLS            R5, R5, #0x10
-ROM:000A14F8                 LSRS            R5, R5, #0x10
-ROM:000A14FA                 MOVS            R0, #0x150
-ROM:000A14FE                 BL              sub_5D3B4
-ROM:000A1502                 MOVS            R1, R4
-ROM:000A1504                 MOVS            R2, R5
-ROM:000A1506                 BL              sub_A4470
-ROM:000A150A                 POP             {R4,R5}
-ROM:000A150C                 POP             {R1}
-ROM:000A150E                 BX              R1
-ROM:000A1510 ; ---------------------------------------------------------------------------
-ROM:000A1510                 PUSH            {R4,R5,LR}
-ROM:000A1512                 MOVS            R4, R0
-ROM:000A1514                 MOVS            R5, R1
-ROM:000A1516                 LSLS            R4, R4, #0x10
-ROM:000A1518                 LSRS            R4, R4, #0x10
-ROM:000A151A                 LSLS            R5, R5, #0x10
-ROM:000A151C                 LSRS            R5, R5, #0x10
-ROM:000A151E                 MOVS            R0, #0x148
-ROM:000A1522                 BL              sub_5D3B4
-ROM:000A1526                 MOVS            R1, R4
-ROM:000A1528                 MOVS            R2, R5
-ROM:000A152A                 BL              sub_A454C
-ROM:000A152E                 POP             {R4,R5}
-ROM:000A1530                 POP             {R1}
-ROM:000A1532                 BX              R1
-ROM:000A1534 ; ---------------------------------------------------------------------------
-ROM:000A1534                 PUSH            {R4,R5,LR}
-ROM:000A1536                 MOVS            R4, R0
-ROM:000A1538                 MOVS            R5, R1
-ROM:000A153A                 LSLS            R4, R4, #0x10
-ROM:000A153C                 LSRS            R4, R4, #0x10
-ROM:000A153E                 LSLS            R5, R5, #0x10
-ROM:000A1540                 LSRS            R5, R5, #0x10
-ROM:000A1542                 MOVS            R0, #0x148
-ROM:000A1546                 BL              sub_5D3B4
-ROM:000A154A                 MOVS            R1, R4
-ROM:000A154C                 MOVS            R2, R5
-ROM:000A154E                 BL              sub_A4618
-ROM:000A1552                 POP             {R4,R5}
-ROM:000A1554                 POP             {R1}
-ROM:000A1556                 BX              R1
-ROM:000A1558 ; ---------------------------------------------------------------------------
-ROM:000A1558                 PUSH            {R4,R5,LR}
-ROM:000A155A                 MOVS            R4, R0
-ROM:000A155C                 MOVS            R5, R1
-ROM:000A155E                 LSLS            R4, R4, #0x10
-ROM:000A1560                 LSRS            R4, R4, #0x10
-ROM:000A1562                 LSLS            R5, R5, #0x10
-ROM:000A1564                 LSRS            R5, R5, #0x10
-ROM:000A1566                 MOVS            R0, #0x148
-ROM:000A156A                 BL              sub_5D3B4
-ROM:000A156E                 MOVS            R1, R4
-ROM:000A1570                 MOVS            R2, R5
-ROM:000A1572                 BL              sub_A46E4
-ROM:000A1576                 POP             {R4,R5}
-ROM:000A1578                 POP             {R1}
-ROM:000A157A                 BX              R1
-ROM:000A157C ; ---------------------------------------------------------------------------
-ROM:000A157C                 PUSH            {R4,R5,LR}
-ROM:000A157E                 MOVS            R4, R0
-ROM:000A1580                 MOVS            R5, R1
-ROM:000A1582                 LSLS            R4, R4, #0x10
-ROM:000A1584                 LSRS            R4, R4, #0x10
-ROM:000A1586                 LSLS            R5, R5, #0x10
-ROM:000A1588                 LSRS            R5, R5, #0x10
-ROM:000A158A                 MOVS            R0, #0x148
-ROM:000A158E                 BL              sub_5D3B4
-ROM:000A1592                 MOVS            R1, R4
-ROM:000A1594                 MOVS            R2, R5
-ROM:000A1596                 BL              sub_A47B0
-ROM:000A159A                 POP             {R4,R5}
-ROM:000A159C                 POP             {R1}
-ROM:000A159E                 BX              R1
-ROM:000A15A0 ; ---------------------------------------------------------------------------
-ROM:000A15A0                 PUSH            {R4,R5,LR}
-ROM:000A15A2                 MOVS            R4, R0
-ROM:000A15A4                 MOVS            R5, R1
-ROM:000A15A6                 LSLS            R4, R4, #0x10
-ROM:000A15A8                 LSRS            R4, R4, #0x10
-ROM:000A15AA                 LSLS            R5, R5, #0x10
-ROM:000A15AC                 LSRS            R5, R5, #0x10
-ROM:000A15AE                 MOVS            R0, #0x14C
-ROM:000A15B2                 BL              sub_5D3B4
-ROM:000A15B6                 MOVS            R1, R4
-ROM:000A15B8                 MOVS            R2, R5
-ROM:000A15BA                 BL              sub_A487C
-ROM:000A15BE                 POP             {R4,R5}
-ROM:000A15C0                 POP             {R1}
-ROM:000A15C2                 BX              R1
-ROM:000A15C4 ; ---------------------------------------------------------------------------
-ROM:000A15C4                 PUSH            {R4,R5,LR}
-ROM:000A15C6                 MOVS            R4, R0
-ROM:000A15C8                 MOVS            R5, R1
-ROM:000A15CA                 LSLS            R4, R4, #0x10
-ROM:000A15CC                 LSRS            R4, R4, #0x10
-ROM:000A15CE                 LSLS            R5, R5, #0x10
-ROM:000A15D0                 LSRS            R5, R5, #0x10
-ROM:000A15D2                 MOVS            R0, #0x148
-ROM:000A15D6                 BL              sub_5D3B4
-ROM:000A15DA                 MOVS            R1, R4
-ROM:000A15DC                 MOVS            R2, R5
-ROM:000A15DE                 BL              sub_A495C
-ROM:000A15E2                 POP             {R4,R5}
-ROM:000A15E4                 POP             {R1}
-ROM:000A15E6                 BX              R1
-ROM:000A15E8 ; ---------------------------------------------------------------------------
-ROM:000A15E8                 PUSH            {R4,R5,LR}
-ROM:000A15EA                 MOVS            R4, R0
-ROM:000A15EC                 MOVS            R5, R1
-ROM:000A15EE                 LSLS            R4, R4, #0x10
-ROM:000A15F0                 LSRS            R4, R4, #0x10
-ROM:000A15F2                 LSLS            R5, R5, #0x10
-ROM:000A15F4                 LSRS            R5, R5, #0x10
-ROM:000A15F6
-ROM:000A15F6 ; =============== S U B R O U T I N E =======================================
-ROM:000A15F6
-ROM:000A15F6
-ROM:000A15F6 sub_A15F6                               ; CODE XREF: ROM:001A2604p
-ROM:000A15F6                 MOVS            R0, #0x14C
-ROM:000A15FA                 BL              sub_5D3B4
-ROM:000A15FE                 MOVS            R1, R4
-ROM:000A1600                 MOVS            R2, R5
-ROM:000A1602                 BL              sub_A4A28
-ROM:000A1606                 POP             {R4,R5}
-ROM:000A1608                 POP             {R1}
-ROM:000A160A                 BX              R1
-ROM:000A160A ; End of function sub_A15F6
-ROM:000A160A
-ROM:000A160C ; ---------------------------------------------------------------------------
-ROM:000A160C                 PUSH            {R4,R5,LR}
-ROM:000A160E                 MOVS            R4, R0
-ROM:000A1610                 MOVS            R5, R1
-ROM:000A1612                 LSLS            R4, R4, #0x10
-ROM:000A1614                 LSRS            R4, R4, #0x10
-ROM:000A1616                 LSLS            R5, R5, #0x10
-ROM:000A1618                 LSRS            R5, R5, #0x10
-ROM:000A161A                 MOVS            R0, #0x150
-ROM:000A161E                 BL              sub_5D3B4
-ROM:000A1622                 MOVS            R1, R4
-ROM:000A1624                 MOVS            R2, R5
-ROM:000A1626                 BL              sub_A4B08
-ROM:000A162A                 POP             {R4,R5}
-ROM:000A162C                 POP             {R1}
-ROM:000A162E                 BX              R1
-ROM:000A1630 ; ---------------------------------------------------------------------------
-ROM:000A1630                 PUSH            {R4,R5,LR}
-ROM:000A1632                 MOVS            R4, R0
-ROM:000A1634                 MOVS            R5, R1
-ROM:000A1636                 LSLS            R4, R4, #0x10
-ROM:000A1638                 LSRS            R4, R4, #0x10
-ROM:000A163A                 LSLS            R5, R5, #0x10
-ROM:000A163C                 LSRS            R5, R5, #0x10
-ROM:000A163E                 MOVS            R0, #0x14C
-ROM:000A1642                 BL              sub_5D3B4
-ROM:000A1646                 MOVS            R1, R4
-ROM:000A1648                 MOVS            R2, R5
-ROM:000A164A                 BL              sub_A4BE4
-ROM:000A164E                 POP             {R4,R5}
-ROM:000A1650                 POP             {R1}
-ROM:000A1652                 BX              R1
-ROM:000A1654 ; ---------------------------------------------------------------------------
-ROM:000A1654                 PUSH            {R4,R5,LR}
-ROM:000A1656                 MOVS            R4, R0
-ROM:000A1658                 MOVS            R5, R1
-ROM:000A165A                 LSLS            R4, R4, #0x10
-ROM:000A165C                 LSRS            R4, R4, #0x10
-ROM:000A165E                 LSLS            R5, R5, #0x10
-ROM:000A1660                 LSRS            R5, R5, #0x10
-ROM:000A1662                 MOVS            R0, #0x148
-ROM:000A1666                 BL              sub_5D3B4
-ROM:000A166A                 MOVS            R1, R4
-ROM:000A166C                 MOVS            R2, R5
-ROM:000A166E                 BL              sub_A4CC4
-ROM:000A1672                 POP             {R4,R5}
-ROM:000A1674                 POP             {R1}
-ROM:000A1676                 BX              R1
-ROM:000A1678 ; ---------------------------------------------------------------------------
-ROM:000A1678                 PUSH            {R4,R5,LR}
-ROM:000A167A                 MOVS            R4, R0
-ROM:000A167C                 MOVS            R5, R1
-ROM:000A167E                 LSLS            R4, R4, #0x10
-ROM:000A1680                 LSRS            R4, R4, #0x10
-ROM:000A1682                 LSLS            R5, R5, #0x10
-ROM:000A1684                 LSRS            R5, R5, #0x10
-ROM:000A1686                 MOVS            R0, #0x14C
-ROM:000A168A                 BL              sub_5D3B4
-ROM:000A168E                 MOVS            R1, R4
-ROM:000A1690                 MOVS            R2, R5
-ROM:000A1692                 BL              sub_A4D90
-ROM:000A1696                 POP             {R4,R5}
-ROM:000A1698                 POP             {R1}
-ROM:000A169A                 BX              R1
-ROM:000A169C ; ---------------------------------------------------------------------------
-ROM:000A169C                 PUSH            {R4,R5,LR}
-ROM:000A169E                 MOVS            R4, R0
-ROM:000A16A0                 MOVS            R5, R1
-ROM:000A16A2                 LSLS            R4, R4, #0x10
-ROM:000A16A4                 LSRS            R4, R4, #0x10
-ROM:000A16A6                 LSLS            R5, R5, #0x10
-ROM:000A16A8                 LSRS            R5, R5, #0x10
-ROM:000A16AA                 MOVS            R0, #0x148
-ROM:000A16AE                 BL              sub_5D3B4
-ROM:000A16B2                 MOVS            R1, R4
-ROM:000A16B4                 MOVS            R2, R5
-ROM:000A16B6                 BL              sub_A4E70
-ROM:000A16BA                 POP             {R4,R5}
-ROM:000A16BC                 POP             {R1}
-ROM:000A16BE                 BX              R1
-ROM:000A16C0 ; ---------------------------------------------------------------------------
-ROM:000A16C0                 PUSH            {R4,R5,LR}
-ROM:000A16C2                 MOVS            R4, R0
-ROM:000A16C4                 MOVS            R5, R1
-ROM:000A16C6                 LSLS            R4, R4, #0x10
-ROM:000A16C8                 LSRS            R4, R4, #0x10
-ROM:000A16CA                 LSLS            R5, R5, #0x10
-ROM:000A16CC                 LSRS            R5, R5, #0x10
-ROM:000A16CE                 MOVS            R0, #0x14C
-ROM:000A16D2                 BL              sub_5D3B4
-ROM:000A16D6                 MOVS            R1, R4
-ROM:000A16D8                 MOVS            R2, R5
-ROM:000A16DA                 BL              sub_A4F3C
-ROM:000A16DE                 POP             {R4,R5}
-ROM:000A16E0                 POP             {R1}
-ROM:000A16E2                 BX              R1
-ROM:000A16E4 ; ---------------------------------------------------------------------------
-ROM:000A16E4                 PUSH            {R4,R5,LR}
-ROM:000A16E6                 MOVS            R4, R0
-ROM:000A16E8                 MOVS            R5, R1
-ROM:000A16EA                 LSLS            R4, R4, #0x10
-ROM:000A16EC                 LSRS            R4, R4, #0x10
-ROM:000A16EE                 LSLS            R5, R5, #0x10
-ROM:000A16F0                 LSRS            R5, R5, #0x10
-ROM:000A16F2                 MOVS            R0, #0x14C
-ROM:000A16F6                 BL              sub_5D3B4
-ROM:000A16FA                 MOVS            R1, R4
-ROM:000A16FC                 MOVS            R2, R5
-ROM:000A16FE                 BL              sub_A501C
-ROM:000A1702                 POP             {R4,R5}
-ROM:000A1704                 POP             {R1}
-ROM:000A1706                 BX              R1
-ROM:000A1708 ; ---------------------------------------------------------------------------
-ROM:000A1708                 PUSH            {R4,R5,LR}
-ROM:000A170A                 MOVS            R4, R0
-ROM:000A170C                 MOVS            R5, R1
-ROM:000A170E                 LSLS            R4, R4, #0x10
-ROM:000A1710                 LSRS            R4, R4, #0x10
-ROM:000A1712                 LSLS            R5, R5, #0x10
-ROM:000A1714                 LSRS            R5, R5, #0x10
-ROM:000A1716                 MOVS            R0, #0x154
-ROM:000A171A                 BL              sub_5D3B4
-ROM:000A171E                 MOVS            R1, R4
-ROM:000A1720                 MOVS            R2, R5
-ROM:000A1722                 BL              sub_A50FC
-ROM:000A1726                 POP             {R4,R5}
-ROM:000A1728                 POP             {R1}
-ROM:000A172A                 BX              R1
-ROM:000A172C ; ---------------------------------------------------------------------------
-ROM:000A172C                 PUSH            {R4,R5,LR}
-ROM:000A172E                 MOVS            R4, R0
-ROM:000A1730                 MOVS            R5, R1
-ROM:000A1732                 LSLS            R4, R4, #0x10
-ROM:000A1734                 LSRS            R4, R4, #0x10
-ROM:000A1736                 LSLS            R5, R5, #0x10
-ROM:000A1738                 LSRS            R5, R5, #0x10
-ROM:000A173A                 MOVS            R0, #0x154
-ROM:000A173E                 BL              sub_5D3B4
-ROM:000A1742                 MOVS            R1, R4
-ROM:000A1744                 MOVS            R2, R5
-ROM:000A1746                 BL              sub_A51DC
-ROM:000A174A                 POP             {R4,R5}
-ROM:000A174C                 POP             {R1}
-ROM:000A174E                 BX              R1
-ROM:000A1750 ; ---------------------------------------------------------------------------
-ROM:000A1750                 PUSH            {R4,R5,LR}
-ROM:000A1752                 MOVS            R4, R0
-ROM:000A1754                 MOVS            R5, R1
-ROM:000A1756                 LSLS            R4, R4, #0x10
-ROM:000A1758                 LSRS            R4, R4, #0x10
-ROM:000A175A                 LSLS            R5, R5, #0x10
-ROM:000A175C                 LSRS            R5, R5, #0x10
-ROM:000A175E                 MOVS            R0, #0x14C
-ROM:000A1762                 BL              sub_5D3B4
-ROM:000A1766                 MOVS            R1, R4
-ROM:000A1768                 MOVS            R2, R5
-ROM:000A176A                 BL              sub_A52BC
-ROM:000A176E                 POP             {R4,R5}
-ROM:000A1770                 POP             {R1}
-ROM:000A1772                 BX              R1
-ROM:000A1774 ; ---------------------------------------------------------------------------
-ROM:000A1774                 PUSH            {R4,R5,LR}
-ROM:000A1776                 MOVS            R4, R0
-ROM:000A1778                 MOVS            R5, R1
-ROM:000A177A                 LSLS            R4, R4, #0x10
-ROM:000A177C                 LSRS            R4, R4, #0x10
-ROM:000A177E                 LSLS            R5, R5, #0x10
-ROM:000A1780                 LSRS            R5, R5, #0x10
-ROM:000A1782                 MOVS            R0, #0x148
-ROM:000A1786                 BL              sub_5D3B4
-ROM:000A178A                 MOVS            R1, R4
-ROM:000A178C                 MOVS            R2, R5
-ROM:000A178E                 BL              sub_A539C
-ROM:000A1792                 POP             {R4,R5}
-ROM:000A1794                 POP             {R1}
-ROM:000A1796                 BX              R1
-ROM:000A1798 ; ---------------------------------------------------------------------------
-ROM:000A1798                 PUSH            {R4,R5,LR}
-ROM:000A179A                 MOVS            R4, R0
-ROM:000A179C                 MOVS            R5, R1
-ROM:000A179E                 LSLS            R4, R4, #0x10
-ROM:000A17A0                 LSRS            R4, R4, #0x10
-ROM:000A17A2                 LSLS            R5, R5, #0x10
-ROM:000A17A4                 LSRS            R5, R5, #0x10
-ROM:000A17A6                 MOVS            R0, #0x148
-ROM:000A17AA                 BL              sub_5D3B4
-ROM:000A17AE                 MOVS            R1, R4
-ROM:000A17B0                 MOVS            R2, R5
-ROM:000A17B2                 BL              sub_A5468
-ROM:000A17B6                 POP             {R4,R5}
-ROM:000A17B8                 POP             {R1}
-ROM:000A17BA                 BX              R1
-ROM:000A17BC ; ---------------------------------------------------------------------------
-ROM:000A17BC                 PUSH            {R4,R5,LR}
-ROM:000A17BE                 MOVS            R4, R0
-ROM:000A17C0                 MOVS            R5, R1
-ROM:000A17C2                 LSLS            R4, R4, #0x10
-ROM:000A17C4                 LSRS            R4, R4, #0x10
-ROM:000A17C6                 LSLS            R5, R5, #0x10
-ROM:000A17C8                 LSRS            R5, R5, #0x10
-ROM:000A17CA                 MOVS            R0, #0x148
-ROM:000A17CE                 BL              sub_5D3B4
-ROM:000A17D2                 MOVS            R1, R4
-ROM:000A17D4                 MOVS            R2, R5
-ROM:000A17D6                 BL              sub_A5534
-ROM:000A17DA                 POP             {R4,R5}
-ROM:000A17DC                 POP             {R1}
-ROM:000A17DE                 BX              R1
-ROM:000A17E0 ; ---------------------------------------------------------------------------
-ROM:000A17E0                 PUSH            {R4,R5,LR}
-ROM:000A17E2                 MOVS            R4, R0
-ROM:000A17E4                 MOVS            R5, R1
-ROM:000A17E6                 LSLS            R4, R4, #0x10
-ROM:000A17E8                 LSRS            R4, R4, #0x10
-ROM:000A17EA                 LSLS            R5, R5, #0x10
-ROM:000A17EC                 LSRS            R5, R5, #0x10
-ROM:000A17EE                 MOVS            R0, #0x14C
-ROM:000A17F2                 BL              sub_5D3B4
-ROM:000A17F6                 MOVS            R1, R4
-ROM:000A17F8                 MOVS            R2, R5
-ROM:000A17FA                 BL              sub_A5600
-ROM:000A17FE                 POP             {R4,R5}
-ROM:000A1800                 POP             {R1}
-ROM:000A1802                 BX              R1
-ROM:000A1804 ; ---------------------------------------------------------------------------
-ROM:000A1804                 PUSH            {R4,R5,LR}
-ROM:000A1806                 MOVS            R4, R0
-ROM:000A1808                 MOVS            R5, R1
-ROM:000A180A                 LSLS            R4, R4, #0x10
-ROM:000A180C                 LSRS            R4, R4, #0x10
-ROM:000A180E                 LSLS            R5, R5, #0x10
-ROM:000A1810                 LSRS            R5, R5, #0x10
-ROM:000A1812                 MOVS            R0, #0x150
-ROM:000A1816                 BL              sub_5D3B4
-ROM:000A181A                 MOVS            R1, R4
-ROM:000A181C                 MOVS            R2, R5
-ROM:000A181E                 BL              sub_A56E0
-ROM:000A1822                 POP             {R4,R5}
-ROM:000A1824                 POP             {R1}
-ROM:000A1826                 BX              R1
-ROM:000A1828 ; ---------------------------------------------------------------------------
-ROM:000A1828                 PUSH            {R4,R5,LR}
-ROM:000A182A                 MOVS            R4, R0
-ROM:000A182C                 MOVS            R5, R1
-ROM:000A182E                 LSLS            R4, R4, #0x10
-ROM:000A1830                 LSRS            R4, R4, #0x10
-ROM:000A1832                 LSLS            R5, R5, #0x10
-ROM:000A1834                 LSRS            R5, R5, #0x10
-ROM:000A1836                 MOVS            R0, #0x148
-ROM:000A183A                 BL              sub_5D3B4
-ROM:000A183E                 MOVS            R1, R4
-ROM:000A1840                 MOVS            R2, R5
-ROM:000A1842                 BL              sub_A57DC
-ROM:000A1846                 POP             {R4,R5}
-ROM:000A1848                 POP             {R1}
-ROM:000A184A                 BX              R1
-ROM:000A184C ; ---------------------------------------------------------------------------
-ROM:000A184C                 PUSH            {R4,R5,LR}
-ROM:000A184E                 MOVS            R4, R0
-ROM:000A1850                 MOVS            R5, R1
-ROM:000A1852                 BL              sub_726B8
-ROM:000A1856                 LSLS            R0, R0, #0x18
-ROM:000A1858                 LSRS            R0, R0, #0x18
-ROM:000A185A                 CMP             R0, #1
-ROM:000A185C                 BEQ             loc_A1874
-ROM:000A185E                 LDR             R2, [R4,#0x1C]
-ROM:000A1860                 MOVS            R0, #0x3F8
-ROM:000A1864                 ADDS            R2, R2, R0
-ROM:000A1866                 MOVS            R1, #0
-ROM:000A1868                 LDRSH           R0, [R2,R1]
-ROM:000A186A                 ADDS            R0, R4, R0
-ROM:000A186C                 LDR             R1, [R5,#0x20]
-ROM:000A186E                 LDR             R2, [R2,#4]
-ROM:000A1870                 BL              sub_9193C
-ROM:000A1874
-ROM:000A1874 loc_A1874                               ; CODE XREF: ROM:000A185Cj
-ROM:000A1874                 POP             {R4,R5}
-ROM:000A1876                 POP             {R0}
-ROM:000A1878                 BX              R0
-ROM:000A1878 ; ---------------------------------------------------------------------------
-ROM:000A187A                 ALIGN 4
-ROM:000A187C                 PUSH            {R4,R5,LR}
-ROM:000A187E                 MOVS            R4, R0
-ROM:000A1880                 MOVS            R5, R1
-ROM:000A1882                 BL              sub_726B8
-ROM:000A1886                 LSLS            R0, R0, #0x18
-ROM:000A1888                 LSRS            R0, R0, #0x18
-ROM:000A188A                 CMP             R0, #1
-ROM:000A188C                 BEQ             loc_A18A4
-ROM:000A188E                 LDR             R2, [R4,#0x1C]
-ROM:000A1890                 MOVS            R0, #0x3F0
-ROM:000A1894                 ADDS            R2, R2, R0
-ROM:000A1896                 MOVS            R1, #0
-ROM:000A1898                 LDRSH           R0, [R2,R1]
-ROM:000A189A                 ADDS            R0, R4, R0
-ROM:000A189C                 LDR             R1, [R5,#0x20]
-ROM:000A189E                 LDR             R2, [R2,#4]
-ROM:000A18A0                 BL              sub_9193C
-ROM:000A18A4
-ROM:000A18A4 loc_A18A4                               ; CODE XREF: ROM:000A188Cj
-ROM:000A18A4                 POP             {R4,R5}
-ROM:000A18A6                 POP             {R0}
-ROM:000A18A8                 BX              R0
-ROM:000A18A8 ; ---------------------------------------------------------------------------
-ROM:000A18AA                 ALIGN 4
-ROM:000A18AC                 PUSH            {R4,R5,LR}
-ROM:000A18AE                 MOVS            R4, R0
-ROM:000A18B0                 MOVS            R5, R1
-ROM:000A18B2                 LSLS            R4, R4, #0x10
-ROM:000A18B4                 LSRS            R4, R4, #0x10
-ROM:000A18B6                 LSLS            R5, R5, #0x10
-ROM:000A18B8                 LSRS            R5, R5, #0x10
-ROM:000A18BA                 MOVS            R0, #0x148
-ROM:000A18BE                 BL              sub_5D3B4
-ROM:000A18C2                 MOVS            R1, R4
-ROM:000A18C4                 MOVS            R2, R5
-ROM:000A18C6                 BL              sub_A58A8
-ROM:000A18CA                 POP             {R4,R5}
-ROM:000A18CC                 POP             {R1}
-ROM:000A18CE                 BX              R1
+ROM:00063AD4 loc_63AD4                               ; CODE XREF: sub_63AD0+12j
+ROM:00063AD4                 LSLS            R0, R4, #0x10
+ROM:00063AD6                 LSRS            R0, R0, #0x10
+ROM:00063AD8                 LDR             R1, =0x80A18AD
+ROM:00063ADA                 BL              sub_63EB4
+ROM:00063ADE                 ADDS            R4, #1
+ROM:00063AE0                 CMP             R4, #0xFF
+ROM:00063AE2                 BLS             loc_63AD4
+ROM:00063AE4                 LDR             R1, =0x80A1829
+ROM:00063AE6                 MOVS            R0, #1
+ROM:00063AE8                 BL              sub_63EB4
+ROM:00063AEC                 LDR             R1, =0x80A1805
+ROM:00063AEE                 MOVS            R0, #5
+ROM:00063AF0                 BL              sub_63EB4
+ROM:00063AF4                 LDR             R1, =0x80A17E1
+ROM:00063AF6                 MOVS            R0, #0x32 ; '2'
+ROM:00063AF8                 BL              sub_63EB4
+ROM:00063AFC                 LDR             R1, =0x80A17BD
+ROM:00063AFE                 MOVS            R0, #0x31 ; '1'
+ROM:00063B00                 BL              sub_63EB4
+ROM:00063B04                 LDR             R1, =0x80A1799
+ROM:00063B06                 MOVS            R0, #0x37 ; '7'
+ROM:00063B08                 BL              sub_63EB4
+ROM:00063B0C                 LDR             R1, =0x80A1775
+ROM:00063B0E                 MOVS            R0, #0x33 ; '3'
+ROM:00063B10                 BL              sub_63EB4
+ROM:00063B14                 LDR             R1, =0x80A1751
+ROM:00063B16                 MOVS            R0, #0x41 ; 'A'
+ROM:00063B18                 BL              sub_63EB4
+ROM:00063B1C                 LDR             R1, =0x80A172D
+ROM:00063B1E                 MOVS            R0, #0x42 ; 'B'
+ROM:00063B20                 BL              sub_63EB4
+ROM:00063B24                 LDR             R1, =0x80A1709
+ROM:00063B26                 MOVS            R0, #2
+ROM:00063B28                 BL              sub_63EB4
+ROM:00063B2C                 LDR             R1, =0x80A16E5
+ROM:00063B2E                 MOVS            R0, #4
+ROM:00063B30                 BL              sub_63EB4
+ROM:00063B34                 LDR             R1, =0x80A16C1
+ROM:00063B36                 MOVS            R0, #3
+ROM:00063B38                 BL              sub_63EB4
+ROM:00063B3C                 LDR             R1, =0x80A169D
+ROM:00063B3E                 MOVS            R0, #0x4A ; 'J'
+ROM:00063B40                 BL              sub_63EB4
+ROM:00063B44                 LDR             R1, =0x80A1679
+ROM:00063B46                 MOVS            R0, #0x52 ; 'R'
+ROM:00063B48                 BL              sub_63EB4
+ROM:00063B4C                 LDR             R1, =0x80A1655
+ROM:00063B4E                 MOVS            R0, #0x5A ; 'Z'
+ROM:00063B50                 BL              sub_63EB4
+ROM:00063B54                 LDR             R1, =0x80A1631
+ROM:00063B56                 MOVS            R0, #0x5B ; '['
+ROM:00063B58                 BL              sub_63EB4
+ROM:00063B5C                 LDR             R1, =0x80A160D
+ROM:00063B5E                 MOVS            R0, #0x95 ; 'ò'
+ROM:00063B60                 BL              sub_63EB4
+ROM:00063B64                 LDR             R1, =0x80A15E9
+ROM:00063B66                 MOVS            R0, #6
+ROM:00063B68                 BL              sub_63EB4
+ROM:00063B6C                 LDR             R1, =0x80A15C5
+ROM:00063B6E                 MOVS            R0, #0x60 ; '`'
+ROM:00063B70                 BL              sub_63EB4
+ROM:00063B74                 LDR             R1, =0x80A15A1
+ROM:00063B76                 MOVS            R0, #0x62 ; 'b'
+ROM:00063B78                 BL              sub_63EB4
+ROM:00063B7C                 LDR             R1, =0x80A157D
+ROM:00063B7E                 MOVS            R0, #0x6F ; 'o'
+ROM:00063B80                 BL              sub_63EB4
+ROM:00063B84                 LDR             R1, =0x80A1559
+ROM:00063B86                 MOVS            R0, #0x69 ; 'i'
+ROM:00063B88                 BL              sub_63EB4
+ROM:00063B8C                 LDR             R1, =0x80A1535
+ROM:00063B8E                 MOVS            R0, #0x3A ; ':'
+ROM:00063B90                 BL              sub_63EB4
+ROM:00063B94                 LDR             R1, =0x80A1511
+ROM:00063B96                 MOVS            R0, #0x9B ; 'ø'
+ROM:00063B98                 BL              sub_63EB4
+ROM:00063B9C                 LDR             R1, =0x80A14ED
+ROM:00063B9E                 MOVS            R0, #0x9C ; '£'
+ROM:00063BA0                 BL              sub_63EB4
+ROM:00063BA4                 LDR             R1, =0x80A14C9
+ROM:00063BA6                 MOVS            R0, #0x10
+ROM:00063BA8                 BL              sub_63EB4
+ROM:00063BAC                 LDR             R1, =0x80A14A5
+ROM:00063BAE                 MOVS            R0, #0x75 ; 'u'
+ROM:00063BB0                 BL              sub_63EB4
+ROM:00063BB4                 LDR             R1, =0x80A1481
+ROM:00063BB6                 MOVS            R0, #0x7F ; ''
+ROM:00063BB8                 BL              sub_63EB4
+ROM:00063BBC                 LDR             R1, =0x80A145D
+ROM:00063BBE                 MOVS            R0, #0xE
+ROM:00063BC0                 BL              sub_63EB4
+ROM:00063BC4                 LDR             R1, =0x80A1439
+ROM:00063BC6                 MOVS            R0, #0xF
+ROM:00063BC8                 BL              sub_63EB4
+ROM:00063BCC                 LDR             R1, =0x80A1415
+ROM:00063BCE                 MOVS            R0, #0x25 ; '%'
+ROM:00063BD0                 BL              sub_63EB4
+ROM:00063BD4                 LDR             R1, =0x80A13F1
+ROM:00063BD6                 MOVS            R0, #0x86 ; 'å'
+ROM:00063BD8                 BL              sub_63EB4
+ROM:00063BDC                 LDR             R1, =0x80A13CD
+ROM:00063BDE                 MOVS            R0, #0xA2 ; 'ó'
+ROM:00063BE0                 BL              sub_63EB4
+ROM:00063BE4                 LDR             R1, =0x80A13A9
+ROM:00063BE6                 MOVS            R0, #0x83 ; 'â'
+ROM:00063BE8                 BL              sub_63EB4
+ROM:00063BEC                 LDR             R1, =0x80A1385
+ROM:00063BEE                 MOVS            R0, #0xA4 ; 'ñ'
+ROM:00063BF0                 BL              sub_63EB4
+ROM:00063BF4                 LDR             R1, =0x80A1361
+ROM:00063BF6                 MOVS            R0, #0xA3 ; 'ú'
+ROM:00063BF8                 BL              sub_63EB4
+ROM:00063BFC                 LDR             R1, =0x80A133D
+ROM:00063BFE                 MOVS            R0, #0x7C ; '|'
+ROM:00063C00                 BL              sub_63EB4
+ROM:00063C04                 LDR             R1, =0x80A1319
+ROM:00063C06                 MOVS            R0, #7
+ROM:00063C08                 BL              sub_63EB4
+ROM:00063C0C                 LDR             R1, =0x80A12F5
+ROM:00063C0E                 MOVS            R0, #0x76 ; 'v'
+ROM:00063C10                 BL              sub_63EB4
+ROM:00063C14                 LDR             R1, =0x80A12D1
+ROM:00063C16                 MOVS            R0, #0x7D ; '}'
+ROM:00063C18                 BL              sub_63EB4
+ROM:00063C1C                 LDR             R1, =0x80A12AD
+ROM:00063C1E                 MOVS            R0, #0xAC ; '¼'
+ROM:00063C20                 BL              sub_63EB4
+ROM:00063C24                 LDR             R1, =0x80A1289
+ROM:00063C26                 MOVS            R0, #0x39 ; '9'
+ROM:00063C28                 BL              sub_63EB4
+ROM:00063C2C                 LDR             R1, =0x80A1265
+ROM:00063C2E                 MOVS            R0, #0x38 ; '8'
+ROM:00063C30                 BL              sub_63EB4
+ROM:00063C34                 LDR             R1, =0x80A1241
+ROM:00063C36                 MOVS            R0, #0x8E ; 'Ä'
+ROM:00063C38                 BL              sub_63EB4
+ROM:00063C3C                 LDR             R1, =0x80A121D
+ROM:00063C3E                 MOVS            R0, #0x21 ; '!'
+ROM:00063C40                 BL              sub_63EB4
+ROM:00063C44                 LDR             R1, =0x80A11F9
+ROM:00063C46                 MOVS            R0, #0x23 ; '#'
+ROM:00063C48                 BL              sub_63EB4
+ROM:00063C4C                 LDR             R1, =0x80A11D5
+ROM:00063C4E                 MOVS            R0, #0x46 ; 'F'
+ROM:00063C50                 BL              sub_63EB4
+ROM:00063C54                 LDR             R1, =0x80A11B1
+ROM:00063C56                 MOVS            R0, #0x16
+ROM:00063C58                 BL              sub_63EB4
+ROM:00063C5C                 LDR             R1, =0x80A118D
+ROM:00063C5E                 MOVS            R0, #0xAD ; '¡'
+ROM:00063C60                 BL              sub_63EB4
+ROM:00063C64                 LDR             R1, =0x80A1169
+ROM:00063C66                 MOVS            R0, #0x90 ; 'É'
+ROM:00063C68                 BL              sub_63EB4
+ROM:00063C6C                 LDR             R1, =0x80A1145
+ROM:00063C6E                 MOVS            R0, #0xAE ; '«'
+ROM:00063C70                 BL              sub_63EB4
+ROM:00063C74                 LDR             R1, =0x80A1121
+ROM:00063C76                 MOVS            R0, #0x65 ; 'e'
+ROM:00063C78                 BL              sub_63EB4
+ROM:00063C7C                 LDR             R1, =0x80A10FD
+ROM:00063C7E                 MOVS            R0, #0x5C ; '\'
+ROM:00063C80                 BL              sub_63EB4
+ROM:00063C84                 LDR             R1, =0x80A10D9
+ROM:00063C86                 MOVS            R0, #9
+ROM:00063C88                 BL              sub_63EB4
+ROM:00063C8C                 LDR             R1, =0x80A10B5
+ROM:00063C8E                 MOVS            R0, #0x7A ; 'z'
+ROM:00063C90                 BL              sub_63EB4
+ROM:00063C94                 LDR             R1, =0x80A1091
+ROM:00063C96                 MOVS            R0, #0x17
+ROM:00063C98                 BL              sub_63EB4
+ROM:00063C9C                 LDR             R1, =0x80A106D
+ROM:00063C9E                 MOVS            R0, #0xB6 ; 'Â'
+ROM:00063CA0                 BL              sub_63EB4
+ROM:00063CA4                 LDR             R1, =0x80A1049
+ROM:00063CA6                 MOVS            R0, #0x85 ; 'à'
+ROM:00063CA8                 BL              sub_63EB4
+ROM:00063CAC                 LDR             R1, =0x80A1025
+ROM:00063CAE                 MOVS            R0, #0x72 ; 'r'
+ROM:00063CB0                 BL              sub_63EB4
+ROM:00063CB4                 LDR             R1, =0x80A1001
+ROM:00063CB6                 MOVS            R0, #0x54 ; 'T'
+ROM:00063CB8                 BL              sub_63EB4
+ROM:00063CBC                 LDR             R1, =0x80A0FB9
+ROM:00063CBE                 MOVS            R0, #0xA6 ; 'ª'
+ROM:00063CC0                 BL              sub_63EB4
+ROM:00063CC4                 LDR             R1, =0x80A0FDD
+ROM:00063CC6                 MOVS            R0, #0x19
+ROM:00063CC8                 BL              sub_63EB4
+ROM:00063CCC                 LDR             R1, =0x80A0F95
+ROM:00063CCE                 MOVS            R0, #0xD
+ROM:00063CD0                 BL              sub_63EB4
+ROM:00063CD4                 LDR             R1, =0x80A0F71
+ROM:00063CD6                 MOVS            R0, #0x1C
+ROM:00063CD8                 BL              sub_63EB4
+ROM:00063CDC                 LDR             R1, =0x80A0F4D
+ROM:00063CDE                 MOVS            R0, #0xAA ; '¬'
+ROM:00063CE0                 BL              sub_63EB4
+ROM:00063CE4                 LDR             R1, =0x80A0F05
+ROM:00063CE6                 MOVS            R0, #0x87 ; 'ç'
+ROM:00063CE8                 BL              sub_63EB4
+ROM:00063CEC                 LDR             R1, =0x80A0F29
+ROM:00063CEE                 MOVS            R0, #0xB7 ; 'À'
+ROM:00063CF0                 BL              sub_63EB4
+ROM:00063CF4                 LDR             R1, =0x80A0EE1
+ROM:00063CF6                 MOVS            R0, #0xAB ; '½'
+ROM:00063CF8                 BL              sub_63EB4
+ROM:00063CFC                 LDR             R1, =0x80A0EBD
+ROM:00063CFE                 MOVS            R0, #0xC
+ROM:00063D00                 BL              sub_63EB4
+ROM:00063D04                 LDR             R4, =0x80A0E99
+ROM:00063D06                 MOVS            R0, #0x2E ; '.'
+ROM:00063D08                 MOVS            R1, R4
+ROM:00063D0A                 BL              sub_63EB4
+ROM:00063D0E                 MOVS            R0, #0x2E ; '.'
+ROM:00063D10                 MOVS            R1, R4
+ROM:00063D12                 BL              sub_63EB4
+ROM:00063D16                 MOVS            R0, #0x13
+ROM:00063D18                 MOVS            R1, R4
+ROM:00063D1A                 BL              sub_63EB4
+ROM:00063D1E                 MOVS            R0, #0x1A
+ROM:00063D20                 MOVS            R1, R4
+ROM:00063D22                 BL              sub_63EB4
+ROM:00063D26                 MOVS            R0, #0xBB ; '+'
+ROM:00063D28                 MOVS            R1, R4
+ROM:00063D2A                 BL              sub_63EB4
+ROM:00063D2E                 MOVS            R0, #0xBC ; '+'
+ROM:00063D30                 MOVS            R1, R4
+ROM:00063D32                 BL              sub_63EB4
+ROM:00063D36                 LDR             R5, =0x80A0E75
+ROM:00063D38                 MOVS            R0, #0xA9 ; '®'
+ROM:00063D3A                 MOVS            R1, R5
+ROM:00063D3C                 BL              sub_63EB4
+ROM:00063D40                 MOVS            R0, #0x91 ; 'æ'
+ROM:00063D42                 MOVS            R1, R5
+ROM:00063D44                 BL              sub_63EB4
+ROM:00063D48                 MOVS            R0, #0x1B
+ROM:00063D4A                 MOVS            R1, R4
+ROM:00063D4C                 BL              sub_63EB4
+ROM:00063D50                 MOVS            R0, #0xB4 ; '¦'
+ROM:00063D52                 MOVS            R1, R4
+ROM:00063D54                 BL              sub_63EB4
+ROM:00063D58                 MOVS            R0, #0xB5 ; 'Á'
+ROM:00063D5A                 MOVS            R1, R4
+ROM:00063D5C                 BL              sub_63EB4
+ROM:00063D60                 LDR             R1, =0x80A0E51
+ROM:00063D62                 MOVS            R0, #0xB
+ROM:00063D64                 BL              sub_63EB4
+ROM:00063D68                 LDR             R1, =0x80A0E2D
+ROM:00063D6A                 MOVS            R0, #0x11
+ROM:00063D6C                 BL              sub_63EB4
+ROM:00063D70                 LDR             R1, =0x80A0E09
+ROM:00063D72                 MOVS            R0, #0xBD ; '¢'
+ROM:00063D74                 BL              sub_63EB4
+ROM:00063D78                 LDR             R1, =0x80A0DE5
+ROM:00063D7A                 MOVS            R0, #0xBE ; '¥'
+ROM:00063D7C                 BL              sub_63EB4
+ROM:00063D80                 POP             {R4,R5}
+ROM:00063D82                 POP             {R0}
+ROM:00063D84                 BX              R0
+ROM:00063D84 ; End of function sub_63AD0
+ROM:00063D84
+ROM:00063D84 ; ---------------------------------------------------------------------------
+ROM:00063D86                 ALIGN 4
+ROM:00063D88 dword_63D88     DCD 0x80A18AD           ; DATA XREF: sub_63AD0+8r
+ROM:00063D8C dword_63D8C     DCD 0x80A1829           ; DATA XREF: sub_63AD0+14r
+ROM:00063D90 dword_63D90     DCD 0x80A1805           ; DATA XREF: sub_63AD0+1Cr
+ROM:00063D94 dword_63D94     DCD 0x80A17E1           ; DATA XREF: sub_63AD0+24r
+ROM:00063D98 dword_63D98     DCD 0x80A17BD           ; DATA XREF: sub_63AD0+2Cr
+ROM:00063D9C dword_63D9C     DCD 0x80A1799           ; DATA XREF: sub_63AD0+34r
+ROM:00063DA0 dword_63DA0     DCD 0x80A1775           ; DATA XREF: sub_63AD0+3Cr
+ROM:00063DA4 dword_63DA4     DCD 0x80A1751           ; DATA XREF: sub_63AD0+44r
+ROM:00063DA8 dword_63DA8     DCD 0x80A172D           ; DATA XREF: sub_63AD0+4Cr
+ROM:00063DAC dword_63DAC     DCD 0x80A1709           ; DATA XREF: sub_63AD0+54r
+ROM:00063DB0 dword_63DB0     DCD 0x80A16E5           ; DATA XREF: sub_63AD0+5Cr
+ROM:00063DB4 dword_63DB4     DCD 0x80A16C1           ; DATA XREF: sub_63AD0+64r
+ROM:00063DB8 dword_63DB8     DCD 0x80A169D           ; DATA XREF: sub_63AD0+6Cr
+ROM:00063DBC dword_63DBC     DCD 0x80A1679           ; DATA XREF: sub_63AD0+74r
+ROM:00063DC0 dword_63DC0     DCD 0x80A1655           ; DATA XREF: sub_63AD0+7Cr
+ROM:00063DC4 dword_63DC4     DCD 0x80A1631           ; DATA XREF: sub_63AD0+84r
+ROM:00063DC8 dword_63DC8     DCD 0x80A160D           ; DATA XREF: sub_63AD0+8Cr
+ROM:00063DCC dword_63DCC     DCD 0x80A15E9           ; DATA XREF: sub_63AD0+94r
+ROM:00063DD0 dword_63DD0     DCD 0x80A15C5           ; DATA XREF: sub_63AD0+9Cr
+ROM:00063DD4 dword_63DD4     DCD 0x80A15A1           ; DATA XREF: sub_63AD0+A4r
+ROM:00063DD8 dword_63DD8     DCD 0x80A157D           ; DATA XREF: sub_63AD0+ACr
+ROM:00063DDC dword_63DDC     DCD 0x80A1559           ; DATA XREF: sub_63AD0+B4r
+ROM:00063DE0 dword_63DE0     DCD 0x80A1535           ; DATA XREF: sub_63AD0+BCr
+ROM:00063DE4 dword_63DE4     DCD 0x80A1511           ; DATA XREF: sub_63AD0+C4r
+ROM:00063DE8 dword_63DE8     DCD 0x80A14ED           ; DATA XREF: sub_63AD0+CCr
+ROM:00063DEC dword_63DEC     DCD 0x80A14C9           ; DATA XREF: sub_63AD0+D4r
+ROM:00063DF0 dword_63DF0     DCD 0x80A14A5           ; DATA XREF: sub_63AD0+DCr
+ROM:00063DF4 dword_63DF4     DCD 0x80A1481           ; DATA XREF: sub_63AD0+E4r
+ROM:00063DF8 dword_63DF8     DCD 0x80A145D           ; DATA XREF: sub_63AD0+ECr
+ROM:00063DFC dword_63DFC     DCD 0x80A1439           ; DATA XREF: sub_63AD0+F4r
+ROM:00063E00 dword_63E00     DCD 0x80A1415           ; DATA XREF: sub_63AD0+FCr
+ROM:00063E04 dword_63E04     DCD 0x80A13F1           ; DATA XREF: sub_63AD0+104r
+ROM:00063E08 dword_63E08     DCD 0x80A13CD           ; DATA XREF: sub_63AD0+10Cr
+ROM:00063E0C dword_63E0C     DCD 0x80A13A9           ; DATA XREF: sub_63AD0+114r
+ROM:00063E10 dword_63E10     DCD 0x80A1385           ; DATA XREF: sub_63AD0+11Cr
+ROM:00063E14 dword_63E14     DCD 0x80A1361           ; DATA XREF: sub_63AD0+124r
+ROM:00063E18 dword_63E18     DCD 0x80A133D           ; DATA XREF: sub_63AD0+12Cr
+ROM:00063E1C dword_63E1C     DCD 0x80A1319           ; DATA XREF: sub_63AD0+134r
+ROM:00063E20 dword_63E20     DCD 0x80A12F5           ; DATA XREF: sub_63AD0+13Cr
+ROM:00063E24 dword_63E24     DCD 0x80A12D1           ; DATA XREF: sub_63AD0+144r
+ROM:00063E28 dword_63E28     DCD 0x80A12AD           ; DATA XREF: sub_63AD0+14Cr
+ROM:00063E2C dword_63E2C     DCD 0x80A1289           ; DATA XREF: sub_63AD0+154r
+ROM:00063E30 dword_63E30     DCD 0x80A1265           ; DATA XREF: sub_63AD0+15Cr
+ROM:00063E34 dword_63E34     DCD 0x80A1241           ; DATA XREF: sub_63AD0+164r
+ROM:00063E38 dword_63E38     DCD 0x80A121D           ; DATA XREF: sub_63AD0+16Cr
+ROM:00063E3C dword_63E3C     DCD 0x80A11F9           ; DATA XREF: sub_63AD0+174r
+ROM:00063E40 dword_63E40     DCD 0x80A11D5           ; DATA XREF: sub_63AD0+17Cr
+ROM:00063E44 dword_63E44     DCD 0x80A11B1           ; DATA XREF: sub_63AD0+184r
+ROM:00063E48 dword_63E48     DCD 0x80A118D           ; DATA XREF: sub_63AD0+18Cr
+ROM:00063E4C dword_63E4C     DCD 0x80A1169           ; DATA XREF: sub_63AD0+194r
+ROM:00063E50 dword_63E50     DCD 0x80A1145           ; DATA XREF: sub_63AD0+19Cr
+ROM:00063E54 dword_63E54     DCD 0x80A1121           ; DATA XREF: sub_63AD0+1A4r
+ROM:00063E58 dword_63E58     DCD 0x80A10FD           ; DATA XREF: sub_63AD0+1ACr
+ROM:00063E5C dword_63E5C     DCD 0x80A10D9           ; DATA XREF: sub_63AD0+1B4r
+ROM:00063E60 dword_63E60     DCD 0x80A10B5           ; DATA XREF: sub_63AD0+1BCr
+ROM:00063E64 dword_63E64     DCD 0x80A1091           ; DATA XREF: sub_63AD0+1C4r
+ROM:00063E68 dword_63E68     DCD 0x80A106D           ; DATA XREF: sub_63AD0+1CCr
+ROM:00063E6C dword_63E6C     DCD 0x80A1049           ; DATA XREF: sub_63AD0+1D4r
+ROM:00063E70 dword_63E70     DCD 0x80A1025           ; DATA XREF: sub_63AD0+1DCr
+ROM:00063E74 dword_63E74     DCD 0x80A1001           ; DATA XREF: sub_63AD0+1E4r
+ROM:00063E78 dword_63E78     DCD 0x80A0FB9           ; DATA XREF: sub_63AD0+1ECr
+ROM:00063E7C dword_63E7C     DCD 0x80A0FDD           ; DATA XREF: sub_63AD0+1F4r
+ROM:00063E80 dword_63E80     DCD 0x80A0F95           ; DATA XREF: sub_63AD0+1FCr
+ROM:00063E84 dword_63E84     DCD 0x80A0F71           ; DATA XREF: sub_63AD0+204r
+ROM:00063E88 dword_63E88     DCD 0x80A0F4D           ; DATA XREF: sub_63AD0+20Cr
+ROM:00063E8C dword_63E8C     DCD 0x80A0F05           ; DATA XREF: sub_63AD0+214r
+ROM:00063E90 dword_63E90     DCD 0x80A0F29           ; DATA XREF: sub_63AD0+21Cr
+ROM:00063E94 dword_63E94     DCD 0x80A0EE1           ; DATA XREF: sub_63AD0+224r
+ROM:00063E98 dword_63E98     DCD 0x80A0EBD           ; DATA XREF: sub_63AD0+22Cr
+ROM:00063E9C dword_63E9C     DCD 0x80A0E99           ; DATA XREF: sub_63AD0+234r
+ROM:00063EA0 dword_63EA0     DCD 0x80A0E75           ; DATA XREF: sub_63AD0+266r
+ROM:00063EA4 dword_63EA4     DCD 0x80A0E51           ; DATA XREF: sub_63AD0+290r
+ROM:00063EA8 dword_63EA8     DCD 0x80A0E2D           ; DATA XREF: sub_63AD0+298r
+ROM:00063EAC dword_63EAC     DCD 0x80A0E09           ; DATA XREF: sub_63AD0+2A0r
+ROM:00063EB0 dword_63EB0     DCD 0x80A0DE5           ; DATA XREF: sub_63AD0+2A8r
+ROM:00063EB4
+ROM:00063EB4 ; =============== S U B R O U T I N E =======================================
+ROM:00063EB4
+ROM:00063EB4
+ROM:00063EB4 sub_63EB4                               ; CODE XREF: sub_63AD0+Ap
+ROM:00063EB4                                         ; sub_63AD0+18p ...
+ROM:00063EB4                 LSLS            R0, R0, #0x10
+ROM:00063EB6                 LDR             R2, =0x2002540
+ROM:00063EB8                 LSRS            R0, R0, #0xE
+ROM:00063EBA                 ADDS            R0, R0, R2
+ROM:00063EBC                 STR             R1, [R0]
+ROM:00063EBE                 BX              LR
+ROM:00063EBE ; End of function sub_63EB4
+ROM:00063EBE
+ROM:00063EBE ; ---------------------------------------------------------------------------
+ROM:00063EC0 dword_63EC0     DCD 0x2002540           ; DATA XREF: sub_63EB4+2r
+ROM:00063EC4
+ROM:00063EC4 ; =============== S U B R O U T I N E =======================================
+ROM:00063EC4
+ROM:00063EC4
+ROM:00063EC4 sub_63EC4                               ; CODE XREF: ROM:000630F6p
+ROM:00063EC4                 PUSH            {LR}
+ROM:00063EC6                 LSLS            R0, R0, #0x10
+ROM:00063EC8                 LSRS            R0, R0, #0x10
+ROM:00063ECA                 LSLS            R1, R1, #0x10
+ROM:00063ECC                 LSRS            R1, R1, #0x10
+ROM:00063ECE                 LDR             R3, =0x2002540
+ROM:00063ED0                 LSLS            R2, R1, #2
+ROM:00063ED2                 ADDS            R2, R2, R3
+ROM:00063ED4                 LDR             R2, [R2]
+ROM:00063ED6                 BL              sub_9193C
+ROM:00063EDA                 POP             {R1}
+ROM:00063EDC                 BX              R1
+ROM:00063EDC ; End of function sub_63EC4
+ROM:00063EDC
+ROM:00063EDC ; ---------------------------------------------------------------------------
+ROM:00063EDE                 ALIGN 0x10
+ROM:00063EE0 dword_63EE0     DCD 0x2002540           ; DATA XREF: sub_63EC4+Ar
+ROM:00063EE4
