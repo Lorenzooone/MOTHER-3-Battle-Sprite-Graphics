@@ -1,0 +1,5 @@
+C:\Users\lollo\Documents\Visual Studio 2015\Projects\ConsoleApplication4\ConsoleApplication4\bin\Release\ConsoleApplication4.exe.config
+C:\Users\lollo\Documents\Visual Studio 2015\Projects\ConsoleApplication4\ConsoleApplication4\bin\Release\ConsoleApplication4.exe
+C:\Users\lollo\Documents\Visual Studio 2015\Projects\ConsoleApplication4\ConsoleApplication4\bin\Release\ConsoleApplication4.pdb
+C:\Users\lollo\Documents\Visual Studio 2015\Projects\ConsoleApplication4\ConsoleApplication4\obj\Release\ConsoleApplication4.exe
+C:\Users\lollo\Documents\Visual Studio 2015\Projects\ConsoleApplication4\ConsoleApplication4\obj\Release\ConsoleApplication4.pdb
