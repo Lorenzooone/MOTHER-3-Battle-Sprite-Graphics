@@ -1,11 +1,11 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-org $8042F06; mov r1,#0x9F; lsl r1,r1,#0x14; mov r2,#0x0D0; lsl r2,r2,#0x0C; add r1,r1,r2; add r1,r1,#1; bx r1				//
-org $9FD0000																												//
-incsrc testArr.asm																											//
-//THIS MUST BE PUT IN M3HACKS.ASM																							//
+////These instructions must be put in m3hacks.asm
+//org $8042F06; mov r1,#0x9F; lsl r1,r1,#0x14; mov r2,#0x0D0; lsl r2,r2,#0x0C; add r1,r1,r2; add r1,r1,#1; bx r1
+//org $9FD0000
+//incsrc testArr.asm
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//THIS IS THE REAL testArr.asm
+//This is the real testArr.asm
 
 arr_test:
 ldr r1, =#0x2003F00 								//Flag
